@@ -1,0 +1,4384 @@
+{
+  "schema_version": 1,
+  "analysis_date": "2026-10-18",
+  "stage": 1,
+  "status": "analysis_complete_implementation_not_started",
+  "scope": {
+    "editable_project": "ios/Math_Tricks",
+    "read_only_projects": [
+      "android/Math_Tricks",
+      "ios-legacy/Math Tricks Free"
+    ],
+    "alarm": "excluded_without_scaffolding",
+    "daily_practice_and_regular_reminders": "included_separately"
+  },
+  "caveat": "Static source inventory. Legacy analogues and matching constant names do not prove semantic equivalence, deployed service configuration, or successful migration.",
+  "counts": {
+    "android_navigation_destinations": 35,
+    "included_destinations": 30,
+    "excluded_alarm_destinations": 5,
+    "legacy_named_trick_ids": 107,
+    "same_name_candidates": 105,
+    "unresolved_legacy_trick_ids": 2,
+    "legacy_banner_placements": 19
+  },
+  "android_start_destination": "@id/age_screen_fragment",
+  "screens": [
+    {
+      "route": "main_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.MainFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_main.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Main.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "example_statistics_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.game.ExampleStatisticsFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/ExampleStatisticsFragment.java",
+      "xml_preview_layout": null,
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "font_size_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.FontSizeFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/FontSizeFragment.java",
+      "xml_preview_layout": null,
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "options_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.OptionsFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/OptionsFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_options.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Settings.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "game_type_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.GameTypeFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/GameTypeFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_game_type.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/GameType.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "game_type_training_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.GameTypeTrainingFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/GameTypeTrainingFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_game_type.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/GameType.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "game_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.game.GameFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_game.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "MODE",
+          "type": "integer",
+          "default": "0"
+        },
+        {
+          "name": "LEVEL",
+          "type": "integer",
+          "default": "1"
+        },
+        {
+          "name": "TRICK_ID",
+          "type": "integer",
+          "default": "-1"
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Game.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "game_minute_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.game.GameMinuteFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameMinuteFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_game.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "MODE",
+          "type": "integer",
+          "default": "1"
+        },
+        {
+          "name": "LEVEL",
+          "type": "integer",
+          "default": "1"
+        },
+        {
+          "name": "TRICK_ID",
+          "type": "integer",
+          "default": "-1"
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Game.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "game_time_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.game.GameTimeFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameTimeFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_game.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "MODE",
+          "type": "integer",
+          "default": "2"
+        },
+        {
+          "name": "LEVEL",
+          "type": "integer",
+          "default": "1"
+        },
+        {
+          "name": "TRICK_ID",
+          "type": "integer",
+          "default": "-1"
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Game.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "game_not_time_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.game.GameNotTimeFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameNotTimeFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_game.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "MODE",
+          "type": "integer",
+          "default": "3"
+        },
+        {
+          "name": "LEVEL",
+          "type": "integer",
+          "default": "1"
+        },
+        {
+          "name": "TRICK_ID",
+          "type": "integer",
+          "default": "-1"
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Game.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "game_notification_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.game.GameNotificationFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameNotificationFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_game.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "MODE",
+          "type": "integer",
+          "default": "4"
+        },
+        {
+          "name": "LEVEL",
+          "type": "integer",
+          "default": "1"
+        },
+        {
+          "name": "TRICK_ID",
+          "type": "integer",
+          "default": "-2"
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "my_graph_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.MyGraphFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MyGraphFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_graph.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "GRAPH_ID",
+          "type": "integer",
+          "default": "-1"
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Graph.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "numpad_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.NumpadFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/NumpadFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_numpad.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Numpad.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "my_color_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.MyColorFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MyColorFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_color.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [
+        {
+          "id": "@+id/action_color_to_main",
+          "destination": "@id/main_fragment",
+          "popUpTo": "@id/age_screen_fragment",
+          "popUpToInclusive": "true"
+        }
+      ],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Theme.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "tricks_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.TricksFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/TricksFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_tree_tricks.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Training.swift",
+        "ios-legacy/Math Tricks Free/Math Tricks/BuyTrick.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "rule_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.RuleFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/RuleFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_rule.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "TRICK_ID",
+          "type": "integer",
+          "default": null
+        },
+        {
+          "name": "RULE",
+          "type": "string",
+          "default": null
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Rule.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "levels_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.LevelsFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/LevelsFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_levels.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "TRICK_ID",
+          "type": "integer",
+          "default": null
+        },
+        {
+          "name": "RULE",
+          "type": "string",
+          "default": null
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Levels.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "multiplayer_steps_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.MultiplayerStepsFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MultiplayerStepsFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_multiplayer_steps.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/PlayerSteps.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "multiplayer_steps_teamwise_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.MultiplayerStepsTeamwiseFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MultiplayerStepsTeamwiseFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_multiplayer_steps.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/PlayerSteps.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "multiplayer_vs_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.game.MultiplayerVSFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/MultiplayerVSFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_multiplayer.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "TRICK_ID",
+          "type": "integer",
+          "default": null
+        },
+        {
+          "name": "LEVEL",
+          "type": "integer",
+          "default": null
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/TwoPlayers.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "multiplayer_teamwise_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.game.MultiplayerTeamwiseFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/MultiplayerTeamwiseFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_multiplayer.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "TRICK_ID",
+          "type": "integer",
+          "default": null
+        },
+        {
+          "name": "LEVEL",
+          "type": "integer",
+          "default": null
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/TwoPlayers.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "game_training_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.game.GameTrainingFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameTrainingFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_game.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "TRICK_ID",
+          "type": "integer",
+          "default": null
+        },
+        {
+          "name": "LEVEL",
+          "type": "integer",
+          "default": null
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Game.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "age_screen_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.AgeScreenFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/AgeScreenFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_age_screen.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [
+        {
+          "id": "@+id/action_age_to_main",
+          "destination": "@id/main_fragment",
+          "popUpTo": "@id/age_screen_fragment",
+          "popUpToInclusive": "true"
+        },
+        {
+          "id": "@+id/action_age_to_color",
+          "destination": "@id/my_color_fragment"
+        }
+      ],
+      "legacy_analogue_sources": [],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "by_heart_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.ByHeartFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/ByHeartFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_by_heart.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/ByHeartMultiplication.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "by_heart_levels_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.ByHeartLevelsFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/ByHeartLevelsFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_by_heart.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "BY_HEART_NUMBER",
+          "type": "integer",
+          "default": null
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/ByHeartMultiplicationLevels.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "by_heart_example_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.ByHeartExampleFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/ByHeartExampleFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_by_heart_example.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "BY_HEART_NUMBER",
+          "type": "integer",
+          "default": null
+        },
+        {
+          "name": "BY_HEART_LEVEL",
+          "type": "integer",
+          "default": null
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/ByHeartMultiplicationLevelsExample.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "game_by_heart_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.game.GameByHeartFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameByHeartFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_game.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "BY_HEART_NUMBER",
+          "type": "integer",
+          "default": null
+        },
+        {
+          "name": "BY_HEART_LEVEL",
+          "type": "integer",
+          "default": null
+        },
+        {
+          "name": "TRICK_ID",
+          "type": "integer",
+          "default": null
+        },
+        {
+          "name": "LEVEL",
+          "type": "integer",
+          "default": null
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Game.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "alarm_list_fragment",
+      "scope": "excluded_alarm",
+      "android_class": "example.matharithmetics.activity.alarm.AlarmListFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/alarm/AlarmListFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_alarm_list.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "edit_alarm_fragment",
+      "scope": "excluded_alarm",
+      "android_class": "example.matharithmetics.activity.alarm.EditAlarmFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/alarm/EditAlarmFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_edit_alarm.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [
+        {
+          "name": "ALARM_ID",
+          "type": "integer",
+          "default": "-1"
+        },
+        {
+          "name": "PROMO_HOUR",
+          "type": "integer",
+          "default": "-1"
+        },
+        {
+          "name": "PROMO_MINUTE",
+          "type": "integer",
+          "default": "-1"
+        },
+        {
+          "name": "ANIMATE_CHALLENGE",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "declared_actions": [],
+      "legacy_analogue_sources": [],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "challenge_selection_fragment",
+      "scope": "excluded_alarm",
+      "android_class": "example.matharithmetics.activity.alarm.ChallengeSelectionFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/alarm/ChallengeSelectionFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_challenge_selection.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "challenge_settings_fragment",
+      "scope": "excluded_alarm",
+      "android_class": "example.matharithmetics.activity.alarm.ChallengeSettingsFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/alarm/ChallengeSettingsFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_challenge_settings.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "ringtone_picker_fragment",
+      "scope": "excluded_alarm",
+      "android_class": "example.matharithmetics.activity.alarm.RingtonePickerFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/alarm/RingtonePickerFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_ringtone_picker.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "options_notification_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.OptionsNotificationFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/OptionsNotificationFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_options_notification.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "select_tricks_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.activity.SelectTricksFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/SelectTricksFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/activity_tree_tricks.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [
+        "ios-legacy/Math Tricks Free/Math Tricks/Training.swift"
+      ],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    },
+    {
+      "route": "multiplication_table_fragment",
+      "scope": "included",
+      "android_class": "example.matharithmetics.game.MultiplicationTableFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/MultiplicationTableFragment.java",
+      "xml_preview_layout": "android/Math_Tricks/app/src/main/res/layout/fragment_multiplication_table.xml",
+      "layout_note": "tools:layout is a preview hint; actual inflation may be dynamic",
+      "declared_arguments": [],
+      "declared_actions": [],
+      "legacy_analogue_sources": [],
+      "analogue_note": "source of reference only; not a verified implementation match"
+    }
+  ],
+  "observed_android_navigation_calls": [
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainActivity.java",
+      "line": 83,
+      "arguments_expression": "R.id.my_color_fragment, initialThemeSetupArguments()",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainActivity.java",
+      "line": 85,
+      "arguments_expression": "R.id.main_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainActivity.java",
+      "line": 92,
+      "arguments_expression": "R.id.my_color_fragment, initialThemeSetupArguments()",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainActivity.java",
+      "line": 131,
+      "arguments_expression": "R.id.main_fragment, null, options",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainActivity.java",
+      "line": 151,
+      "arguments_expression": "destination, arguments, options",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainActivity.java",
+      "line": 164,
+      "arguments_expression": "R.id.alarm_list_fragment, intent.getExtras()",
+      "scope": "excluded_alarm",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainActivity.java",
+      "line": 173,
+      "arguments_expression": "R.id.game_notification_fragment, args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 145,
+      "arguments_expression": "R.id.example_statistics_fragment)",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 580,
+      "arguments_expression": "R.id.alarm_list_fragment",
+      "scope": "excluded_alarm",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 581,
+      "arguments_expression": "R.id.edit_alarm_fragment, editArgs",
+      "scope": "excluded_alarm",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 921,
+      "arguments_expression": "R.id.options_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 925,
+      "arguments_expression": "R.id.age_screen_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 929,
+      "arguments_expression": "R.id.my_color_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 933,
+      "arguments_expression": "R.id.game_type_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 939,
+      "arguments_expression": "R.id.my_graph_fragment, args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 943,
+      "arguments_expression": "R.id.tricks_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 947,
+      "arguments_expression": "R.id.alarm_list_fragment",
+      "scope": "excluded_alarm",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 959,
+      "arguments_expression": "R.id.multiplayer_steps_teamwise_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 963,
+      "arguments_expression": "R.id.by_heart_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 969,
+      "arguments_expression": "R.id.options_notification_fragment, args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "line": 977,
+      "arguments_expression": "R.id.game_notification_fragment, args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/AgeScreenFragment.java",
+      "line": 105,
+      "arguments_expression": "R.id.action_age_to_main",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/AgeScreenFragment.java",
+      "line": 242,
+      "arguments_expression": "R.id.action_age_to_color, example.matharithmetics.MainActivity.initialThemeSetupArguments()",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/AgeScreenFragment.java",
+      "line": 246,
+      "arguments_expression": "R.id.action_age_to_main",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/ByHeartExampleFragment.java",
+      "line": 140,
+      "arguments_expression": "R.id.game_by_heart_fragment, bundle",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/ByHeartFragment.java",
+      "line": 127,
+      "arguments_expression": "R.id.by_heart_levels_fragment, bundle",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/ByHeartLevelsFragment.java",
+      "line": 130,
+      "arguments_expression": "R.id.by_heart_example_fragment, bundle",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/ByHeartLevelsFragment.java",
+      "line": 148,
+      "arguments_expression": "R.id.game_by_heart_fragment, bundle",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/GameTypeFragment.java",
+      "line": 362,
+      "arguments_expression": "destinationId, args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/GameTypeFragment.java",
+      "line": 368,
+      "arguments_expression": "R.id.my_graph_fragment, args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/GameTypeTrainingFragment.java",
+      "line": 305,
+      "arguments_expression": "destinationId, args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/LevelsFragment.java",
+      "line": 304,
+      "arguments_expression": "R.id.game_training_fragment, bundle",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MultiplayerStepsFragment.java",
+      "line": 176,
+      "arguments_expression": "R.id.multiplayer_teamwise_fragment, args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MultiplayerStepsFragment.java",
+      "line": 183,
+      "arguments_expression": "R.id.multiplayer_vs_fragment, args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MultiplayerStepsTeamwiseFragment.java",
+      "line": 14,
+      "arguments_expression": "R.id.multiplayer_teamwise_fragment, args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MultiplayerStepsTeamwiseFragment.java",
+      "line": 22,
+      "arguments_expression": "R.id.multiplayer_vs_fragment, args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MyColorFragment.java",
+      "line": 639,
+      "arguments_expression": "R.id.action_color_to_main",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/OptionsFragment.java",
+      "line": 423,
+      "arguments_expression": "R.id.font_size_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/OptionsFragment.java",
+      "line": 436,
+      "arguments_expression": "R.id.my_color_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/OptionsFragment.java",
+      "line": 441,
+      "arguments_expression": "R.id.numpad_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/OptionsNotificationFragment.java",
+      "line": 116,
+      "arguments_expression": "R.id.select_tricks_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/RuleFragment.java",
+      "line": 3141,
+      "arguments_expression": "R.id.levels_fragment, bundle, navOptions",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/TricksFragment.java",
+      "line": 512,
+      "arguments_expression": "R.id.by_heart_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/TricksFragment.java",
+      "line": 514,
+      "arguments_expression": "R.id.rule_fragment, bundle",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/TricksFragment.java",
+      "line": 520,
+      "arguments_expression": "R.id.multiplayer_steps_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/TricksFragment.java",
+      "line": 526,
+      "arguments_expression": "R.id.game_type_training_fragment",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/TricksFragment.java",
+      "line": 567,
+      "arguments_expression": "R.id.main_fragment, bundle, navOptions",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/ExampleStatisticsFragment.java",
+      "line": 439,
+      "arguments_expression": "R.id.example_statistics_fragment,args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/SolutionFragment.java",
+      "line": 958,
+      "arguments_expression": "R.id.multiplication_table_fragment, args, new androidx.navigation.NavOptions.Builder().setLaunchSingleTop(true).build()",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/TimerEndFragment.java",
+      "line": 472,
+      "arguments_expression": "R.id.my_graph_fragment, args",
+      "scope": "included",
+      "note": "observed call site; dynamic destination variables need the semantic flows in MIGRATION_PLAN.md"
+    }
+  ],
+  "auxiliary_presentations": [
+    {
+      "name": "SolutionFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/SolutionFragment.java",
+      "note": "nested screen, result presenter or dialog; not a separate Navigation Graph destination"
+    },
+    {
+      "name": "TimerEndFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/TimerEndFragment.java",
+      "note": "nested screen, result presenter or dialog; not a separate Navigation Graph destination"
+    },
+    {
+      "name": "LevelCompleteFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/LevelCompleteFragment.java",
+      "note": "nested screen, result presenter or dialog; not a separate Navigation Graph destination"
+    },
+    {
+      "name": "MultiplayerWinFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/MultiplayerWinFragment.java",
+      "note": "nested screen, result presenter or dialog; not a separate Navigation Graph destination"
+    },
+    {
+      "name": "TrickSessionFragment",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/TrickSessionFragment.java",
+      "note": "nested screen, result presenter or dialog; not a separate Navigation Graph destination"
+    },
+    {
+      "name": "LevelResultScreen",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/LevelResultScreen.java",
+      "note": "nested screen, result presenter or dialog; not a separate Navigation Graph destination"
+    },
+    {
+      "name": "ResultSolutionDialog",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/ResultSolutionDialog.java",
+      "note": "nested screen, result presenter or dialog; not a separate Navigation Graph destination"
+    }
+  ],
+  "legacy_storyboard_transitions": [
+    {
+      "from": "Main",
+      "to": "GameType",
+      "identifier": "segueGameType",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Main",
+      "to": "PlayerSteps",
+      "identifier": "seguePlayerSteps",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Main",
+      "to": "Training",
+      "identifier": null,
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Main",
+      "to": "ByHeartMultiplication",
+      "identifier": null,
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Main",
+      "to": "Settings",
+      "identifier": null,
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Main",
+      "to": "Theme",
+      "identifier": "segueTheme",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Training",
+      "to": "GameType",
+      "identifier": "segueGameTypeTraining",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Training",
+      "to": "PlayerSteps",
+      "identifier": "seguePlayerStepsTraining",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Training",
+      "to": "Rule",
+      "identifier": "segueRule",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Training",
+      "to": "BuyTrick",
+      "identifier": "segueBuyTrick",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Rule",
+      "to": "Levels",
+      "identifier": null,
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Levels",
+      "to": "Game",
+      "identifier": "segueGameTraining",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Settings",
+      "to": "Numpad",
+      "identifier": "segueNumpad",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Settings",
+      "to": "Theme",
+      "identifier": "segueTheme",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "GameType",
+      "to": "Game",
+      "identifier": "segueGameSingle",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "GameType",
+      "to": "Graph",
+      "identifier": "segueChartSingle",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "GameType",
+      "to": "Game",
+      "identifier": "segueGameMinute",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "GameType",
+      "to": "Graph",
+      "identifier": "segueChartMinute",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "GameType",
+      "to": "Game",
+      "identifier": "segueGameSpeed",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "GameType",
+      "to": "Graph",
+      "identifier": "segueChartSpeed",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "GameType",
+      "to": "Game",
+      "identifier": "segueGameNoTime",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "GameType",
+      "to": "Graph",
+      "identifier": "segueChartNoTime",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Game",
+      "to": "Hint",
+      "identifier": "segueHint",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Game",
+      "to": "TimerEnd",
+      "identifier": "segueTimerEnd",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "Game",
+      "to": "LevelComplete",
+      "identifier": "segueLevelComplete",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "ByHeartMultiplication",
+      "to": "ByHeartMultiplicationLevels",
+      "identifier": "segueByHeartMultiplicationLevels",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "ByHeartMultiplicationLevels",
+      "to": "ByHeartMultiplicationLevelsExample",
+      "identifier": "segueByHeartMultiplicationLevelsExample",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "ByHeartMultiplicationLevelsExample",
+      "to": "Game",
+      "identifier": "segueGameByHeart",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "TimerEnd",
+      "to": "Graph",
+      "identifier": "segueChart",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "LevelComplete",
+      "to": "Graph",
+      "identifier": "segueChart",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "TwoPlayers",
+      "to": "PlayerWin",
+      "identifier": "seguePlayerWin",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "from": "PlayerSteps",
+      "to": "TwoPlayers",
+      "identifier": "segueTwoPlayers",
+      "kind": "show",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    }
+  ],
+  "mode_mapping": [
+    {
+      "semantic": "single",
+      "android_mode": 0,
+      "legacy_mode": 1,
+      "leaderboard": "lb_game_single_free"
+    },
+    {
+      "semantic": "minute",
+      "android_mode": 1,
+      "legacy_mode": 2,
+      "leaderboard": "lb_game_minute_free"
+    },
+    {
+      "semantic": "speed",
+      "android_mode": 2,
+      "legacy_mode": 3,
+      "leaderboard": "lb_game_speed_free"
+    },
+    {
+      "semantic": "no_time",
+      "android_mode": 3,
+      "legacy_mode": 4,
+      "leaderboard": "lb_game_noTime_free"
+    },
+    {
+      "semantic": "daily",
+      "android_mode": 4,
+      "legacy_mode": null,
+      "leaderboard": null
+    },
+    {
+      "semantic": "training",
+      "android_mode": null,
+      "legacy_mode": 5,
+      "leaderboard": "lb_tricks_levels_free"
+    },
+    {
+      "semantic": "by_heart",
+      "android_mode": null,
+      "legacy_mode": 6,
+      "leaderboard": "lb_byHeart_multiplication_levels_free"
+    }
+  ],
+  "mode_mapping_note": "Training/by-heart use dedicated Android routes; null does not mean MODE=5 or MODE=6. Leaderboards for training/by-heart are aggregate progress tables.",
+  "legacy_trick_id_candidates": [
+    {
+      "legacy_constant": "trick_addition_id",
+      "legacy_id": 1001,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_addition_id",
+      "android_id": 1,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_adding_numbers_close_to_hundreds_id",
+      "legacy_id": 1002,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_adding_numbers_close_to_hundreds_id",
+      "android_id": 14,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_subtraction_id",
+      "legacy_id": 2001,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_subtraction_id",
+      "android_id": 2,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_subtracting_from_1000_id",
+      "legacy_id": 2002,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_subtracting_from_1000_id",
+      "android_id": 11,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_subtracting_numbers_close_to_hundreds_id",
+      "legacy_id": 2003,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_subtracting_numbers_close_to_hundreds_id",
+      "android_id": 15,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiplication_id",
+      "legacy_id": 3001,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiplication_id",
+      "android_id": 3,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_11_2digit_id",
+      "legacy_id": 3002,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_11_2digit_id",
+      "android_id": 5,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_two_digit_numbers_having_same_tens_id",
+      "legacy_id": 3003,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_two_digit_numbers_having_same_tens_id",
+      "android_id": 18,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_two_digit_numbers_editing_in_1_id",
+      "legacy_id": 3004,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_two_digit_numbers_editing_in_1_id",
+      "android_id": 21,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_numbers_between_11_and_19_id",
+      "legacy_id": 3005,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_numbers_between_11_and_19_id",
+      "android_id": 16,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_02_id",
+      "legacy_id": 3006,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_02_id",
+      "android_id": 40,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_025_id",
+      "legacy_id": 3007,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_025_id",
+      "android_id": 42,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_05_id",
+      "legacy_id": 3008,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_05_id",
+      "android_id": 37,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_2_id",
+      "legacy_id": 3009,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_2_id",
+      "android_id": 87,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_3_id",
+      "legacy_id": 3010,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_3_id",
+      "android_id": 59,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_4_id",
+      "legacy_id": 3011,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_4_id",
+      "android_id": 9,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_5_id",
+      "legacy_id": 3012,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_5_id",
+      "android_id": 7,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_6_id",
+      "legacy_id": 3013,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_6_id",
+      "android_id": 60,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_7_id",
+      "legacy_id": 3014,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_7_id",
+      "android_id": 61,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_8_id",
+      "legacy_id": 3015,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_8_id",
+      "android_id": 62,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_9_id",
+      "legacy_id": 3016,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_9_id",
+      "android_id": 8,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_12_id",
+      "legacy_id": 3017,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_12_id",
+      "android_id": 63,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_13_id",
+      "legacy_id": 3018,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_13_id",
+      "android_id": 64,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_14_id",
+      "legacy_id": 3019,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_14_id",
+      "android_id": 65,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_15_id",
+      "legacy_id": 3020,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_15_id",
+      "android_id": 26,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_16_id",
+      "legacy_id": 3021,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_16_id",
+      "android_id": 66,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_17_id",
+      "legacy_id": 3022,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_17_id",
+      "android_id": 67,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_18_id",
+      "legacy_id": 3023,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_18_id",
+      "android_id": 68,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_19_id",
+      "legacy_id": 3024,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_19_id",
+      "android_id": 69,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_20_id",
+      "legacy_id": 3025,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_20_id",
+      "android_id": 27,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_25_id",
+      "legacy_id": 3026,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_25_id",
+      "android_id": 34,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_50_id",
+      "legacy_id": 3027,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_50_id",
+      "android_id": 35,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_75_id",
+      "legacy_id": 3028,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_75_id",
+      "android_id": 101,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_99_id",
+      "legacy_id": 3029,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_99_id",
+      "android_id": 33,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_125_id",
+      "legacy_id": 3030,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_125_id",
+      "android_id": 90,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_250_id",
+      "legacy_id": 3031,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_250_id",
+      "android_id": 93,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_500_id",
+      "legacy_id": 3032,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_500_id",
+      "android_id": 94,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_750_id",
+      "legacy_id": 3033,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_750_id",
+      "android_id": 95,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_multiply_by_999_id",
+      "legacy_id": 3034,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_multiply_by_999_id",
+      "android_id": 96,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_tough_multiplication_id",
+      "legacy_id": 3035,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_tough_multiplication_id",
+      "android_id": 12,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_division_id",
+      "legacy_id": 4001,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_division_id",
+      "android_id": 4,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_02_id",
+      "legacy_id": 4002,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_02_id",
+      "android_id": 41,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_025_id",
+      "legacy_id": 4003,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_025_id",
+      "android_id": 43,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_05_id",
+      "legacy_id": 4004,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_05_id",
+      "android_id": 38,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_2_id",
+      "legacy_id": 4005,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_2_id",
+      "android_id": 86,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_3_id",
+      "legacy_id": 4006,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_3_id",
+      "android_id": 85,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_4_id",
+      "legacy_id": 4007,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_4_id",
+      "android_id": 28,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_5_id",
+      "legacy_id": 4008,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_5_id",
+      "android_id": 10,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_6_id",
+      "legacy_id": 4009,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_6_id",
+      "android_id": 72,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_7_id",
+      "legacy_id": 4010,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_7_id",
+      "android_id": 97,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_8_id",
+      "legacy_id": 4011,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_8_id",
+      "android_id": 88,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_9_id",
+      "legacy_id": 4012,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_9_id",
+      "android_id": 98,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_15_id",
+      "legacy_id": 4013,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_15_id",
+      "android_id": 71,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_20_id",
+      "legacy_id": 4014,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_20_id",
+      "android_id": 29,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_25_id",
+      "legacy_id": 4015,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_25_id",
+      "android_id": 31,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_40_id",
+      "legacy_id": 4016,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_40_id",
+      "android_id": 36,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_dividing_by_50_id",
+      "legacy_id": 4017,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_dividing_by_50_id",
+      "android_id": 30,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_numbers_editing_in_5_id",
+      "legacy_id": 5001,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_numbers_editing_in_5_id",
+      "android_id": 6,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_numbers_editing_in_05_id",
+      "legacy_id": 5002,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_numbers_editing_in_05_id",
+      "android_id": 102,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_numbers_editing_in_15_id",
+      "legacy_id": 5003,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_numbers_editing_in_15_id",
+      "android_id": 103,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_numbers_editing_in_25_id",
+      "legacy_id": 5004,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_numbers_editing_in_25_id",
+      "android_id": 39,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_numbers_editing_in_75_id",
+      "legacy_id": 5005,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_numbers_editing_in_75_id",
+      "android_id": 91,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_numbers_editing_in_95_id",
+      "legacy_id": 5006,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_numbers_editing_in_95_id",
+      "android_id": 104,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_numbers_editing_in_125_id",
+      "legacy_id": 5007,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_numbers_editing_in_125_id",
+      "android_id": 92,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_number_between_10_and_19_id",
+      "legacy_id": 5008,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_number_between_10_and_19_id",
+      "android_id": 32,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_number_between_20_and_29_id",
+      "legacy_id": 5009,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_number_between_20_and_29_id",
+      "android_id": 44,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_number_between_30_and_39_id",
+      "legacy_id": 5010,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_number_between_30_and_39_id",
+      "android_id": 45,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_number_between_40_and_49_id",
+      "legacy_id": 5011,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_number_between_40_and_49_id",
+      "android_id": 20,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_number_between_50_and_59_id",
+      "legacy_id": 5012,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_number_between_50_and_59_id",
+      "android_id": 19,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_number_between_60_and_69_id",
+      "legacy_id": 5013,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_number_between_60_and_69_id",
+      "android_id": 46,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_number_between_70_and_79_id",
+      "legacy_id": 5014,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_number_between_70_and_79_id",
+      "android_id": 47,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_number_between_80_and_89_id",
+      "legacy_id": 5015,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_number_between_80_and_89_id",
+      "android_id": 48,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_square_number_between_90_and_99_id",
+      "legacy_id": 5016,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": null,
+      "android_id": null,
+      "android_source": null,
+      "status": "unresolved_preserve_legacy_progress"
+    },
+    {
+      "legacy_constant": "trick_square_number_between_100_and_109_id",
+      "legacy_id": 5017,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_square_number_between_100_and_109_id",
+      "android_id": 23,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_power_of_two_id",
+      "legacy_id": 6001,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_power_of_two_id",
+      "android_id": 13,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_power_2_id",
+      "legacy_id": 6002,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_power_2_id",
+      "android_id": 77,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_power_2_between_100_and_999_id",
+      "legacy_id": 6003,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_power_2_between_100_and_999_id",
+      "android_id": 78,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_power_2_between_1000_and_9999_id",
+      "legacy_id": 6004,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_power_2_between_1000_and_9999_id",
+      "android_id": 79,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_power_3_id",
+      "legacy_id": 6005,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_power_3_id",
+      "android_id": 80,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_power_3_between_100_and_999_id",
+      "legacy_id": 6006,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_power_3_between_100_and_999_id",
+      "android_id": 81,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_power_4_id",
+      "legacy_id": 6007,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_power_4_id",
+      "android_id": 82,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_power_6_id",
+      "legacy_id": 6008,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_power_6_id",
+      "android_id": 83,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_power_9_id",
+      "legacy_id": 6009,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_power_9_id",
+      "android_id": 84,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_2_root_id",
+      "legacy_id": 7001,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": null,
+      "android_id": null,
+      "android_source": null,
+      "status": "unresolved_preserve_legacy_progress"
+    },
+    {
+      "legacy_constant": "trick_3_root_id",
+      "legacy_id": 7002,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_3_root_id",
+      "android_id": 73,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_4_root_id",
+      "legacy_id": 7003,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_4_root_id",
+      "android_id": 74,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_5_root_id",
+      "legacy_id": 7004,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_5_root_id",
+      "android_id": 89,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_6_root_id",
+      "legacy_id": 7005,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_6_root_id",
+      "android_id": 75,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_9_root_id",
+      "legacy_id": 7006,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_9_root_id",
+      "android_id": 76,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_percent_id",
+      "legacy_id": 8001,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_percent_id",
+      "android_id": 22,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_percent_2_id",
+      "legacy_id": 8002,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_percent_2_id",
+      "android_id": 25,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_05_percent_id",
+      "legacy_id": 8003,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_05_percent_id",
+      "android_id": 56,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_2_percent_id",
+      "legacy_id": 8004,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_2_percent_id",
+      "android_id": 55,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_4_percent_id",
+      "legacy_id": 8005,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_4_percent_id",
+      "android_id": 54,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_5_percent_id",
+      "legacy_id": 8006,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_5_percent_id",
+      "android_id": 53,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_15_percent_id",
+      "legacy_id": 8007,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_15_percent_id",
+      "android_id": 52,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_20_percent_id",
+      "legacy_id": 8008,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_20_percent_id",
+      "android_id": 51,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_25_percent_id",
+      "legacy_id": 8009,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_25_percent_id",
+      "android_id": 50,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_40_percent_id",
+      "legacy_id": 8010,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_40_percent_id",
+      "android_id": 107,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_50_percent_id",
+      "legacy_id": 8011,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_50_percent_id",
+      "android_id": 49,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_75_percent_id",
+      "legacy_id": 8012,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_75_percent_id",
+      "android_id": 105,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_150_percent_id",
+      "legacy_id": 8013,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_150_percent_id",
+      "android_id": 57,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_200_percent_id",
+      "legacy_id": 8014,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_200_percent_id",
+      "android_id": 58,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_250_percent_id",
+      "legacy_id": 8015,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_250_percent_id",
+      "android_id": 70,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_300_percent_id",
+      "legacy_id": 8016,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_300_percent_id",
+      "android_id": 99,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_500_percent_id",
+      "legacy_id": 8017,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_500_percent_id",
+      "android_id": 100,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    },
+    {
+      "legacy_constant": "trick_750_percent_id",
+      "legacy_id": 8018,
+      "legacy_source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "android_constant": "trick_750_percent_id",
+      "android_id": 106,
+      "android_source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "status": "same_name_candidate_requires_semantic_and_level_review"
+    }
+  ],
+  "android_names_without_exact_legacy_constant": [
+    {
+      "constant": "trick_random_id",
+      "value": -1,
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml"
+    },
+    {
+      "constant": "trick_selection_id",
+      "value": -2,
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml"
+    },
+    {
+      "constant": "trick_rtm_id",
+      "value": -4,
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml"
+    },
+    {
+      "constant": "trick_square_number_between_11_and_99_id",
+      "value": 17,
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml"
+    },
+    {
+      "constant": "trick_square_root_id",
+      "value": 24,
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml"
+    }
+  ],
+  "android_special_ids": [
+    {
+      "constant": "trick_random_id",
+      "value": -1,
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml"
+    },
+    {
+      "constant": "trick_selection_id",
+      "value": -2,
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml"
+    },
+    {
+      "constant": "trick_rtm_id",
+      "value": -4,
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml"
+    },
+    {
+      "constant": "trick_by_heart",
+      "value": -3,
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml"
+    }
+  ],
+  "android_preference_key_resources": [
+    {
+      "constant": "preference_IOS",
+      "value": "preference_IOS",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_ads_terms",
+      "value": "preference_ads_terms",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_age_screen",
+      "value": "preference_age_screen",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_alarm_hour",
+      "value": "preference_alarm_hour",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_alarm_minute",
+      "value": "preference_alarm_minute",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_b_no_ads",
+      "value": "preference_b_no_ads",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_can_sound",
+      "value": "preference_can_sound",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_can_vibrator",
+      "value": "preference_can_vibrator",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_cb_notification",
+      "value": "preference_cb_notification",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_color_picke_bg",
+      "value": "preference_color_picke_bg",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_color_picke_text",
+      "value": "preference_color_picke_text",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_current_country",
+      "value": "preference_current_country",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_current_language",
+      "value": "preference_current_language",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_languages.xml"
+    },
+    {
+      "constant": "preference_current_theme",
+      "value": "preference_current_theme_new",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_current_theme_name",
+      "value": "preference_current_theme_name",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_days_notification",
+      "value": "preference_days_notification",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_days_streak",
+      "value": "preference_days_streak",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_ex_count",
+      "value": 10,
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_ex_per_day_today",
+      "value": "preference_ex_per_day_today_new",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_ex_per_day_total",
+      "value": "preference_ex_per_day_total",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_ex_per_day_total_solved",
+      "value": "preference_ex_per_day_total_solved",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_game_color_change",
+      "value": "preference_game_color_change",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_game_type_level",
+      "value": "preference_game_type_level",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_game_type_level_max",
+      "value": "preference_game_type_level_max",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_graph_cube",
+      "value": "preference_graph_cube",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_head_color_change",
+      "value": "preference_head_color_change",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_head_color_from",
+      "value": "preference_head_color_from",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_head_color_main",
+      "value": "preference_head_color_main",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_head_color_to",
+      "value": "preference_head_color_to",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_in_ads_hint",
+      "value": "preference_in_hint",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_in_ads_time",
+      "value": "preference_in",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_inc_day_streak_date",
+      "value": "preference_inc_day_streak_date",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_is_need_to_personalize_ads",
+      "value": "preference_is_need_to_personalize_ads",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_money",
+      "value": "preference_tricks_count",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_my_color",
+      "value": "preference_my_color_new",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_numpad",
+      "value": "preference_numpad",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_numpad_change",
+      "value": "preference_numpad_change",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_numpad_order",
+      "value": "preference_numpad_order",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_orientation",
+      "value": "preference_orientation",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_rate",
+      "value": "preference_rate",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_reset_theme",
+      "value": "preference_reset_theme",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_rtm_count_defeat",
+      "value": "preference_rtm_count_defeat",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_rtm_count_victory",
+      "value": "preference_rtm_count_victory",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_score_max",
+      "value": "preference_score_max",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_score_max_minute",
+      "value": "preference_score_max_minute",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_score_max_not_time",
+      "value": "preference_score_max_not_time",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_score_max_selection",
+      "value": "preference_score_max_selection",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_score_max_selection_minute",
+      "value": "preference_score_max_selection_minute",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_score_max_selection_not_time",
+      "value": "preference_score_max_selection_not_time",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_score_max_selection_time",
+      "value": "preference_score_max_selection_time",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_score_max_time",
+      "value": "preference_score_max_time",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_score_max_timewise",
+      "value": "preference_score_max_timewise",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_set_day_streak_date",
+      "value": "preference_set_day_streak_date",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_steps_count",
+      "value": "preference_steps_count",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_training_level",
+      "value": "preference_training_level",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_tts",
+      "value": "preference_tts",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_volume",
+      "value": "preference_volume",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    },
+    {
+      "constant": "preference_wrong_answer_signal",
+      "value": "preference_wrong_answer_signal",
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml"
+    }
+  ],
+  "legacy_defaults_string_constants": [
+    {
+      "constant": "COREDATA_VERSION_OLD",
+      "value": "COREDATA_VERSION_OLD",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_SETTINGS_SOUND",
+      "value": "DEFAULTS_SETTINGS_SOUND",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_SETTINGS_VIBRATION",
+      "value": "DEFAULTS_SETTINGS_VIBRATION",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_GAMETYPE_CURRENT_LEVEL",
+      "value": "DEFAULTS_GAME_TYPE_CURRENT_LEVEL",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_GAMETYPE_MAX_LEVEL",
+      "value": "DEFAULTS_GAME_TYPE_MAX_LEVEL",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_MONEY_TOTAL",
+      "value": "DEFAULTS_MONEY_TOTAL",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_EXAMPLES_SOLVED_TOTAL",
+      "value": "DEFAULTS_EXAMPLES_SOLVED_TOTAL",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_MAX_SCORE_GAME_SINGLE",
+      "value": "DEFAULTS_MAX_SCORE_GAME_SINGLE",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_MAX_SCORE_GAME_MINUTE",
+      "value": "DEFAULTS_MAX_SCORE_GAME_MINUTE",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_MAX_SCORE_GAME_SPEED",
+      "value": "DEFAULTS_MAX_SCORE_GAME_SPEED",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_MAX_SCORE_GAME_NON_TIME",
+      "value": "DEFAULTS_MAX_SCORE_GAME_NON_TIME",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_MAX_SCORE_GAME_CHECKED_SINGLE",
+      "value": "DEFAULTS_MAX_SCORE_GAME_CHECKED_SINGLE",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_MAX_SCORE_GAME_CHECKED_MINUTE",
+      "value": "DEFAULTS_MAX_SCORE_GAME_CHECKED_MINUTE",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_MAX_SCORE_GAME_CHECKED_SPEED",
+      "value": "DEFAULTS_MAX_SCORE_GAME_CHECKED_SPEED",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_MAX_SCORE_GAME_CHECKED_NON_TIME",
+      "value": "DEFAULTS_MAX_SCORE_GAME_CHECKED_NON_TIME",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_TWO_PLAYERS_PROGRESS",
+      "value": "DEFAULTS_TWO_PLAYERS_PROGRESS",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_PLAYER_1_WINS",
+      "value": "DEFAULTS_PLAYER_1_WINS",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_PLAYER_2_WINS",
+      "value": "DEFAULTS_PLAYER_2_WINS",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_NUMPAD_123",
+      "value": "DEFAULTS_NUMPAD_123",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    },
+    {
+      "constant": "DEFAULTS_THEME_COLOR",
+      "value": "DEFAULTS_THEME_COLOR",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift"
+    }
+  ],
+  "legacy_game_center_identifiers": [
+    {
+      "constant": "LB_GAME_SINGLE",
+      "value": "lb_game_single_free",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyGame.swift"
+    },
+    {
+      "constant": "LB_GAME_MINUTE",
+      "value": "lb_game_minute_free",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyGame.swift"
+    },
+    {
+      "constant": "LB_GAME_SPEED",
+      "value": "lb_game_speed_free",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyGame.swift"
+    },
+    {
+      "constant": "LB_GAME_NO_TIME",
+      "value": "lb_game_noTime_free",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyGame.swift"
+    },
+    {
+      "constant": "LB_TRICKS_LEVELS",
+      "value": "lb_tricks_levels_free",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyGame.swift"
+    },
+    {
+      "constant": "LB_BYHEART_MULTIPLICATION_LEVELS",
+      "value": "lb_byHeart_multiplication_levels_free",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyGame.swift"
+    },
+    {
+      "constant": "LB_TOTAL_SOLVED",
+      "value": "lb_total_solved_free",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyGame.swift"
+    }
+  ],
+  "legacy_core_data": {
+    "container_name": "Math_Tricks",
+    "current_model": "Math_Tricks v2.xcdatamodel",
+    "store_url": "not explicitly overridden; verify default resolved URL at migration stage",
+    "source": "ios-legacy/Math Tricks Free/Math Tricks/AppDelegate.swift",
+    "models": [
+      {
+        "source": "ios-legacy/Math Tricks Free/Math Tricks/Math_Tricks.xcdatamodeld/Math_Tricks v2.xcdatamodel/contents",
+        "entities": [
+          {
+            "name": "ByHeart_Multiplication",
+            "representedClassName": "",
+            "syncable": "YES",
+            "attributes": [
+              {
+                "name": "id",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "parent_id",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "rating",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "score",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "status",
+                "optional": "YES",
+                "attributeType": "Boolean",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              }
+            ]
+          },
+          {
+            "name": "Graphs",
+            "syncable": "YES",
+            "attributes": [
+              {
+                "name": "date",
+                "optional": "YES",
+                "attributeType": "String",
+                "syncable": "YES"
+              },
+              {
+                "name": "id_game",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "score",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              }
+            ]
+          },
+          {
+            "name": "Tricks",
+            "syncable": "YES",
+            "attributes": [
+              {
+                "name": "checked",
+                "optional": "YES",
+                "attributeType": "Boolean",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "id",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "name",
+                "optional": "YES",
+                "attributeType": "String",
+                "syncable": "YES"
+              },
+              {
+                "name": "status",
+                "optional": "YES",
+                "attributeType": "Boolean",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "status_fixed",
+                "optional": "YES",
+                "attributeType": "Boolean",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              }
+            ]
+          },
+          {
+            "name": "Tricks_Levels",
+            "representedClassName": "",
+            "syncable": "YES",
+            "attributes": [
+              {
+                "name": "id",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "parent_id",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "rating",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "score",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "status",
+                "optional": "YES",
+                "attributeType": "Boolean",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source": "ios-legacy/Math Tricks Free/Math Tricks/Math_Tricks.xcdatamodeld/Math_Tricks.xcdatamodel/contents",
+        "entities": [
+          {
+            "name": "ByHeart_Multiplication",
+            "representedClassName": "ByHeart_Multiplication",
+            "syncable": "YES",
+            "codeGenerationType": "class",
+            "attributes": [
+              {
+                "name": "id",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "parent_id",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "rating",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "score",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "status",
+                "optional": "YES",
+                "attributeType": "Boolean",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              }
+            ]
+          },
+          {
+            "name": "Tricks",
+            "representedClassName": "Tricks",
+            "syncable": "YES",
+            "codeGenerationType": "class",
+            "attributes": [
+              {
+                "name": "checked",
+                "optional": "YES",
+                "attributeType": "Boolean",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "id",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "name",
+                "optional": "YES",
+                "attributeType": "String",
+                "syncable": "YES"
+              },
+              {
+                "name": "status",
+                "optional": "YES",
+                "attributeType": "Boolean",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "status_fixed",
+                "optional": "YES",
+                "attributeType": "Boolean",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              }
+            ]
+          },
+          {
+            "name": "Tricks_Levels",
+            "representedClassName": "Tricks_Levels",
+            "syncable": "YES",
+            "codeGenerationType": "class",
+            "attributes": [
+              {
+                "name": "id",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "parent_id",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "rating",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "score",
+                "optional": "YES",
+                "attributeType": "Integer 16",
+                "defaultValueString": "0",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              },
+              {
+                "name": "status",
+                "optional": "YES",
+                "attributeType": "Boolean",
+                "usesScalarValueType": "YES",
+                "syncable": "YES"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "legacy_banner_placements": [
+    {
+      "legacy_screen": "Main",
+      "ad_unit_id": "ca-app-pub-4469463872184379/9708489246",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "Training",
+      "ad_unit_id": "ca-app-pub-4469463872184379/8542493644",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "Rule",
+      "ad_unit_id": "ca-app-pub-4469463872184379/5589027241",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "Hint",
+      "ad_unit_id": "ca-app-pub-4469463872184379/3833092448",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "Levels",
+      "ad_unit_id": "ca-app-pub-4469463872184379/7065760441",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "Settings",
+      "ad_unit_id": "ca-app-pub-4469463872184379/1019226843",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "GameType",
+      "ad_unit_id": "ca-app-pub-4469463872184379/1298428443",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "Game",
+      "ad_unit_id": "ca-app-pub-4469463872184379/6926159640",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "ByHeartMultiplication",
+      "ad_unit_id": "ca-app-pub-4469463872184379/8263292044",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "ByHeartMultiplicationLevels",
+      "ad_unit_id": "ca-app-pub-4469463872184379/9740025240",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "ByHeartMultiplicationLevelsExample",
+      "ad_unit_id": "ca-app-pub-4469463872184379/3693491640",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "TimerEnd",
+      "ad_unit_id": "ca-app-pub-4469463872184379/2356359245",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "LevelComplete",
+      "ad_unit_id": "ca-app-pub-4469463872184379/9879626046",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "PlayerWin",
+      "ad_unit_id": "ca-app-pub-4469463872184379/7205361249",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "PlayerSteps",
+      "ad_unit_id": "ca-app-pub-4469463872184379/2635560841",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "BuyTrick",
+      "ad_unit_id": "ca-app-pub-4469463872184379/5449426441",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "Numpad",
+      "ad_unit_id": "ca-app-pub-4469463872184379/3972693247",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "Theme",
+      "ad_unit_id": "ca-app-pub-4469463872184379/2495960041",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    },
+    {
+      "legacy_screen": "Graph",
+      "ad_unit_id": "ca-app-pub-4469463872184379/3109026842",
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard"
+    }
+  ],
+  "backup_formats": {
+    "android_cloud_snapshot": {
+      "schema_version": 2,
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/cloud/ProgressSnapshot.java"
+    },
+    "android_file_archive": {
+      "format": "math-tricks-progress",
+      "version": 5,
+      "encoding": "GZIP JSON",
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/cloud/LocalFileBackup.java"
+    }
+  },
+  "current_ios_project_settings": {
+    "source": "ios/Math_Tricks/Math_Tricks.xcodeproj/project.pbxproj",
+    "observed_settings": [
+      {
+        "line": 411,
+        "setting": "IPHONEOS_DEPLOYMENT_TARGET = 26.5;"
+      },
+      {
+        "line": 416,
+        "setting": "PRODUCT_BUNDLE_IDENTIFIER = \"com.antoni.Math-Tricks\";"
+      },
+      {
+        "line": 417,
+        "setting": "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]\" = com.antoni.mathtricks.free;"
+      },
+      {
+        "line": 418,
+        "setting": "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]\" = com.antoni.mathtricks.free;"
+      },
+      {
+        "line": 419,
+        "setting": "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=xros*]\" = com.antoni.mathtricks.free;"
+      },
+      {
+        "line": 424,
+        "setting": "SUPPORTED_PLATFORMS = \"iphoneos iphonesimulator macosx xros xrsimulator\";"
+      },
+      {
+        "line": 430,
+        "setting": "TARGETED_DEVICE_FAMILY = \"1,2,7\";"
+      },
+      {
+        "line": 458,
+        "setting": "IPHONEOS_DEPLOYMENT_TARGET = 26.5;"
+      },
+      {
+        "line": 463,
+        "setting": "PRODUCT_BUNDLE_IDENTIFIER = \"com.antoni.Math-Tricks\";"
+      },
+      {
+        "line": 464,
+        "setting": "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]\" = com.antoni.mathtricks.free;"
+      },
+      {
+        "line": 465,
+        "setting": "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]\" = com.antoni.mathtricks.free;"
+      },
+      {
+        "line": 466,
+        "setting": "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=xros*]\" = com.antoni.mathtricks.free;"
+      },
+      {
+        "line": 471,
+        "setting": "SUPPORTED_PLATFORMS = \"iphoneos iphonesimulator macosx xros xrsimulator\";"
+      },
+      {
+        "line": 477,
+        "setting": "TARGETED_DEVICE_FAMILY = \"1,2,7\";"
+      },
+      {
+        "line": 490,
+        "setting": "IPHONEOS_DEPLOYMENT_TARGET = 26.5;"
+      },
+      {
+        "line": 493,
+        "setting": "PRODUCT_BUNDLE_IDENTIFIER = \"com.antoni.Math-TricksTests\";"
+      },
+      {
+        "line": 497,
+        "setting": "SUPPORTED_PLATFORMS = \"iphoneos iphonesimulator macosx xros xrsimulator\";"
+      },
+      {
+        "line": 502,
+        "setting": "TARGETED_DEVICE_FAMILY = \"1,2,7\";"
+      },
+      {
+        "line": 516,
+        "setting": "IPHONEOS_DEPLOYMENT_TARGET = 26.5;"
+      },
+      {
+        "line": 519,
+        "setting": "PRODUCT_BUNDLE_IDENTIFIER = \"com.antoni.Math-TricksTests\";"
+      },
+      {
+        "line": 523,
+        "setting": "SUPPORTED_PLATFORMS = \"iphoneos iphonesimulator macosx xros xrsimulator\";"
+      },
+      {
+        "line": 528,
+        "setting": "TARGETED_DEVICE_FAMILY = \"1,2,7\";"
+      },
+      {
+        "line": 541,
+        "setting": "IPHONEOS_DEPLOYMENT_TARGET = 26.5;"
+      },
+      {
+        "line": 544,
+        "setting": "PRODUCT_BUNDLE_IDENTIFIER = \"com.antoni.Math-TricksUITests\";"
+      },
+      {
+        "line": 548,
+        "setting": "SUPPORTED_PLATFORMS = \"iphoneos iphonesimulator macosx xros xrsimulator\";"
+      },
+      {
+        "line": 553,
+        "setting": "TARGETED_DEVICE_FAMILY = \"1,2,7\";"
+      },
+      {
+        "line": 566,
+        "setting": "IPHONEOS_DEPLOYMENT_TARGET = 26.5;"
+      },
+      {
+        "line": 569,
+        "setting": "PRODUCT_BUNDLE_IDENTIFIER = \"com.antoni.Math-TricksUITests\";"
+      },
+      {
+        "line": 573,
+        "setting": "SUPPORTED_PLATFORMS = \"iphoneos iphonesimulator macosx xros xrsimulator\";"
+      },
+      {
+        "line": 578,
+        "setting": "TARGETED_DEVICE_FAMILY = \"1,2,7\";"
+      }
+    ],
+    "modified_in_stage_1": false
+  },
+  "source_fingerprints": [
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/DatabaseHelper.java",
+      "sha256": "880607b30280009fa6bbd9c9bb2dd8d029922b6a5b29557be982c74204d1563a"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainActivity.java",
+      "sha256": "ec665d08c47a974fd7b0deb216a3241a68e9465da7f6d79cd6cd87dd534420a5"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MainFragment.java",
+      "sha256": "d99f68c605dd8dd6b8528899d0c80451db5a0ec97631866e65f99be431983233"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/MyActivity.java",
+      "sha256": "d58e62716421c62dbecf56245630196e9adf3f1ef1de0d7d1878e1e96bc992a1"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/AgeScreenFragment.java",
+      "sha256": "66e78fae462f4b633d25e676e8c4138c151cd0f5a4f567c6d3324470956e94ba"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/ByHeartExampleFragment.java",
+      "sha256": "464b3553bfc2a5d8df5e15bdf6a6d6178dc835f35b6761d1ad50e4a569dfd7b0"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/ByHeartFragment.java",
+      "sha256": "9f4048e63c0e278b04a612fac272706f77060a4fda7b8bd8033a98e8cf769420"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/ByHeartLevelsFragment.java",
+      "sha256": "ef6c381d6415e5ddf1346b264d628f1b0971304248bbd1ce66f75d23a4899f98"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/CrashActivity.java",
+      "sha256": "869278eb55dd583d267fc2e0907cf50c4864e8f149942092bdf5aad64e28a71a"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/FontSizeFragment.java",
+      "sha256": "f274ee1ad080cb35a8faf83c0f40840f0c751f19a5c0941383b8bdd35e9be480"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/GameTypeFragment.java",
+      "sha256": "71740a63a1372c6fb08cc608b05b0a43fbe5cfdf9971c07d7029d609d18beaf7"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/GameTypeTrainingFragment.java",
+      "sha256": "c13793da139a5f2d9281cf70b77773ef48073986a852e5d71af3b45903cc7559"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/LevelsFragment.java",
+      "sha256": "20f372fe26d67e377343f7721f546e37c3426c5d34c1b727b2e9ca6f4d06fb07"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MultiplayerStepsFragment.java",
+      "sha256": "7c6785b36cc6f7b431e0db648d30e6c2b17f730c287fbd17fc97829db6112f35"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MultiplayerStepsTeamwiseFragment.java",
+      "sha256": "3351c98aabe6cccacb2a053b880a63a453cc6ef3f1a6f8fb14767e6f24356e35"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MyColorFragment.java",
+      "sha256": "054ebf0572db057136fd89b13dc7408f1785df85c7b5015845fc5308fd19c200"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MyGraphFragment.java",
+      "sha256": "e6114df88aca2935b592902d7aad691cc488b355913789da8d3b3a9b3929dae4"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/MyMoreApps.java",
+      "sha256": "c7954000dedf5737380267e97aa0e1c3ead1137324e78f8c35b7099191205c5e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/NumpadFragment.java",
+      "sha256": "c1863048655ce1720602810a700239c8b6d32df7f69c97eafff56079e1c7aed4"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/OptionsFragment.java",
+      "sha256": "f4675e81ee915f9131eb79c8da90643aabfe422213898a4b032124869f372abe"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/OptionsNotificationFragment.java",
+      "sha256": "5a00490f435144bb58dbf90b82e8c5440a581a6d0bc3302a8c5e1bdef18b6fa4"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/RuleFragment.java",
+      "sha256": "7fabe504fa026b47ce0a22270423625a6f4eaa948c31263bf6f2d36c0c4e45d7"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/SelectTricksFragment.java",
+      "sha256": "ca756047b0e7c954155bbc636793ba12b3d82a57ba68274a8b2c589b68d7548e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/TricksFragment.java",
+      "sha256": "6d9dc5e3118473e5866c75e8a6512ae7eef67a19d631f899c8efcdd590c500e8"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/activity/TricksViewModel.java",
+      "sha256": "b84b47726afe3d82d3f4e37a93c75dcd3ae0245ad2e32392ff40f490f980e914"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/cloud/CloudConflictView.java",
+      "sha256": "c8ac593f46eea1a9030bd256c3a66732c2359b0a9251621aeaba47c45d8a725a"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/cloud/CloudSaveManager.java",
+      "sha256": "9d58a22732b52b16b24f0f7e2652dfbf25e01d0981f55e096181f8323bdfc8a3"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/cloud/ExampleStatisticsBackup.java",
+      "sha256": "724ae61a7912230e95d957bc9cd3aee6bb8050c2bd6fe49b59f1dbd596c1d888"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/cloud/FileBackupController.java",
+      "sha256": "c79299756922ef0a52a5b4dcbc61d8a556a4315ea7ae67dfdb0ed522c90f9493"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/cloud/GoogleAvatarLoader.java",
+      "sha256": "0b5a47e887f6434fab42fab3c8f077bfcf4590f78c593f1d2652e346212020c6"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/cloud/LocalFileBackup.java",
+      "sha256": "cdfc00c47774fcd60286134aebc6a03dea9f424cb420d92a4639c8943cf81f32"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/cloud/LocalProgressStore.java",
+      "sha256": "94cbaaf26d12f5dd477803a68e584f867556eb2cc271de3cd5968c97a549ae9e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/cloud/ProgressSnapshot.java",
+      "sha256": "7c74cbba4fb412f36c5b6c39aeb9d988a1c8b2ad70da1a0eb5320a27af76efd8"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/cloud/TrickLevelStatisticsBackup.java",
+      "sha256": "e36df68f63c3c7ca5465619ed32f5f473dfe55ada4dae185105bd11c1caceffa"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/cloud/TrickStatisticsBackup.java",
+      "sha256": "b15d61cfc35754cb4065d4b9963089b96696fbf9db6bd9a8d29849965c287398"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/ExampleStatisticsFragment.java",
+      "sha256": "42ec86f605bd6b191927df2efa9262fa229ba37a2c7f2047f03577ed03e721c3"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameByHeartFragment.java",
+      "sha256": "d0f7956d3f760d20c4c35100ddf96924fb487ff7574fcf7634fe6a3c2a9e303e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameFragment.java",
+      "sha256": "8c4c843f8f3788817cc5569a41aedbfa2878d98a21905c33f2e0621c47891049"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameMinuteFragment.java",
+      "sha256": "dc5a25845f04c11098dff420d8a893e982f30d4199faa1f14b66a046fa11b23b"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameNotTimeFragment.java",
+      "sha256": "580f6bf1665fb4486a54006b42e3850366bad5945936cb4202af2b316de73931"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameNotificationFragment.java",
+      "sha256": "0a4d55d0c3b90fabaa037bfc04a8f88e9d45031e6fe98f132913ad23a4d329ad"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameStatistics.java",
+      "sha256": "98c83ccda62225f3ea752b4448b4371d6511bcb32b7b68dc2729dec52e7dfe26"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameStatisticsPanel.java",
+      "sha256": "024207463d79369db3b61acaf43cfdb6037d1f49c4330db1a0dd80d13020b6e2"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameStatisticsStore.java",
+      "sha256": "8d394a5686b64aa00111523cf555b6e3f3651ad714eab5e9c8a9692e4ceaa152"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameTimeFragment.java",
+      "sha256": "716b593882198b6b0def5684511efdd0ed7463bae793aaac8b140408efb99e0c"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/GameTrainingFragment.java",
+      "sha256": "87cf16a046ce8e5bfe67faf51294a5bd2ff73ae7dbed409f58e74d9a7e671218"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/LevelCompleteFragment.java",
+      "sha256": "28f5074f204bfd7a03886c615000d5670e462f426ed28c1e169d14c642ebf3a9"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/LevelResult.java",
+      "sha256": "719409f149b51b9618134d6db82c9cd99098844ec47fc39198d8b3f7e57e2ab7"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/LevelResultScreen.java",
+      "sha256": "b36bb3ca33eda81a4f148dd38ac855f7e135a6e1ee88d474a2f2a13d7a3ef987"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/MultiplayerFragment.java",
+      "sha256": "321861257c8d2728afbe3356766fc596dbb7222c348b9a5e7294917b5db8079d"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/MultiplayerTeamwiseFragment.java",
+      "sha256": "08b88497244a572f460757adb235dfd2b43cc99ec2821abd5c8c91db8d799301"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/MultiplayerVSFragment.java",
+      "sha256": "9891c9e71194c70701f033e2a900ca99da56cb7f7f150472680b36098ddbedb3"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/MultiplayerWinFragment.java",
+      "sha256": "8e50674d1859e621650b5478e5f6c2aeec9949c2dfe0b20be85ed7251595cd46"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/MultiplicationTableFragment.java",
+      "sha256": "92c95eff400ec5bb39d6d6b4abfd2d65ab8c0c42262dd8e8a966defbb449ffbe"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/ResultImageShare.java",
+      "sha256": "e2dbd3d2db79d8a2cb6ad4ed17b813972c2bc74541bb886e66f993e446ac57a2"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/ResultPalette.java",
+      "sha256": "e21f23e6a0497dfcc85f034845588d3c3681c1e998a0f901c8d39777a0f6f55a"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/ResultSolutionDialog.java",
+      "sha256": "9a49abc39fd955d7216b678cb1b980e05c9532ee7e8485dc14f09ab6c5ba5f0e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/ResultStatsLayout.java",
+      "sha256": "dfcf51ca81c44e7143f9a69c3c7ed0aea6437074ddabb7a2a23855f68a5a57ae"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/SolutionFragment.java",
+      "sha256": "5263473f4ae1d4eb50ff1cdf361e4ca866f5226901cf3f08f4b74116fe40fa0e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/SolutionSchemeShare.java",
+      "sha256": "4360b863fbd829dcc8d7be65f5539f5bbaa1506b5617980d3c6a55ff24aca96b"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/StatisticsCardsGrid.java",
+      "sha256": "b1b58835d8525aa8cb4f88c76808daf508cf8064e03a701c9afcffda82f0e123"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/StatisticsTableRow.java",
+      "sha256": "aec77834b9d93d3cfa1f28bc5306641e45c2b18a17e897518c84ffdd13c6a41b"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/StepExpressionParser.java",
+      "sha256": "ae9f199290f16a8ea20004c05e862f20cda4f0b57be1eea3db509d2322c6cecd"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/TimerEndFragment.java",
+      "sha256": "9592ba0bdeae8e0a17f7c62851658648595ab04ddc9f689c48eede9e24e7cdbd"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/TrickResult.java",
+      "sha256": "6aba091f57a0b869a588b7bdebd6f38f61ae0167106314cd9f979533dc6400f6"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/TrickSessionFragment.java",
+      "sha256": "f1969948afe65c4d3b8ed5d5341e69517dc523e3a57b53b398657508abc615ed"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/game/TrickStepManager.java",
+      "sha256": "7d58e4ca933a646f4daccd448800d633616fa524f1d21fdccb3d289cf69afc2b"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/AdState.java",
+      "sha256": "c248690aafdebdd752a2a08857e57122014bd354efce6fb0913189426d4810e3"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/AdsPurchaseManager.java",
+      "sha256": "7b3a24ab7e4d89e7688c0d8f8a5054cdee10c5de1c424a1b2bb8acce7f0a0f2b"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/AppVersionAnalytics.java",
+      "sha256": "2d61a45e1d97433b6d17afe6821e89c58e32ac2606d1c7d57bb8e7ad81c9610f"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/BillingManager.java",
+      "sha256": "3bebbbc9e20c23d005323c28c1d86eac5f78e6eac07829c9947d826e02faad30"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/ByHeartGetInterval.java",
+      "sha256": "65fb3759e0f1ee2cb6e3d51bd75c6e513ce878340cd4395f7adb64ad475f68aa"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/CoinsManager.java",
+      "sha256": "d02f498841cfec5a0ec1d763612fc1813f92b0e98baf0052171e6ccb4084880c"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/CrashDiagnostics.java",
+      "sha256": "76041b02a309ba7701bcf6be891b1543247d5819c1c2431c65930f86ebdec3ee"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/CrashReporting.java",
+      "sha256": "c0e33c7cf219f8607f6971ad6b970c9e5744f49aba2eee40d92333129ccbacfe"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/ExitConfirmation.java",
+      "sha256": "2b2e318dee0d493214240789bc7e09803a2697014ab04fd37ed93427030c29d2"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/FittingExpressionLayout.java",
+      "sha256": "958b3cb43f84bcb8f9cf4e2f97dea509b9db70a4ebb8beb4ba66865a6cf1a40d"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/FontSizeSettings.java",
+      "sha256": "356902b4f681e6db038ebdbcef1495cd3d8110332c41f2780775d373ed731c0c"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/InputFilterMinMax.java",
+      "sha256": "53fd98e68928b7b245e9ac351814554580b38eba6c78ada7f33de54fcab62039"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/MaxHeightScrollView.java",
+      "sha256": "dde82612c892c3b55ef483b48f3299cf314d62e2a33c4aa26ec7ab5bd0c61ddb"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/MyBackupAgentHelper.java",
+      "sha256": "69a548a84f5623d693c1c6ae9fc235a8dcb393d8f95d315a5602d69cbe0b25e2"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/MySharedPreferences.java",
+      "sha256": "15d1b03de054bac73f85b87270723f4014fbde80edcbb644317482c1435710f2"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/NotificationHelper.java",
+      "sha256": "9cd283a1fa8c14bdbd73b56cf27984b9127b627375d461cb72db341488c33527"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/NotificationReceiver.java",
+      "sha256": "6a4323fa9f18d18ba7233df989ff657e2d3280c2e3b510e8c8434cd77a9ee3fd"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/ResColors.java",
+      "sha256": "11d1550205f4ec0d2b580fbf01f6d4bb19f73392dbd2db53acc62d145c3d70d4"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/ResponsiveDialogLayout.java",
+      "sha256": "10d9d134301dc42f1d490a36d159aea904a2a22931fd96c15910d9e49c502c08"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/SchemeTextView.java",
+      "sha256": "27a6e6305212d6a2ba53842e697d7e36e30d76c138a20063914ace12da3a98b4"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/SimpleLineChart.java",
+      "sha256": "eadc531caa4997af371e54062783aeec6d43de890655b5ba1f28473ee6e5bc69"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/StepsHeightController.java",
+      "sha256": "0e2d37362434d2f7ef82868ccb4bc4e5f4f2426be22dadc156c77b7a7c049607"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/TableOpenTrace.java",
+      "sha256": "f133548efbb8ac7f03506701f3ad2ff555705da94cd1b02d489ff94235bebb42"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/ThemeExperiment.java",
+      "sha256": "31972dc903941f9ee0e2c0aaf37a979f6ad2de3d39baca57635d43fe4863fa82"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/other/Vendors.java",
+      "sha256": "8eaa2b476eba74744a1753efd056ed09b0727f57876dfb5416415601e35f05fe"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/player/Player.java",
+      "sha256": "105a838615787a1ea512ea5805e3145e37e9dcdb6f62838e46e576d6a35a5ce3"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/player/PlayerMinute.java",
+      "sha256": "00e5e6dc87ed5903cd76df8773b3bcac119cfa0fde027e36df44f704fda65724"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/player/PlayerOne.java",
+      "sha256": "28ce2d0401aaa3a996c6184a1931eea72d5b89233034eb3430a7826768439665"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/player/PlayerSingle.java",
+      "sha256": "1872184b69c10cc2f227b308659e6f462b629c3ce3709455ebb1a13fa502cac8"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/player/PlayerSingleByHeart.java",
+      "sha256": "688da025a4fa08637b9f1c682a8c1fc9a5b2d05af6d6709d19aa9268c0e9f398"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/player/PlayerTeamwiseOne.java",
+      "sha256": "3c58903ee4b8d3a91e42282ff26941acbc131b03155a2c2e9a53ff02d769e487"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/player/PlayerTeamwiseTwo.java",
+      "sha256": "ab1709834718e8c5b6b792db63de18be815eafa46a6bf983aeb2ebce2cd80076"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/player/PlayerTime.java",
+      "sha256": "92486390bb6490a57c851ae181d4f0de20b909f352dc8e11a8a43ae80a4c062f"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/player/PlayerTraining.java",
+      "sha256": "cea68554a555998316b0c209add0f7d306f19592ac0aec049a88569d3ed07839"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/player/PlayerTwo.java",
+      "sha256": "3df6cc455e964a16bd1c3880d409fa8ad115b38e6be7688c316b00399cc623f5"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/simpleAdapter/MySimpleAdapter.java",
+      "sha256": "407221dc5b170c874595537bc6d70f61b5000aac45c9b94227575a176606f476"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/simpleAdapter/MySimpleAdapterLanguages.java",
+      "sha256": "4643da0ee2fd7117364db8605b716cff29316de84ccc016d3b0d2b612e52f423"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/simpleAdapter/MySimpleAdapterOptions.java",
+      "sha256": "879bbc8f9860525f852b2bfad44f0fda20c6996c72278bc97767528f2dbbce0e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/simpleAdapter/MySimpleCursorAdapter.java",
+      "sha256": "392c6fcf641e02e5da1dcc62ca98271072e08d7ecf411d7aabad0b5b8098f93b"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/simpleAdapter/MySimpleCursorAdapterByHeart.java",
+      "sha256": "13d9747570c806dc89eabf43e9b22f92079cf96a5bc049ac53b925116e25ce73"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/simpleAdapter/MySimpleCursorAdapterByHeartLevels.java",
+      "sha256": "a796eb67f8a198bbca6d75117a39e9dad635349374c895c78036f091537508d9"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/simpleAdapter/MySimpleCursorAdapterLevels.java",
+      "sha256": "57a8142b23e6a65f96c328bf9d6d3926bb37affbfdd4a13f0b5222a64ea4f7c6"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/simpleAdapter/MySimpleCursorSelectTricksTreeAdapter.java",
+      "sha256": "21d07804cce854dac44babf087fd883ee5f5767c5644651b9898ba5f51754c3f"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/simpleAdapter/MySimpleCursorTreeAdapter.java",
+      "sha256": "a08cb032bfabcae9ad65240e7066204dde11cd83719c892c6497306e6c5b6eff"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/theme/AuroraBackgroundView.java",
+      "sha256": "d59cd0338bb6dddbedddd913d04964bcdcd080d9b1ac60a15c07360afa4619e5"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/theme/AuroraBorderRelativeLayout.java",
+      "sha256": "070fd4447b85f0253accce77824cd9fd80686db4fe6264c75d764565bcd6d802"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/theme/AuroraPalette.java",
+      "sha256": "a065e0e81aa80b24bff9df6b4d0dd910627c64f87b54a447a5d4b7824c36a35f"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/theme/ColorSpectrumView.java",
+      "sha256": "6314adba3df10fd38420da0a2cf32925e6e40fcf13d6904aa32df067fec5d2bb"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/theme/InitialThemePreviewCache.java",
+      "sha256": "0bd722a00e7d3ac611fe8e16486083c144b5aae252d56560732f8d261133073c"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/theme/NeonBackgroundView.java",
+      "sha256": "01ecaa591f910ec74b9eb77216ba45017831ce9d46482fbea8df98f991c8d2a4"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/theme/NeonPalette.java",
+      "sha256": "e5027fca0d798569cad189818432619443da06f3602c0f976e406b20da3afbe3"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/theme/NeonSurfaceDrawable.java",
+      "sha256": "04c5c8cb9070d34477617ef7eb4df9a46704d43a909770ebf078bc62600fb115"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/theme/ThemeGamePreviewView.java",
+      "sha256": "8a4a1f61b536857e01c7cec5b135f9d6133e4ef9c7a5c68723cf29c1b5f8cc96"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/theme/ThemeIntensity.java",
+      "sha256": "39cd52e23aa73f061119a2f5febd5218d1cfd827d38b2c348a508a14546e80c7"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/theme/ThemePreviewAdapter.java",
+      "sha256": "ef97df22b9969a9a227a573e78795545fd9d205fd5cba7dd9b853622f3c6d9c3"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/java/example/matharithmetics/theme/TimelyBackgroundView.java",
+      "sha256": "00925d322440104c11b33189ddd0a04c7b4797cd7adb0ad864b4748a09977db6"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/layout/activity_main_host.xml",
+      "sha256": "f693e3deeeb40ce5cfe714f6075e59a2fd611d2aadab8897d175cbb9fc1cb5b6"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/navigation/nav_graph.xml",
+      "sha256": "9852aaae226ce2277c5de63377a59e9bbba7f6c54d3cb3743fda7e40c723db8c"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/_strings_permissions.xml",
+      "sha256": "7f3a218c9e839368dc50c03de7009f5756a16b6957e870efde21aed381d9d5b9"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/attrs_aurora.xml",
+      "sha256": "e1791245d9de17a6c75b7adfa7ac2a97c023bdde5a336e96ea35146d2c81fe8a"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/attrs_neon.xml",
+      "sha256": "25a8cb1b45cf599c97d2a891815076b841473ff7c5ca857b74ade3362a8c69ba"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/colors.xml",
+      "sha256": "7971b4684e0dfd88bc8ccd2922547a00b62b94f158eef07526fcf55dfa9442df"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/colors_____________________COLORS.xml",
+      "sha256": "a127f077b9ce50c2cbccf98f788fe98e979b055ad47430cc16318486909c3e91"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/colors_aurora.xml",
+      "sha256": "728e82b081058cb259aac8b1d7ae0e0aa05d5528dce7b7668c70eeb8a72ccec2"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/colors_results.xml",
+      "sha256": "1606e447a891ef55c8d0b700b3e1122544bf98067e59bb9998008a6bc50d92d2"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/colors_theme_dark.xml",
+      "sha256": "41cebe2772b6582cdda34743aec014a3f79ba40c86b4f87ffd06b3cc09b301c5"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/colors_theme_light.xml",
+      "sha256": "2d81e20db0503cf75ba4b7dd3378ca1cf66882854d65d7bd4600a9cda94f372b"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/dimens.xml",
+      "sha256": "6ea6aa68d1146a665cbc672365d589364f461198725b3fa5333155d09e90d461"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/dimens____________________DIMENS.xml",
+      "sha256": "a127f077b9ce50c2cbccf98f788fe98e979b055ad47430cc16318486909c3e91"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/dimens_aurora.xml",
+      "sha256": "972b5b9a0d67a1dfd7b724ccacaa60419a908f4da3eb1b23c61091eb955294aa"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/dimens_cloud.xml",
+      "sha256": "fa8959897e70f6ee9d38ce4d359158094010496e24b15e0a84342f715481af98"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/dimens_results.xml",
+      "sha256": "412e056f970a329fc87797e6bb9a067e3fbf98fc40e45d8ef74f4a2ef119549e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/dimens_theme.xml",
+      "sha256": "50f70db91993e12cb939b94bcba3f3e6cd01a65594a2555b6388eafc497d92ea"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/dimens_theme_player.xml",
+      "sha256": "7b158d05b4aa412d90a1da1914c2b8e4c2e318d229fe2b9185790b12a9a170a6"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/ic_launcher_alarm_1_background.xml",
+      "sha256": "cb8a097d4a0bfdca2e47d9121113c483bed4900e4ad5ed21d84a3c0642a7038f"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/ic_launcher_alarm_background.xml",
+      "sha256": "9d27d1294f2d5d553c595556e7271fef2fa99b215f9827bb72238d1975b1c4a2"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/ic_launcher_background.xml",
+      "sha256": "cd40bafe618ff506f4088778b135cb4faa15f25e0c9b475e22d730c74b7be115"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/ids.xml",
+      "sha256": "a3de1e199d8702d33c6eb710a6f18d89414e4442ac769de527a118d3c44325a6"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings.xml",
+      "sha256": "2c9d7529ed5081ae3aeeb8c6b94538623bfe9922c94c03b1bba0f1bfd3830e0f"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_____________________STRINGS.xml",
+      "sha256": "a127f077b9ce50c2cbccf98f788fe98e979b055ad47430cc16318486909c3e91"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_alarm.xml",
+      "sha256": "9823441132bf08908dc546cab27155d3c9c61e869de1fdeb356dd6f968b13cf6"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_alert_dialogs.xml",
+      "sha256": "aa1a3bbc5ce155e2037f212b17d930070f7b560720c10942460171798c35217c"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_cloud.xml",
+      "sha256": "1273c2d09b79ab9ed330e347c725746caa6e01c797045c45fc4076cf8171367b"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_crashlytics.xml",
+      "sha256": "8d055891d0f960d0688a5677b99e52c41410fb3e056dd11f4211c9126dac3a81"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_example_statistics.xml",
+      "sha256": "9646a6a7522af23deb72058b8ab56e965cace8dbc96cf9712dfa43654016bb87"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_exit.xml",
+      "sha256": "dd7d23120c3fd46d20f50d9a34364e3c53fcb90988843140b6f1ec51c371d14d"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_file_backup.xml",
+      "sha256": "08e2b1038aad9e604ac00adb0aec61de0cd12db0f36efc0b23bba209e2ddf4b9"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_font_size.xml",
+      "sha256": "af01b5bf16befec04dc622a1b306adc35eef080edb87001c2b4e3577a3698e84"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_game.xml",
+      "sha256": "da8f956a8753865eea9c49a143c25930f4168228a4531e9c0dcdf27ec707af8e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_graph.xml",
+      "sha256": "4566f4ea7e6f689847d71858b492a1412b88d6534f48875ce7c6a2637e323355"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_intent.xml",
+      "sha256": "6bae988365cc09f3db717e0bd6f5bf3eb2a3a21ef2a564f9cedd879badbb1d40"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_languages.xml",
+      "sha256": "b7e91743bb8c08de9f547bd4df42a67531ca7399259c83efc744f8b1bbe4f875"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_level_result.xml",
+      "sha256": "42232a3ccf625ad11e83fdf79fe8052932e5218c9d707fc271cd3bff8c86837c"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_levels.xml",
+      "sha256": "66146c71f05649632a3a80a900dfa2444e7b5e5d11312c5fb2a3b156b51b53f8"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_main.xml",
+      "sha256": "6336e06c8fe4399ad9bc8df2b5ab26e3ae43b86c62bbeceb4b55840fb2fff7dd"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_mt.xml",
+      "sha256": "3dabfe4a3c0195c6d0e5fa50c8762755e9282d64f1ce7a9943cf76e0c5282d28"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_multiplayer.xml",
+      "sha256": "08ded612a9fa14c6fa2d265d3a17ec0f837c25be6abcb9d857a476425ac6a77e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_notification.xml",
+      "sha256": "1ad10c7d6d3d981850825c8bc777b507abdf23b08be99ef25cdfec06aa4f5b9e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_options.xml",
+      "sha256": "4d6e151a17c6d6c81690b791811cb52b11d0ac92815b5d66f68871e45124eb65"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_prefences.xml",
+      "sha256": "492817d0e0d2a35889dadb5bee08a20e7a29270a0630af8b229e92d62598e2af"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_progress_reset.xml",
+      "sha256": "ae09bd4839716ccabf843c2f101097746a598a6ec4fcf56c67b341bfd5d68a96"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_rtm.xml",
+      "sha256": "46393d5e466fbf51ee9c730004e35155ba047908c5ac4063124f5740872b3bef"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_rule_solution.xml",
+      "sha256": "f8d2d630c0ec40d1da73de024d9866f39c094b913e01503c6cfd10b82fe6d97d"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_statistics.xml",
+      "sha256": "025ce558f8cb0174d3bbd1d27d733a6549d7f81e819f9294a53816e4d4cc4da6"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_streak_shield.xml",
+      "sha256": "bf350cfe9da1c4beaeb609757332eab7fd9deda2909c122194c481249b971b08"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_switch.xml",
+      "sha256": "2ffa25f005516beed0cec7908b27d0815e70a9accba37b0c34e7487f563fb8f1"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_theme_font.xml",
+      "sha256": "abc7237a4bb2f66e833506981f9f4bb73801105884164cf813557ffe760bccda"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_theme_fonts.xml",
+      "sha256": "49dc5bc61a52a20743f55b09702ecc6e464658b2b399a28a12fecb9fdaee718e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_theme_names.xml",
+      "sha256": "6a48e9ef1d65894ceb9b3bc872c25092ca72c3ca38cf1f8f7c2ba5f73eb7e39a"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_theme_picker.xml",
+      "sha256": "bb426a3c2e7aa07afadfe0ed892e092ace7fb7257b612b768d2ce96fa9315ada"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_theme_preview.xml",
+      "sha256": "01f706c7f116b450644571accd8ddc49f3a95322ac6245b6a9aba09fab55c4d4"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_trick_steps.xml",
+      "sha256": "9ee0a534c280f72722eb097b61985327a6f8c27be498755004c7a45fc949af61"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks.xml",
+      "sha256": "b58ef4a1502834b5160fa8f54f89f97cfdaee4f70637018de56a73c358f1594b"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_arrays.xml",
+      "sha256": "9e796dbc4e2ff8fb88fd57211b00e5438bfb8fbe298cea8c9d536fc4f6782295"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_group.xml",
+      "sha256": "05810ba67c4c7692f16e9a8705d9b29a7cf07dfa95ea00ecea48b834570d245e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_groups_mt.xml",
+      "sha256": "8ef602ca25c2890456b0613f95268a4269c8fcab93c5cccb964957ff574bf773"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_mt.xml",
+      "sha256": "ddf6ba3567b51915d242e01a357425d34c53cc23fe26312bd6eb24fd0f2fa1af"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_order_mt.xml",
+      "sha256": "6e709bfa0aa166bae41faf60fb4e58e69b14bc563081a73e0c7b17ef4b798b78"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_rule_text.xml",
+      "sha256": "b9e6e3192d487ce74b9231312e3af5649d6e7869a050f8743be63b55b10711d9"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_rule_text_mt.xml",
+      "sha256": "c210601b3e1ec93bdec8e3106e0ec21e329ebaaa7ebb32e89a4ce0894787779e"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tricks_rule_video.xml",
+      "sha256": "d8ce2e0222b73cd093e46d48be98b97431311e8879b44a202f9b248a0ad60f7d"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/strings_tts.xml",
+      "sha256": "a961e2ef3437ceda1483f4c992fec1a732f10f4256927e1b95b7ada6b03791c1"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/styles.xml",
+      "sha256": "9b2cc18bdb30605b127da15d3ea23b39a9233a2a945e4f85a2a8b89b246c7688"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/styles_____________________STYLES.xml",
+      "sha256": "4809701a93b95aea5a6ead59b01b038e8b7765cb1526ca9f47e925d8583e9339"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/styles_aurora.xml",
+      "sha256": "c1548381c178722a9d72094d2c6f53d8898363e471913f3acd2702579fd9139d"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/styles_results.xml",
+      "sha256": "3a405e87bcf06bfbec6d21829dda19bfece44bd9dc9c6a16a88f5eee5df98880"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/styles_th_dark.xml",
+      "sha256": "571903f44a21219ccbf5f224a749ba74872b480085a1c6e4a4ba0eac21183a5b"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/styles_th_light.xml",
+      "sha256": "aa21e3066ba73d0b029d06c7ae6cd24fbae7d3c02717633ed34ebebdb5b3aa9f"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/theme____________________THEME.xml",
+      "sha256": "a127f077b9ce50c2cbccf98f788fe98e979b055ad47430cc16318486909c3e91"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/theme_attr.xml",
+      "sha256": "3b8770dc2d30d7f07d2224af498b428ab97a99cd99024a52ee6a3e71c4d81a8f"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/theme_aurora.xml",
+      "sha256": "69ef087a63d82a56c0a53fade3deb60104b455fa2d36deb9013a7362390b6a12"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/theme_aurora_dark.xml",
+      "sha256": "20e55f3c3e8ee32226df2f1c9a7ac64610360a418a1ef903a0fa0273e07a50e0"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/theme_dark.xml",
+      "sha256": "f5d934d03e88f2b2e81a03bd71b3927afcceafca781e11c5ced7de71977ef89d"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/theme_light.xml",
+      "sha256": "91cd00afdf3fa8c4584294e74e6f10c3fedf7a9976f41f9bda9d23b9d9c6f62b"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/theme_neon.xml",
+      "sha256": "1eb5b5f85e62d9e564bcf29f2dfbbcbf6789820df8d4fab00d3f4424bf547476"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/theme_timely.xml",
+      "sha256": "e94759a8b0cedbbbe5fdc76bd70c7f3641fc40d979aea2b776e56b487b679b50"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/theme_zero_player________THEME_PLAYER.xml",
+      "sha256": "a127f077b9ce50c2cbccf98f788fe98e979b055ad47430cc16318486909c3e91"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/theme_zero_player_attr.xml",
+      "sha256": "afdc8fc5b64c4cb2e49f2c0e91936f077ba7bbc052542ec0d435db6255f7267f"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/theme_zero_player_dark_dark.xml",
+      "sha256": "f88f22dc25facb9bf9fdaa1db9b106f910b99163012fca09fe228c31a257fe30"
+    },
+    {
+      "source": "android/Math_Tricks/app/src/main/res/values/theme_zero_player_light_light.xml",
+      "sha256": "99a95d704b683f67d992b29490b391d5835997f4e64279937e9a2c3661cf059f"
+    },
+    {
+      "source": "ios/Math_Tricks/Math_Tricks.xcodeproj/project.pbxproj",
+      "sha256": "9b4a3b4159081c2c3f45207095ac6b340793107d48b9fa7f2f3ad54923060c68"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/AppDelegate.swift",
+      "sha256": "ffdfc48ffa6cb305880584f3d1e36b732438041a700596e519491072ed98ae20"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Base.lproj/Main.storyboard",
+      "sha256": "00deae1ddea0879d02a74d6bc07bab6b7489640eb27782da6f40b70d98add89b"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/BaseGame.swift",
+      "sha256": "f40c4400b8f2982d7e93bd5eadde3ac20cbded22873ff4757a169d127ceb37b6"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/BuyTrick.swift",
+      "sha256": "f39266769cc7dbd5d5e657c0900bacc2eb90310a2fb0ec7bf446700fda65147f"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/ByHeartMultiplication.swift",
+      "sha256": "472c3b5b827830edc998ac223bc36d7ea1b86836955cde58b7463a23842d65d8"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/ByHeartMultiplicationLevels.swift",
+      "sha256": "81ea72856247d4f8fc90c336aa6dbb3858e71e52d326c60ab6324b1e2530a936"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/ByHeartMultiplicationLevelsExample.swift",
+      "sha256": "167647f08d65234ed6d9cacc79ff067da67cb730c3fabd503ee3a96798e645ca"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/CustomCollectionViewCellLevel.swift",
+      "sha256": "8ee6afd529bdd8b59797839eaf54433f872725e4af0dbff12b4a04d927c71979"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/CustomTableViewCellByHeartMultiplication.swift",
+      "sha256": "232647f9ae64b3e6dfa8feeeb6b72de48ed5457c68b60b4bafd2a6e13a3e0257"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/CustomTableViewCellByHeartMultiplicationLevels.swift",
+      "sha256": "7d8cb80cd47bc3c2c25971145509e0360993b01c1b92203c572eb74b82a414e6"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/CustomTableViewCellSettings.swift",
+      "sha256": "bcd7ed7126181457b9e0540ce26a83ae5c6b6f1eb13cac3bbd3da79c8e6e46df"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/CustomTableViewCellTraining.swift",
+      "sha256": "3f14b01c28527732cf8a6ec75635539f23bbf453f8b4a97b0834fb48a694bdc2"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/CustomTableViewSectionTraining.swift",
+      "sha256": "9b196c2a0c5c2fdfbab633c08f330a861214dd3f6ea5152f85fa66f191c8678f"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Game.swift",
+      "sha256": "c1979e51e19894703f350a961b90f763fbb49c93c8b502bb4a1f333d80477768"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/GameType.swift",
+      "sha256": "905b6a8803b5a524b95dfc88d9ec03993cb29a3340664b24e5dee3039a520521"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/GoogleService-Info.plist",
+      "sha256": "d36b9f115798e6015d651c1dd4b5039be40a4e7629d78cf20df6785b2d01b189"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Graph.swift",
+      "sha256": "b85c6fd55c732539257158d31bf3e251b767ae8d9e60f02f71712a43310612b2"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Hint.swift",
+      "sha256": "114aa4e214654c32b5db4492e2981a2769d61fa7ce971eab75905caea160d23a"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Info.plist",
+      "sha256": "b21c2d2f5a2692ef05b8eb9dbbe1bef0dd017989b0fb0fbfe0f320b2253ce750"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/LevelComplete.swift",
+      "sha256": "fdc12ec8240ac20f9eca0fe8b5b7eb14d367f259105e405205acefc04e2f8a86"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Levels.swift",
+      "sha256": "ae6aec0b7118821aa63ba91a48cfaa7b5f46c00ed56dd3d944b879a2fd57aa9a"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Main.swift",
+      "sha256": "2ff78fa4b96d9e8f1a6e73fd65e67259d86de320157744678a7761b1c0ee462a"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Math_Tricks.xcdatamodeld/.xccurrentversion",
+      "sha256": "f840749d72b06844cfb8744fd89a08fc2e235a7ee984e408620fec89e64a49f2"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Math_Tricks.xcdatamodeld/Math_Tricks v2.xcdatamodel/contents",
+      "sha256": "875ff4d8bb34813cc875760df36b1db679d0d802e3f23fb4019fd11705f77197"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Math_Tricks.xcdatamodeld/Math_Tricks.xcdatamodel/contents",
+      "sha256": "49f0512d58cb31b5751a03bb017e3010c73a00cee1765f99524a79edbdae03b8"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyCheckBox.swift",
+      "sha256": "a0f0f078687acd2e030c450e3a91715809f05c67993beb245a9e2a64cb907c33"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyCoreData.swift",
+      "sha256": "c62ff89e0b71f221742e5e45f6ca4d9bc8070ca095ec1e54c29509fbf4c72b6c"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyDefaults.swift",
+      "sha256": "6313ab23ffa4f8b3bdf049effcb5d700953e5eb10edeb1e244ebc32265d224ed"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyGame.swift",
+      "sha256": "154314b70ae6d88f6fbc3ea4f8f18ee4b3680f676a6901279ff775d3278fe2a6"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyHacked.swift",
+      "sha256": "5098620fd2561fec44f59170338ca3ca89c9e5de0ce63525cb18b165d96d82ea"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyNavigationController.swift",
+      "sha256": "4850369101d0121afe3ef9ab194142c2c1e1320d617274eeef13a568d6d11e1c"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyRadioButton.swift",
+      "sha256": "56ee06bb318df682d6b03ffb8d1fc3d3ac1728e58296d5aa51979f0f88756ce5"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MySettings.swift",
+      "sha256": "38698060d756032c0b8392540e0f4961976d63dd534159ff67774d5d29075488"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyTricks.swift",
+      "sha256": "d716e6ffd19113d10839ec19a7733443e976fdba677b1ac34e77e2ccafd939a6"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/MyViewController.swift",
+      "sha256": "c5a39129c3245f911becceb8a51dd3d4c0247f3c84588185c9a4e9c6564aed8f"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Numpad.swift",
+      "sha256": "223c43d8430e2b304ea7b6d84bb41b51c3b8f7bc681e3d77137db33a69fd5b12"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/PlayerSteps.swift",
+      "sha256": "2517102c14e45842cbda143bd690c9d42d384eba6e32187c30e0f2f304c73a7f"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/PlayerWin.swift",
+      "sha256": "2e8292e6fbe2d370fd97f30078f358c1d50f5983098280863bc00eebef857b64"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Reachability.swift",
+      "sha256": "94aae35807663714fcdefc6255e9b7b05060cda8885b8a9690d8e97f5d835f6f"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Rule.swift",
+      "sha256": "c9244d9cbb0ca44cabfceb83b6eae307a3de70cb3720dfef3c2c31332f731f17"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Settings.swift",
+      "sha256": "23f253204fed7385a3a4b98c335c100f29a19b49904b4d456f88d8aabbe6bf68"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Theme.swift",
+      "sha256": "e0a1d277e224b58db5ecc0b1ca2b875c1a8cb0f0b34ff0d8209fca436c5163ee"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/TimerEnd.swift",
+      "sha256": "047b61ee08952a9c2bb047d86e1673dcba98871a262692e08f92460e537c1f12"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/Training.swift",
+      "sha256": "1b6a92b76290f58795a3ee7e78a205b8896c9f56cbd380b34fec645d18e8a369"
+    },
+    {
+      "source": "ios-legacy/Math Tricks Free/Math Tricks/TwoPlayers.swift",
+      "sha256": "6a55295a0e737271b7b30c5e3bb104ef44f773e54b3d70f413089bed25b5853a"
+    }
+  ],
+  "resource_parse_errors": []
+}

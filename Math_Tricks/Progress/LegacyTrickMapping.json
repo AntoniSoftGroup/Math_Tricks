@@ -1,0 +1,754 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "legacyID": 1001,
+      "androidID": 1,
+      "legacyName": "trick_addition",
+      "canonicalName": "trick_addition",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 1002,
+      "androidID": 14,
+      "legacyName": "trick_adding_numbers_close_to_hundreds",
+      "canonicalName": "trick_adding_numbers_close_to_hundreds",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 2001,
+      "androidID": 2,
+      "legacyName": "trick_subtraction",
+      "canonicalName": "trick_subtraction",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 2002,
+      "androidID": 11,
+      "legacyName": "trick_subtracting_from_1000",
+      "canonicalName": "trick_subtracting_from_1000",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 2003,
+      "androidID": 15,
+      "legacyName": "trick_subtracting_numbers_close_to_hundreds",
+      "canonicalName": "trick_subtracting_numbers_close_to_hundreds",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3001,
+      "androidID": 3,
+      "legacyName": "trick_multiplication",
+      "canonicalName": "trick_multiplication",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3002,
+      "androidID": 5,
+      "legacyName": "trick_multiply_by_11_2digit",
+      "canonicalName": "trick_multiply_by_11_2digit",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3003,
+      "androidID": 18,
+      "legacyName": "trick_multiply_two_digit_numbers_having_same_tens",
+      "canonicalName": "trick_multiply_two_digit_numbers_having_same_tens",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3004,
+      "androidID": 21,
+      "legacyName": "trick_multiply_two_digit_numbers_editing_in_1",
+      "canonicalName": "trick_multiply_two_digit_numbers_editing_in_1",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3005,
+      "androidID": 16,
+      "legacyName": "trick_multiply_numbers_between_11_and_19",
+      "canonicalName": "trick_multiply_numbers_between_11_and_19",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3006,
+      "androidID": 40,
+      "legacyName": "trick_multiply_by_02",
+      "canonicalName": "trick_multiply_by_02",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3007,
+      "androidID": 42,
+      "legacyName": "trick_multiply_by_025",
+      "canonicalName": "trick_multiply_by_025",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3008,
+      "androidID": 37,
+      "legacyName": "trick_multiply_by_05",
+      "canonicalName": "trick_multiply_by_05",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3009,
+      "androidID": 87,
+      "legacyName": "trick_multiply_by_2",
+      "canonicalName": "trick_multiply_by_2",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3010,
+      "androidID": 59,
+      "legacyName": "trick_multiply_by_3",
+      "canonicalName": "trick_multiply_by_3",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3011,
+      "androidID": 9,
+      "legacyName": "trick_multiply_by_4",
+      "canonicalName": "trick_multiply_by_4",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3012,
+      "androidID": 7,
+      "legacyName": "trick_multiply_by_5",
+      "canonicalName": "trick_multiply_by_5",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3013,
+      "androidID": 60,
+      "legacyName": "trick_multiply_by_6",
+      "canonicalName": "trick_multiply_by_6",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3014,
+      "androidID": 61,
+      "legacyName": "trick_multiply_by_7",
+      "canonicalName": "trick_multiply_by_7",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3015,
+      "androidID": 62,
+      "legacyName": "trick_multiply_by_8",
+      "canonicalName": "trick_multiply_by_8",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3016,
+      "androidID": 8,
+      "legacyName": "trick_multiply_by_9",
+      "canonicalName": "trick_multiply_by_9",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3017,
+      "androidID": 63,
+      "legacyName": "trick_multiply_by_12",
+      "canonicalName": "trick_multiply_by_12",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3018,
+      "androidID": 64,
+      "legacyName": "trick_multiply_by_13",
+      "canonicalName": "trick_multiply_by_13",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3019,
+      "androidID": 65,
+      "legacyName": "trick_multiply_by_14",
+      "canonicalName": "trick_multiply_by_14",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3020,
+      "androidID": 26,
+      "legacyName": "trick_multiply_by_15",
+      "canonicalName": "trick_multiply_by_15",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3021,
+      "androidID": 66,
+      "legacyName": "trick_multiply_by_16",
+      "canonicalName": "trick_multiply_by_16",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3022,
+      "androidID": 67,
+      "legacyName": "trick_multiply_by_17",
+      "canonicalName": "trick_multiply_by_17",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3023,
+      "androidID": 68,
+      "legacyName": "trick_multiply_by_18",
+      "canonicalName": "trick_multiply_by_18",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3024,
+      "androidID": 69,
+      "legacyName": "trick_multiply_by_19",
+      "canonicalName": "trick_multiply_by_19",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3025,
+      "androidID": 27,
+      "legacyName": "trick_multiply_by_20",
+      "canonicalName": "trick_multiply_by_20",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3026,
+      "androidID": 34,
+      "legacyName": "trick_multiply_by_25",
+      "canonicalName": "trick_multiply_by_25",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3027,
+      "androidID": 35,
+      "legacyName": "trick_multiply_by_50",
+      "canonicalName": "trick_multiply_by_50",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3028,
+      "androidID": 101,
+      "legacyName": "trick_multiply_by_75",
+      "canonicalName": "trick_multiply_by_75",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3029,
+      "androidID": 33,
+      "legacyName": "trick_multiply_by_99",
+      "canonicalName": "trick_multiply_by_99",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3030,
+      "androidID": 90,
+      "legacyName": "trick_multiply_by_125",
+      "canonicalName": "trick_multiply_by_125",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3031,
+      "androidID": 93,
+      "legacyName": "trick_multiply_by_250",
+      "canonicalName": "trick_multiply_by_250",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3032,
+      "androidID": 94,
+      "legacyName": "trick_multiply_by_500",
+      "canonicalName": "trick_multiply_by_500",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3033,
+      "androidID": 95,
+      "legacyName": "trick_multiply_by_750",
+      "canonicalName": "trick_multiply_by_750",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3034,
+      "androidID": 96,
+      "legacyName": "trick_multiply_by_999",
+      "canonicalName": "trick_multiply_by_999",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 3035,
+      "androidID": 12,
+      "legacyName": "trick_tough_multiplication",
+      "canonicalName": "trick_tough_multiplication",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4001,
+      "androidID": 4,
+      "legacyName": "trick_division",
+      "canonicalName": "trick_division",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4002,
+      "androidID": 41,
+      "legacyName": "trick_dividing_by_02",
+      "canonicalName": "trick_dividing_by_02",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4003,
+      "androidID": 43,
+      "legacyName": "trick_dividing_by_025",
+      "canonicalName": "trick_dividing_by_025",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4004,
+      "androidID": 38,
+      "legacyName": "trick_dividing_by_05",
+      "canonicalName": "trick_dividing_by_05",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4005,
+      "androidID": 86,
+      "legacyName": "trick_dividing_by_2",
+      "canonicalName": "trick_dividing_by_2",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4006,
+      "androidID": 85,
+      "legacyName": "trick_dividing_by_3",
+      "canonicalName": "trick_dividing_by_3",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4007,
+      "androidID": 28,
+      "legacyName": "trick_dividing_by_4",
+      "canonicalName": "trick_dividing_by_4",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4008,
+      "androidID": 10,
+      "legacyName": "trick_dividing_by_5",
+      "canonicalName": "trick_dividing_by_5",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4009,
+      "androidID": 72,
+      "legacyName": "trick_dividing_by_6",
+      "canonicalName": "trick_dividing_by_6",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4010,
+      "androidID": 97,
+      "legacyName": "trick_dividing_by_7",
+      "canonicalName": "trick_dividing_by_7",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4011,
+      "androidID": 88,
+      "legacyName": "trick_dividing_by_8",
+      "canonicalName": "trick_dividing_by_8",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4012,
+      "androidID": 98,
+      "legacyName": "trick_dividing_by_9",
+      "canonicalName": "trick_dividing_by_9",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4013,
+      "androidID": 71,
+      "legacyName": "trick_dividing_by_15",
+      "canonicalName": "trick_dividing_by_15",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4014,
+      "androidID": 29,
+      "legacyName": "trick_dividing_by_20",
+      "canonicalName": "trick_dividing_by_20",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4015,
+      "androidID": 31,
+      "legacyName": "trick_dividing_by_25",
+      "canonicalName": "trick_dividing_by_25",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4016,
+      "androidID": 36,
+      "legacyName": "trick_dividing_by_40",
+      "canonicalName": "trick_dividing_by_40",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 4017,
+      "androidID": 30,
+      "legacyName": "trick_dividing_by_50",
+      "canonicalName": "trick_dividing_by_50",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5001,
+      "androidID": 6,
+      "legacyName": "trick_square_numbers_editing_in_5",
+      "canonicalName": "trick_square_numbers_editing_in_5",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5002,
+      "androidID": 102,
+      "legacyName": "trick_square_numbers_editing_in_05",
+      "canonicalName": "trick_square_numbers_editing_in_05",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5003,
+      "androidID": 103,
+      "legacyName": "trick_square_numbers_editing_in_15",
+      "canonicalName": "trick_square_numbers_editing_in_15",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5004,
+      "androidID": 39,
+      "legacyName": "trick_square_numbers_editing_in_25",
+      "canonicalName": "trick_square_numbers_editing_in_25",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5005,
+      "androidID": 91,
+      "legacyName": "trick_square_numbers_editing_in_75",
+      "canonicalName": "trick_square_numbers_editing_in_75",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5006,
+      "androidID": 104,
+      "legacyName": "trick_square_numbers_editing_in_95",
+      "canonicalName": "trick_square_numbers_editing_in_95",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5007,
+      "androidID": 92,
+      "legacyName": "trick_square_numbers_editing_in_125",
+      "canonicalName": "trick_square_numbers_editing_in_125",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5008,
+      "androidID": 32,
+      "legacyName": "trick_square_number_between_10_and_19",
+      "canonicalName": "trick_square_number_between_10_and_19",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5009,
+      "androidID": 44,
+      "legacyName": "trick_square_number_between_20_and_29",
+      "canonicalName": "trick_square_number_between_20_and_29",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5010,
+      "androidID": 45,
+      "legacyName": "trick_square_number_between_30_and_39",
+      "canonicalName": "trick_square_number_between_30_and_39",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5011,
+      "androidID": 20,
+      "legacyName": "trick_square_number_between_40_and_49",
+      "canonicalName": "trick_square_number_between_40_and_49",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5012,
+      "androidID": 19,
+      "legacyName": "trick_square_number_between_50_and_59",
+      "canonicalName": "trick_square_number_between_50_and_59",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5013,
+      "androidID": 46,
+      "legacyName": "trick_square_number_between_60_and_69",
+      "canonicalName": "trick_square_number_between_60_and_69",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5014,
+      "androidID": 47,
+      "legacyName": "trick_square_number_between_70_and_79",
+      "canonicalName": "trick_square_number_between_70_and_79",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5015,
+      "androidID": 48,
+      "legacyName": "trick_square_number_between_80_and_89",
+      "canonicalName": "trick_square_number_between_80_and_89",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 5016,
+      "androidID": 17,
+      "legacyName": "trick_square_number_between_90_and_99",
+      "canonicalName": "trick_square_number_between_11_and_99",
+      "basis": "same_square_near_100_generator"
+    },
+    {
+      "legacyID": 5017,
+      "androidID": 23,
+      "legacyName": "trick_square_number_between_100_and_109",
+      "canonicalName": "trick_square_number_between_100_and_109",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 6001,
+      "androidID": 13,
+      "legacyName": "trick_power_of_two",
+      "canonicalName": "trick_power_of_two",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 6002,
+      "androidID": 77,
+      "legacyName": "trick_power_2",
+      "canonicalName": "trick_power_2",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 6003,
+      "androidID": 78,
+      "legacyName": "trick_power_2_between_100_and_999",
+      "canonicalName": "trick_power_2_between_100_and_999",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 6004,
+      "androidID": 79,
+      "legacyName": "trick_power_2_between_1000_and_9999",
+      "canonicalName": "trick_power_2_between_1000_and_9999",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 6005,
+      "androidID": 80,
+      "legacyName": "trick_power_3",
+      "canonicalName": "trick_power_3",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 6006,
+      "androidID": 81,
+      "legacyName": "trick_power_3_between_100_and_999",
+      "canonicalName": "trick_power_3_between_100_and_999",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 6007,
+      "androidID": 82,
+      "legacyName": "trick_power_4",
+      "canonicalName": "trick_power_4",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 6008,
+      "androidID": 83,
+      "legacyName": "trick_power_6",
+      "canonicalName": "trick_power_6",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 6009,
+      "androidID": 84,
+      "legacyName": "trick_power_9",
+      "canonicalName": "trick_power_9",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 7001,
+      "androidID": 24,
+      "legacyName": "trick_2_root",
+      "canonicalName": "trick_square_root",
+      "basis": "identical_square_root_generator"
+    },
+    {
+      "legacyID": 7002,
+      "androidID": 73,
+      "legacyName": "trick_3_root",
+      "canonicalName": "trick_3_root",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 7003,
+      "androidID": 74,
+      "legacyName": "trick_4_root",
+      "canonicalName": "trick_4_root",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 7004,
+      "androidID": 89,
+      "legacyName": "trick_5_root",
+      "canonicalName": "trick_5_root",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 7005,
+      "androidID": 75,
+      "legacyName": "trick_6_root",
+      "canonicalName": "trick_6_root",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 7006,
+      "androidID": 76,
+      "legacyName": "trick_9_root",
+      "canonicalName": "trick_9_root",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8001,
+      "androidID": 22,
+      "legacyName": "trick_percent",
+      "canonicalName": "trick_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8002,
+      "androidID": 25,
+      "legacyName": "trick_percent_2",
+      "canonicalName": "trick_percent_2",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8003,
+      "androidID": 56,
+      "legacyName": "trick_05_percent",
+      "canonicalName": "trick_05_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8004,
+      "androidID": 55,
+      "legacyName": "trick_2_percent",
+      "canonicalName": "trick_2_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8005,
+      "androidID": 54,
+      "legacyName": "trick_4_percent",
+      "canonicalName": "trick_4_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8006,
+      "androidID": 53,
+      "legacyName": "trick_5_percent",
+      "canonicalName": "trick_5_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8007,
+      "androidID": 52,
+      "legacyName": "trick_15_percent",
+      "canonicalName": "trick_15_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8008,
+      "androidID": 51,
+      "legacyName": "trick_20_percent",
+      "canonicalName": "trick_20_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8009,
+      "androidID": 50,
+      "legacyName": "trick_25_percent",
+      "canonicalName": "trick_25_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8010,
+      "androidID": 107,
+      "legacyName": "trick_40_percent",
+      "canonicalName": "trick_40_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8011,
+      "androidID": 49,
+      "legacyName": "trick_50_percent",
+      "canonicalName": "trick_50_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8012,
+      "androidID": 105,
+      "legacyName": "trick_75_percent",
+      "canonicalName": "trick_75_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8013,
+      "androidID": 57,
+      "legacyName": "trick_150_percent",
+      "canonicalName": "trick_150_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8014,
+      "androidID": 58,
+      "legacyName": "trick_200_percent",
+      "canonicalName": "trick_200_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8015,
+      "androidID": 70,
+      "legacyName": "trick_250_percent",
+      "canonicalName": "trick_250_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8016,
+      "androidID": 99,
+      "legacyName": "trick_300_percent",
+      "canonicalName": "trick_300_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8017,
+      "androidID": 100,
+      "legacyName": "trick_500_percent",
+      "canonicalName": "trick_500_percent",
+      "basis": "same_catalog_constant"
+    },
+    {
+      "legacyID": 8018,
+      "androidID": 106,
+      "legacyName": "trick_750_percent",
+      "canonicalName": "trick_750_percent",
+      "basis": "same_catalog_constant"
+    }
+  ]
+}

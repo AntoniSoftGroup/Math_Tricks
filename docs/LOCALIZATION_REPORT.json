@@ -1,0 +1,352 @@
+{
+  "locales": {
+    "en": {
+      "androidFolder": "values",
+      "catalogTranslated": 329,
+      "catalogFallback": 0,
+      "nativeFallback": []
+    },
+    "ar": {
+      "androidFolder": "values-ar",
+      "catalogTranslated": 193,
+      "catalogFallback": 136,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "be": {
+      "androidFolder": "values-be",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "bn": {
+      "androidFolder": "values-bn",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "de": {
+      "androidFolder": "values-de",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "el": {
+      "androidFolder": "values-el",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "es": {
+      "androidFolder": "values-es",
+      "catalogTranslated": 163,
+      "catalogFallback": 166,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "fa": {
+      "androidFolder": "values-fa",
+      "catalogTranslated": 193,
+      "catalogFallback": 136,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "fr": {
+      "androidFolder": "values-fr",
+      "catalogTranslated": 163,
+      "catalogFallback": 166,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "hu": {
+      "androidFolder": "values-hu",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "id": {
+      "androidFolder": "values-id",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "it": {
+      "androidFolder": "values-it",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "he": {
+      "androidFolder": "values-iw",
+      "catalogTranslated": 193,
+      "catalogFallback": 136,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "ja": {
+      "androidFolder": "values-ja",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "ka": {
+      "androidFolder": "values-ka",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "ko": {
+      "androidFolder": "values-ko",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "pl": {
+      "androidFolder": "values-pl",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "pt": {
+      "androidFolder": "values-pt",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "ro": {
+      "androidFolder": "values-ro",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "ru": {
+      "androidFolder": "values-ru",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": []
+    },
+    "th": {
+      "androidFolder": "values-th",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "tr": {
+      "androidFolder": "values-tr",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "uk": {
+      "androidFolder": "values-uk",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "vi": {
+      "androidFolder": "values-vi",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "zh-Hans": {
+      "androidFolder": "values-zh-rCN",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    },
+    "zh-Hant": {
+      "androidFolder": "values-zh-rTW",
+      "catalogTranslated": 162,
+      "catalogFallback": 167,
+      "nativeFallback": [
+        "statistics_clear_confirm"
+      ]
+    }
+  },
+  "interfaceMappings": {
+    "back": "theme_picker_back",
+    "cancel": "cloud_cancel",
+    "retry": "results_retry",
+    "levels": "activity_rule_level_select",
+    "selected_play": "activity_main_b_one_player",
+    "selected_multiplayer": "activity_main_b_two_players",
+    "no_selection": "select_tricks",
+    "rule": "alert_dialog_rule_iv_content_description",
+    "play": "theme_preview_play",
+    "resume": "solution_continue_game_only",
+    "pause": "theme_preview_pause",
+    "finish": "activity_main_b_Exit",
+    "exit_game": "theme_preview_pause",
+    "score": "alert_dialog_timer_end_tv_score",
+    "time": "activity_game_time_tv_score",
+    "hint": "alert_dialog_timer_end_tv_solution",
+    "true": "results_true_option",
+    "false": "results_false_option",
+    "main_menu": "font_size_menu_preview",
+    "stars": "cloud_compare_stars",
+    "solved": "results_share_solved_label",
+    "mode_single": "alert_dialog_game_b_single",
+    "mode_minute": "alert_dialog_game_b_minute",
+    "mode_speed": "alert_dialog_game_b_time",
+    "mode_noTime": "alert_dialog_game_b_not_time",
+    "record": "alert_dialog_timer_end_tv_score_max",
+    "reset_record": "reset_score",
+    "reset_record_confirm": "reset_score_confirm",
+    "next_step": "trick_step_column_next_place",
+    "solve_separately": "solve_step_separately",
+    "share_solution": "solution_share_scheme",
+    "multiplication_table": "solution_multiplication_table",
+    "multiplayer_length": "player_alert_dialog_tv_steps_name",
+    "input_0": "example_statistics_keyboard",
+    "input_1": "example_statistics_choices",
+    "input_2": "example_statistics_boolean",
+    "cooperative": "activity_main_b_Teamwise",
+    "stats_examples": "example_statistics_all",
+    "stats_tricks": "font_size_tricks_preview",
+    "stats_repeat": "example_statistics_repeat",
+    "all": "statistics_page_all",
+    "share_statistics": "option_share",
+    "independent": "example_statistics_clean",
+    "errors": "results_trick_errors_label",
+    "average": "example_statistics_average",
+    "best": "results_share_best_time",
+    "statistics_empty": "example_statistics_empty",
+    "outcome_solved": "results_share_solved_label",
+    "outcome_skipped": "results_trick_skipped_label",
+    "outcome_unfinished": "statistics_stopped",
+    "stats_trick_repeat": "statistics_tricks_recommendations",
+    "first_time": "results_first_time_header",
+    "font_size": "option_font_size",
+    "numpad": "option_numpad",
+    "sound": "activity_main_cb_sound",
+    "vibration": "activity_main_cb_vibrator",
+    "wrong_signal": "option_wrong_answer_signal",
+    "speech_expression": "results_example",
+    "system_font": "font_size_reset",
+    "reset_progress": "progress_reset_title",
+    "reset_progress_confirm": "progress_reset_local_confirm",
+    "daily_goal": "daily_goal_title",
+    "select_tricks": "select_tricks",
+    "daily_complete": "graph_target_complete",
+    "notification_system_settings": "b_option_notification",
+    "notification_denied": "permission_warning",
+    "streak_ended": "streak_shield_ended",
+    "archive_export": "file_backup_save",
+    "archive_import": "file_backup_restore",
+    "archive_restore": "cloud_restore",
+    "archive_invalid": "file_backup_restore_error",
+    "apply_theme": "theme_picker_apply",
+    "theme_title": "option_theme",
+    "theme_color": "theme_picker_color",
+    "theme_intensity": "theme_picker_intensity",
+    "preview_single": "activity_main_b_one_player",
+    "theme_1": "alert_dialog_theme_b_light",
+    "theme_2": "alert_dialog_theme_b_dark",
+    "theme_3": "theme_light_aurora_name",
+    "theme_4": "theme_dark_aurora_name",
+    "theme_5": "theme_timely_name",
+    "theme_6": "theme_neon_name",
+    "seconds": "activity_game_time_tv_sec",
+    "statistics_attempts": "statistics_attempts_card",
+    "statistics_tricks_slow": "statistics_tricks_slow",
+    "statistics_tricks_errors": "statistics_tricks_errors",
+    "statistics_page_size": "statistics_page_size_title",
+    "statistics_clear": "statistics_clear",
+    "graph_linear": "graph_mode_linear",
+    "graph_smooth": "graph_mode_cubic",
+    "graph_series_days": "graph_series_days"
+  },
+  "nativeOnlyKeys": [
+    "another_example",
+    "archive_description",
+    "archive_final_confirm",
+    "archive_replace_warning",
+    "archives",
+    "backspace",
+    "change_input",
+    "change_method",
+    "coins",
+    "collapse_all",
+    "daily_reminder_message",
+    "default_input",
+    "difficulty",
+    "examples",
+    "expand_all",
+    "level",
+    "locked",
+    "new_game",
+    "not_enough_coins",
+    "player",
+    "previous_step",
+    "progress_changed",
+    "read_error",
+    "reset_progress_final",
+    "result",
+    "result_details",
+    "resume_multiplayer",
+    "resume_saved",
+    "save_error",
+    "save_exit",
+    "saved_progress",
+    "select_all",
+    "show_answer",
+    "skip",
+    "sort",
+    "speech",
+    "speech_both",
+    "speech_off",
+    "statistics_clear_confirm",
+    "step_example",
+    "streak_pending",
+    "switch_numpad",
+    "system_settings",
+    "table_grid",
+    "table_list",
+    "unlock",
+    "unlock_message",
+    "versus",
+    "winner"
+  ]
+}

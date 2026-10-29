@@ -1,0 +1,3 @@
+"all_time_solved" = "<i><small><small>Вирішено за весь час:</small></small> <b>%@</b></i>";
+"day_streak_text" = "<i><b>%@</b> - <small>днів поспіль</small></i>";
+"day_streak_today" = "<i><b>%@</b> <small>сьогодні</small></i>";

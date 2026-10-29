@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>results_share_clean_intro</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@count@</string>
+		<key>count</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>Çözülen sorular: %1$lld. Toplam süre: %2$@. Ortalama süre: %3$@.</string>
+			<key>other</key>
+			<string>Çözülen sorular: %1$lld. Toplam süre: %2$@. Ortalama süre: %3$@.</string>
+		</dict>
+	</dict>
+	<key>results_share_tricks_intro</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@count@</string>
+		<key>count</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>Çözülen sorular: %1$lld!</string>
+			<key>other</key>
+			<string>Çözülen sorular: %1$lld!</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

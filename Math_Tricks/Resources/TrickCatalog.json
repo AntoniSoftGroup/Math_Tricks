@@ -1,0 +1,1118 @@
+{
+  "tricks": [
+    {
+      "id": 1,
+      "key": "trick_addition",
+      "groupID": 1,
+      "order": "1.01",
+      "nameKey": "trick_addition_text",
+      "ruleKey": "trick_addition_rule_text",
+      "formulaKey": "trick_addition_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 2,
+      "key": "trick_subtraction",
+      "groupID": 2,
+      "order": "2.01",
+      "nameKey": "trick_subtraction_text",
+      "ruleKey": "trick_subtraction_rule_text",
+      "formulaKey": "trick_subtraction_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 3,
+      "key": "trick_multiplication",
+      "groupID": 3,
+      "order": "3.01",
+      "nameKey": "trick_multiplication_text",
+      "ruleKey": "trick_multiplication_rule_text",
+      "formulaKey": "trick_multiplication_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 4,
+      "key": "trick_division",
+      "groupID": 4,
+      "order": "4.01",
+      "nameKey": "trick_division_text",
+      "ruleKey": "trick_division_rule_text",
+      "formulaKey": "trick_division_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 5,
+      "key": "trick_multiply_by_11_2digit",
+      "groupID": 3,
+      "order": "3.02",
+      "nameKey": "trick_multiply_by_11_2digit_text",
+      "ruleKey": "trick_multiply_by_11_2digit_rule_text",
+      "formulaKey": "trick_multiply_by_11_2digit_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 6,
+      "key": "trick_square_numbers_editing_in_5",
+      "groupID": 5,
+      "order": "5.01",
+      "nameKey": "trick_square_numbers_editing_in_5_text",
+      "ruleKey": "trick_square_numbers_editing_in_5_rule_text",
+      "formulaKey": "trick_square_numbers_editing_in_5_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 7,
+      "key": "trick_multiply_by_5",
+      "groupID": 3,
+      "order": "3.12",
+      "nameKey": "trick_multiply_by_5_text",
+      "ruleKey": "trick_multiply_by_5_rule_text",
+      "formulaKey": "trick_multiply_by_5_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 8,
+      "key": "trick_multiply_by_9",
+      "groupID": 3,
+      "order": "3.16",
+      "nameKey": "trick_multiply_by_9_text",
+      "ruleKey": "trick_multiply_by_9_rule_text",
+      "formulaKey": "trick_multiply_by_9_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 9,
+      "key": "trick_multiply_by_4",
+      "groupID": 3,
+      "order": "3.11",
+      "nameKey": "trick_multiply_by_4_text",
+      "ruleKey": "trick_multiply_by_4_rule_text",
+      "formulaKey": "trick_multiply_by_4_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 10,
+      "key": "trick_dividing_by_5",
+      "groupID": 4,
+      "order": "4.08",
+      "nameKey": "trick_dividing_by_5_text",
+      "ruleKey": "trick_dividing_by_5_rule_text",
+      "formulaKey": "trick_dividing_by_5_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 11,
+      "key": "trick_subtracting_from_1000",
+      "groupID": 2,
+      "order": "2.03",
+      "nameKey": "trick_subtracting_from_1000_text",
+      "ruleKey": "trick_subtracting_from_1000_rule_text",
+      "formulaKey": "trick_subtracting_from_1000_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 12,
+      "key": "trick_tough_multiplication",
+      "groupID": 3,
+      "order": "3.35",
+      "nameKey": "trick_tough_multiplication_text",
+      "ruleKey": "trick_tough_multiplication_rule_text",
+      "formulaKey": "trick_tough_multiplication_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 13,
+      "key": "trick_power_of_two",
+      "groupID": 6,
+      "order": "6.01",
+      "nameKey": "trick_power_of_two_text",
+      "ruleKey": "trick_power_of_two_rule_text",
+      "formulaKey": "trick_power_of_two_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 14,
+      "key": "trick_adding_numbers_close_to_hundreds",
+      "groupID": 1,
+      "order": "1.02",
+      "nameKey": "trick_adding_numbers_close_to_hundreds_text",
+      "ruleKey": "trick_adding_numbers_close_to_hundreds_rule_text",
+      "formulaKey": "trick_adding_numbers_close_to_hundreds_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 15,
+      "key": "trick_subtracting_numbers_close_to_hundreds",
+      "groupID": 2,
+      "order": "2.02",
+      "nameKey": "trick_subtracting_numbers_close_to_hundreds_text",
+      "ruleKey": "trick_subtracting_numbers_close_to_hundreds_rule_text",
+      "formulaKey": "trick_subtracting_numbers_close_to_hundreds_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 16,
+      "key": "trick_multiply_numbers_between_11_and_19",
+      "groupID": 3,
+      "order": "3.05",
+      "nameKey": "trick_multiply_numbers_between_11_and_19_text",
+      "ruleKey": "trick_multiply_numbers_between_11_and_19_rule_text",
+      "formulaKey": "trick_multiply_numbers_between_11_and_19_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 17,
+      "key": "trick_square_number_between_11_and_99",
+      "groupID": 5,
+      "order": "5.16",
+      "nameKey": "trick_square_number_between_11_and_99_text",
+      "ruleKey": "trick_square_number_between_11_and_99_rule_text",
+      "formulaKey": "trick_square_number_between_11_and_99_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 18,
+      "key": "trick_multiply_two_digit_numbers_having_same_tens",
+      "groupID": 3,
+      "order": "3.03",
+      "nameKey": "trick_multiply_two_digit_numbers_having_same_tens_text",
+      "ruleKey": "trick_multiply_two_digit_numbers_having_same_tens_rule_text",
+      "formulaKey": "trick_multiply_two_digit_numbers_having_same_tens_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 19,
+      "key": "trick_square_number_between_50_and_59",
+      "groupID": 5,
+      "order": "5.12",
+      "nameKey": "trick_square_number_between_50_and_59_text",
+      "ruleKey": "trick_square_number_between_50_and_59_rule_text",
+      "formulaKey": "trick_square_number_between_50_and_59_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 20,
+      "key": "trick_square_number_between_40_and_49",
+      "groupID": 5,
+      "order": "5.11",
+      "nameKey": "trick_square_number_between_40_and_49_text",
+      "ruleKey": "trick_square_number_between_40_and_49_rule_text",
+      "formulaKey": "trick_square_number_between_40_and_49_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 21,
+      "key": "trick_multiply_two_digit_numbers_editing_in_1",
+      "groupID": 3,
+      "order": "3.04",
+      "nameKey": "trick_multiply_two_digit_numbers_editing_in_1_text",
+      "ruleKey": "trick_multiply_two_digit_numbers_editing_in_1_rule_text",
+      "formulaKey": "trick_multiply_two_digit_numbers_editing_in_1_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 22,
+      "key": "trick_percent",
+      "groupID": 8,
+      "order": "8.01",
+      "nameKey": "trick_percent_text",
+      "ruleKey": "trick_percent_rule_text",
+      "formulaKey": "trick_percent_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 23,
+      "key": "trick_square_number_between_100_and_109",
+      "groupID": 5,
+      "order": "5.17",
+      "nameKey": "trick_square_number_between_100_and_109_text",
+      "ruleKey": "trick_square_number_between_100_and_109_rule_text",
+      "formulaKey": "trick_square_number_between_100_and_109_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 24,
+      "key": "trick_square_root",
+      "groupID": 7,
+      "order": "7.01",
+      "nameKey": "trick_square_root_text",
+      "ruleKey": "trick_square_root_rule_text",
+      "formulaKey": "trick_square_root_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 25,
+      "key": "trick_percent_2",
+      "groupID": 8,
+      "order": "8.02",
+      "nameKey": "trick_percent_2_text",
+      "ruleKey": "trick_percent_2_rule_text",
+      "formulaKey": "trick_percent_2_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 26,
+      "key": "trick_multiply_by_15",
+      "groupID": 3,
+      "order": "3.20",
+      "nameKey": "trick_multiply_by_15_text",
+      "ruleKey": "trick_multiply_by_15_rule_text",
+      "formulaKey": "trick_multiply_by_15_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 27,
+      "key": "trick_multiply_by_20",
+      "groupID": 3,
+      "order": "3.25",
+      "nameKey": "trick_multiply_by_20_text",
+      "ruleKey": "trick_multiply_by_20_rule_text",
+      "formulaKey": "trick_multiply_by_20_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 28,
+      "key": "trick_dividing_by_4",
+      "groupID": 4,
+      "order": "4.07",
+      "nameKey": "trick_dividing_by_4_text",
+      "ruleKey": "trick_dividing_by_4_rule_text",
+      "formulaKey": "trick_dividing_by_4_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 29,
+      "key": "trick_dividing_by_20",
+      "groupID": 4,
+      "order": "4.14",
+      "nameKey": "trick_dividing_by_20_text",
+      "ruleKey": "trick_dividing_by_20_rule_text",
+      "formulaKey": "trick_dividing_by_20_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 30,
+      "key": "trick_dividing_by_50",
+      "groupID": 4,
+      "order": "4.17",
+      "nameKey": "trick_dividing_by_50_text",
+      "ruleKey": "trick_dividing_by_50_rule_text",
+      "formulaKey": "trick_dividing_by_50_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 31,
+      "key": "trick_dividing_by_25",
+      "groupID": 4,
+      "order": "4.15",
+      "nameKey": "trick_dividing_by_25_text",
+      "ruleKey": "trick_dividing_by_25_rule_text",
+      "formulaKey": "trick_dividing_by_25_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 32,
+      "key": "trick_square_number_between_10_and_19",
+      "groupID": 5,
+      "order": "5.08",
+      "nameKey": "trick_square_number_between_10_and_19_text",
+      "ruleKey": "trick_square_number_between_10_and_19_rule_text",
+      "formulaKey": "trick_square_number_between_10_and_19_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 33,
+      "key": "trick_multiply_by_99",
+      "groupID": 3,
+      "order": "3.29",
+      "nameKey": "trick_multiply_by_99_text",
+      "ruleKey": "trick_multiply_by_99_rule_text",
+      "formulaKey": "trick_multiply_by_99_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 34,
+      "key": "trick_multiply_by_25",
+      "groupID": 3,
+      "order": "3.26",
+      "nameKey": "trick_multiply_by_25_text",
+      "ruleKey": "trick_multiply_by_25_rule_text",
+      "formulaKey": "trick_multiply_by_25_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 35,
+      "key": "trick_multiply_by_50",
+      "groupID": 3,
+      "order": "3.27",
+      "nameKey": "trick_multiply_by_50_text",
+      "ruleKey": "trick_multiply_by_50_rule_text",
+      "formulaKey": "trick_multiply_by_50_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 36,
+      "key": "trick_dividing_by_40",
+      "groupID": 4,
+      "order": "4.16",
+      "nameKey": "trick_dividing_by_40_text",
+      "ruleKey": "trick_dividing_by_40_rule_text",
+      "formulaKey": "trick_dividing_by_40_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 37,
+      "key": "trick_multiply_by_05",
+      "groupID": 3,
+      "order": "3.08",
+      "nameKey": "trick_multiply_by_05_text",
+      "ruleKey": "trick_multiply_by_05_rule_text",
+      "formulaKey": "trick_multiply_by_05_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 38,
+      "key": "trick_dividing_by_05",
+      "groupID": 4,
+      "order": "4.04",
+      "nameKey": "trick_dividing_by_05_text",
+      "ruleKey": "trick_dividing_by_05_rule_text",
+      "formulaKey": "trick_dividing_by_05_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 39,
+      "key": "trick_square_numbers_editing_in_25",
+      "groupID": 5,
+      "order": "5.04",
+      "nameKey": "trick_square_numbers_editing_in_25_text",
+      "ruleKey": "trick_square_numbers_editing_in_25_rule_text",
+      "formulaKey": "trick_square_numbers_editing_in_25_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 40,
+      "key": "trick_multiply_by_02",
+      "groupID": 3,
+      "order": "3.06",
+      "nameKey": "trick_multiply_by_02_text",
+      "ruleKey": "trick_multiply_by_02_rule_text",
+      "formulaKey": "trick_multiply_by_02_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 41,
+      "key": "trick_dividing_by_02",
+      "groupID": 4,
+      "order": "4.02",
+      "nameKey": "trick_dividing_by_02_text",
+      "ruleKey": "trick_dividing_by_02_rule_text",
+      "formulaKey": "trick_dividing_by_02_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 42,
+      "key": "trick_multiply_by_025",
+      "groupID": 3,
+      "order": "3.07",
+      "nameKey": "trick_multiply_by_025_text",
+      "ruleKey": "trick_multiply_by_025_rule_text",
+      "formulaKey": "trick_multiply_by_025_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 43,
+      "key": "trick_dividing_by_025",
+      "groupID": 4,
+      "order": "4.03",
+      "nameKey": "trick_dividing_by_025_text",
+      "ruleKey": "trick_dividing_by_025_rule_text",
+      "formulaKey": "trick_dividing_by_025_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 44,
+      "key": "trick_square_number_between_20_and_29",
+      "groupID": 5,
+      "order": "5.09",
+      "nameKey": "trick_square_number_between_20_and_29_text",
+      "ruleKey": "trick_square_number_between_20_and_29_rule_text",
+      "formulaKey": "trick_square_number_between_20_and_29_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 45,
+      "key": "trick_square_number_between_30_and_39",
+      "groupID": 5,
+      "order": "5.10",
+      "nameKey": "trick_square_number_between_30_and_39_text",
+      "ruleKey": "trick_square_number_between_30_and_39_rule_text",
+      "formulaKey": "trick_square_number_between_30_and_39_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 46,
+      "key": "trick_square_number_between_60_and_69",
+      "groupID": 5,
+      "order": "5.13",
+      "nameKey": "trick_square_number_between_60_and_69_text",
+      "ruleKey": "trick_square_number_between_60_and_69_rule_text",
+      "formulaKey": "trick_square_number_between_60_and_69_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 47,
+      "key": "trick_square_number_between_70_and_79",
+      "groupID": 5,
+      "order": "5.14",
+      "nameKey": "trick_square_number_between_70_and_79_text",
+      "ruleKey": "trick_square_number_between_70_and_79_rule_text",
+      "formulaKey": "trick_square_number_between_70_and_79_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 48,
+      "key": "trick_square_number_between_80_and_89",
+      "groupID": 5,
+      "order": "5.15",
+      "nameKey": "trick_square_number_between_80_and_89_text",
+      "ruleKey": "trick_square_number_between_80_and_89_rule_text",
+      "formulaKey": "trick_square_number_between_80_and_89_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 49,
+      "key": "trick_50_percent",
+      "groupID": 8,
+      "order": "8.11",
+      "nameKey": "trick_50_percent_text",
+      "ruleKey": "trick_50_percent_rule_text",
+      "formulaKey": "trick_50_percent_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 50,
+      "key": "trick_25_percent",
+      "groupID": 8,
+      "order": "8.09",
+      "nameKey": "trick_25_percent_text",
+      "ruleKey": "trick_25_percent_rule_text",
+      "formulaKey": "trick_25_percent_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 51,
+      "key": "trick_20_percent",
+      "groupID": 8,
+      "order": "8.08",
+      "nameKey": "trick_20_percent_text",
+      "ruleKey": "trick_20_percent_rule_text",
+      "formulaKey": "trick_20_percent_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 52,
+      "key": "trick_15_percent",
+      "groupID": 8,
+      "order": "8.07",
+      "nameKey": "trick_15_percent_text",
+      "ruleKey": "trick_15_percent_rule_text",
+      "formulaKey": "trick_15_percent_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 53,
+      "key": "trick_5_percent",
+      "groupID": 8,
+      "order": "8.06",
+      "nameKey": "trick_5_percent_text",
+      "ruleKey": "trick_5_percent_rule_text",
+      "formulaKey": "trick_5_percent_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 54,
+      "key": "trick_4_percent",
+      "groupID": 8,
+      "order": "8.05",
+      "nameKey": "trick_4_percent_text",
+      "ruleKey": "trick_4_percent_rule_text",
+      "formulaKey": "trick_4_percent_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 55,
+      "key": "trick_2_percent",
+      "groupID": 8,
+      "order": "8.04",
+      "nameKey": "trick_2_percent_text",
+      "ruleKey": "trick_2_percent_rule_text",
+      "formulaKey": "trick_2_percent_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 56,
+      "key": "trick_05_percent",
+      "groupID": 8,
+      "order": "8.03",
+      "nameKey": "trick_05_percent_text",
+      "ruleKey": "trick_05_percent_rule_text",
+      "formulaKey": "trick_05_percent_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 57,
+      "key": "trick_150_percent",
+      "groupID": 8,
+      "order": "8.13",
+      "nameKey": "trick_150_percent_text",
+      "ruleKey": "trick_150_percent_rule_text",
+      "formulaKey": "trick_150_percent_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 58,
+      "key": "trick_200_percent",
+      "groupID": 8,
+      "order": "8.14",
+      "nameKey": "trick_200_percent_text",
+      "ruleKey": "trick_200_percent_rule_text",
+      "formulaKey": "trick_200_percent_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 59,
+      "key": "trick_multiply_by_3",
+      "groupID": 3,
+      "order": "3.10",
+      "nameKey": "trick_multiply_by_3_text",
+      "ruleKey": "trick_multiply_by_3_rule_text",
+      "formulaKey": "trick_multiply_by_3_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 60,
+      "key": "trick_multiply_by_6",
+      "groupID": 3,
+      "order": "3.13",
+      "nameKey": "trick_multiply_by_6_text",
+      "ruleKey": "trick_multiply_by_6_rule_text",
+      "formulaKey": "trick_multiply_by_6_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 61,
+      "key": "trick_multiply_by_7",
+      "groupID": 3,
+      "order": "3.14",
+      "nameKey": "trick_multiply_by_7_text",
+      "ruleKey": "trick_multiply_by_7_rule_text",
+      "formulaKey": "trick_multiply_by_7_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 62,
+      "key": "trick_multiply_by_8",
+      "groupID": 3,
+      "order": "3.15",
+      "nameKey": "trick_multiply_by_8_text",
+      "ruleKey": "trick_multiply_by_8_rule_text",
+      "formulaKey": "trick_multiply_by_8_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 63,
+      "key": "trick_multiply_by_12",
+      "groupID": 3,
+      "order": "3.17",
+      "nameKey": "trick_multiply_by_12_text",
+      "ruleKey": "trick_multiply_by_12_rule_text",
+      "formulaKey": "trick_multiply_by_12_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 64,
+      "key": "trick_multiply_by_13",
+      "groupID": 3,
+      "order": "3.18",
+      "nameKey": "trick_multiply_by_13_text",
+      "ruleKey": "trick_multiply_by_13_rule_text",
+      "formulaKey": "trick_multiply_by_13_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 65,
+      "key": "trick_multiply_by_14",
+      "groupID": 3,
+      "order": "3.19",
+      "nameKey": "trick_multiply_by_14_text",
+      "ruleKey": "trick_multiply_by_14_rule_text",
+      "formulaKey": "trick_multiply_by_14_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 66,
+      "key": "trick_multiply_by_16",
+      "groupID": 3,
+      "order": "3.21",
+      "nameKey": "trick_multiply_by_16_text",
+      "ruleKey": "trick_multiply_by_16_rule_text",
+      "formulaKey": "trick_multiply_by_16_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 67,
+      "key": "trick_multiply_by_17",
+      "groupID": 3,
+      "order": "3.22",
+      "nameKey": "trick_multiply_by_17_text",
+      "ruleKey": "trick_multiply_by_17_rule_text",
+      "formulaKey": "trick_multiply_by_17_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 68,
+      "key": "trick_multiply_by_18",
+      "groupID": 3,
+      "order": "3.23",
+      "nameKey": "trick_multiply_by_18_text",
+      "ruleKey": "trick_multiply_by_18_rule_text",
+      "formulaKey": "trick_multiply_by_18_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 69,
+      "key": "trick_multiply_by_19",
+      "groupID": 3,
+      "order": "3.24",
+      "nameKey": "trick_multiply_by_19_text",
+      "ruleKey": "trick_multiply_by_19_rule_text",
+      "formulaKey": "trick_multiply_by_19_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 70,
+      "key": "trick_250_percent",
+      "groupID": 8,
+      "order": "8.15",
+      "nameKey": "trick_250_percent_text",
+      "ruleKey": "trick_250_percent_rule_text",
+      "formulaKey": "trick_250_percent_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 71,
+      "key": "trick_dividing_by_15",
+      "groupID": 4,
+      "order": "4.13",
+      "nameKey": "trick_dividing_by_15_text",
+      "ruleKey": "trick_dividing_by_15_rule_text",
+      "formulaKey": "trick_dividing_by_15_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 72,
+      "key": "trick_dividing_by_6",
+      "groupID": 4,
+      "order": "4.09",
+      "nameKey": "trick_dividing_by_6_text",
+      "ruleKey": "trick_dividing_by_6_rule_text",
+      "formulaKey": "trick_dividing_by_6_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 73,
+      "key": "trick_3_root",
+      "groupID": 7,
+      "order": "7.02",
+      "nameKey": "trick_3_root_text",
+      "ruleKey": "trick_3_root_rule_text",
+      "formulaKey": "trick_3_root_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 74,
+      "key": "trick_4_root",
+      "groupID": 7,
+      "order": "7.03",
+      "nameKey": "trick_4_root_text",
+      "ruleKey": "trick_4_root_rule_text",
+      "formulaKey": "trick_4_root_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 75,
+      "key": "trick_6_root",
+      "groupID": 7,
+      "order": "7.05",
+      "nameKey": "trick_6_root_text",
+      "ruleKey": "trick_6_root_rule_text",
+      "formulaKey": "trick_6_root_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 76,
+      "key": "trick_9_root",
+      "groupID": 7,
+      "order": "7.06",
+      "nameKey": "trick_9_root_text",
+      "ruleKey": "trick_9_root_rule_text",
+      "formulaKey": "trick_9_root_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 77,
+      "key": "trick_power_2",
+      "groupID": 6,
+      "order": "6.02",
+      "nameKey": "trick_power_2_text",
+      "ruleKey": "trick_power_2_rule_text",
+      "formulaKey": "trick_power_2_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 78,
+      "key": "trick_power_2_between_100_and_999",
+      "groupID": 6,
+      "order": "6.03",
+      "nameKey": "trick_power_2_between_100_and_999_text",
+      "ruleKey": "trick_power_2_between_100_and_999_rule_text",
+      "formulaKey": "trick_power_2_between_100_and_999_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 79,
+      "key": "trick_power_2_between_1000_and_9999",
+      "groupID": 6,
+      "order": "6.04",
+      "nameKey": "trick_power_2_between_1000_and_9999_text",
+      "ruleKey": "trick_power_2_between_1000_and_9999_rule_text",
+      "formulaKey": "trick_power_2_between_1000_and_9999_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 80,
+      "key": "trick_power_3",
+      "groupID": 6,
+      "order": "6.05",
+      "nameKey": "trick_power_3_text",
+      "ruleKey": "trick_power_3_rule_text",
+      "formulaKey": "trick_power_3_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 81,
+      "key": "trick_power_3_between_100_and_999",
+      "groupID": 6,
+      "order": "6.06",
+      "nameKey": "trick_power_3_between_100_and_999_text",
+      "ruleKey": "trick_power_3_between_100_and_999_rule_text",
+      "formulaKey": "trick_power_3_between_100_and_999_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 82,
+      "key": "trick_power_4",
+      "groupID": 6,
+      "order": "6.07",
+      "nameKey": "trick_power_4_text",
+      "ruleKey": "trick_power_4_rule_text",
+      "formulaKey": "trick_power_4_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 83,
+      "key": "trick_power_6",
+      "groupID": 6,
+      "order": "6.08",
+      "nameKey": "trick_power_6_text",
+      "ruleKey": "trick_power_6_rule_text",
+      "formulaKey": "trick_power_6_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 84,
+      "key": "trick_power_9",
+      "groupID": 6,
+      "order": "6.09",
+      "nameKey": "trick_power_9_text",
+      "ruleKey": "trick_power_9_rule_text",
+      "formulaKey": "trick_power_9_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 85,
+      "key": "trick_dividing_by_3",
+      "groupID": 4,
+      "order": "4.06",
+      "nameKey": "trick_dividing_by_3_text",
+      "ruleKey": "trick_dividing_by_3_rule_text",
+      "formulaKey": "trick_dividing_by_3_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 86,
+      "key": "trick_dividing_by_2",
+      "groupID": 4,
+      "order": "4.05",
+      "nameKey": "trick_dividing_by_2_text",
+      "ruleKey": "trick_dividing_by_2_rule_text",
+      "formulaKey": "trick_dividing_by_2_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 87,
+      "key": "trick_multiply_by_2",
+      "groupID": 3,
+      "order": "3.09",
+      "nameKey": "trick_multiply_by_2_text",
+      "ruleKey": "trick_multiply_by_2_rule_text",
+      "formulaKey": "trick_multiply_by_2_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 88,
+      "key": "trick_dividing_by_8",
+      "groupID": 4,
+      "order": "4.11",
+      "nameKey": "trick_dividing_by_8_text",
+      "ruleKey": "trick_dividing_by_8_rule_text",
+      "formulaKey": "trick_dividing_by_8_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 89,
+      "key": "trick_5_root",
+      "groupID": 7,
+      "order": "7.04",
+      "nameKey": "trick_5_root_text",
+      "ruleKey": "trick_5_root_rule_text",
+      "formulaKey": "trick_5_root_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 90,
+      "key": "trick_multiply_by_125",
+      "groupID": 3,
+      "order": "3.30",
+      "nameKey": "trick_multiply_by_125_text",
+      "ruleKey": "trick_multiply_by_125_rule_text",
+      "formulaKey": "trick_multiply_by_125_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 91,
+      "key": "trick_square_numbers_editing_in_75",
+      "groupID": 5,
+      "order": "5.05",
+      "nameKey": "trick_square_numbers_editing_in_75_text",
+      "ruleKey": "trick_square_numbers_editing_in_75_rule_text",
+      "formulaKey": "trick_square_numbers_editing_in_75_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 92,
+      "key": "trick_square_numbers_editing_in_125",
+      "groupID": 5,
+      "order": "5.07",
+      "nameKey": "trick_square_numbers_editing_in_125_text",
+      "ruleKey": "trick_square_numbers_editing_in_125_rule_text",
+      "formulaKey": "trick_square_numbers_editing_in_125_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 93,
+      "key": "trick_multiply_by_250",
+      "groupID": 3,
+      "order": "3.31",
+      "nameKey": "trick_multiply_by_250_text",
+      "ruleKey": "trick_multiply_by_250_rule_text",
+      "formulaKey": "trick_multiply_by_250_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 94,
+      "key": "trick_multiply_by_500",
+      "groupID": 3,
+      "order": "3.32",
+      "nameKey": "trick_multiply_by_500_text",
+      "ruleKey": "trick_multiply_by_500_rule_text",
+      "formulaKey": "trick_multiply_by_500_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 95,
+      "key": "trick_multiply_by_750",
+      "groupID": 3,
+      "order": "3.33",
+      "nameKey": "trick_multiply_by_750_text",
+      "ruleKey": "trick_multiply_by_750_rule_text",
+      "formulaKey": "trick_multiply_by_750_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 96,
+      "key": "trick_multiply_by_999",
+      "groupID": 3,
+      "order": "3.34",
+      "nameKey": "trick_multiply_by_999_text",
+      "ruleKey": "trick_multiply_by_999_rule_text",
+      "formulaKey": "trick_multiply_by_999_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 97,
+      "key": "trick_dividing_by_7",
+      "groupID": 4,
+      "order": "4.10",
+      "nameKey": "trick_dividing_by_7_text",
+      "ruleKey": "trick_dividing_by_7_rule_text",
+      "formulaKey": "trick_dividing_by_7_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 98,
+      "key": "trick_dividing_by_9",
+      "groupID": 4,
+      "order": "4.12",
+      "nameKey": "trick_dividing_by_9_text",
+      "ruleKey": "trick_dividing_by_9_rule_text",
+      "formulaKey": "trick_dividing_by_9_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 99,
+      "key": "trick_300_percent",
+      "groupID": 8,
+      "order": "8.16",
+      "nameKey": "trick_300_percent_text",
+      "ruleKey": "trick_300_percent_rule_text",
+      "formulaKey": "trick_300_percent_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 100,
+      "key": "trick_500_percent",
+      "groupID": 8,
+      "order": "8.17",
+      "nameKey": "trick_500_percent_text",
+      "ruleKey": "trick_500_percent_rule_text",
+      "formulaKey": "trick_500_percent_rule",
+      "initiallyUnlocked": true
+    },
+    {
+      "id": 101,
+      "key": "trick_multiply_by_75",
+      "groupID": 3,
+      "order": "3.28",
+      "nameKey": "trick_multiply_by_75_text",
+      "ruleKey": "trick_multiply_by_75_rule_text",
+      "formulaKey": "trick_multiply_by_75_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 102,
+      "key": "trick_square_numbers_editing_in_05",
+      "groupID": 5,
+      "order": "5.02",
+      "nameKey": "trick_square_numbers_editing_in_05_text",
+      "ruleKey": "trick_square_numbers_editing_in_05_rule_text",
+      "formulaKey": "trick_square_numbers_editing_in_05_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 103,
+      "key": "trick_square_numbers_editing_in_15",
+      "groupID": 5,
+      "order": "5.03",
+      "nameKey": "trick_square_numbers_editing_in_15_text",
+      "ruleKey": "trick_square_numbers_editing_in_15_rule_text",
+      "formulaKey": "trick_square_numbers_editing_in_15_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 104,
+      "key": "trick_square_numbers_editing_in_95",
+      "groupID": 5,
+      "order": "5.06",
+      "nameKey": "trick_square_numbers_editing_in_95_text",
+      "ruleKey": "trick_square_numbers_editing_in_95_rule_text",
+      "formulaKey": "trick_square_numbers_editing_in_95_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 105,
+      "key": "trick_75_percent",
+      "groupID": 8,
+      "order": "8.12",
+      "nameKey": "trick_75_percent_text",
+      "ruleKey": "trick_75_percent_rule_text",
+      "formulaKey": "trick_75_percent_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 106,
+      "key": "trick_750_percent",
+      "groupID": 8,
+      "order": "8.18",
+      "nameKey": "trick_750_percent_text",
+      "ruleKey": "trick_750_percent_rule_text",
+      "formulaKey": "trick_750_percent_rule",
+      "initiallyUnlocked": false
+    },
+    {
+      "id": 107,
+      "key": "trick_40_percent",
+      "groupID": 8,
+      "order": "8.10",
+      "nameKey": "trick_40_percent_text",
+      "ruleKey": "trick_40_percent_rule_text",
+      "formulaKey": "trick_40_percent_rule",
+      "initiallyUnlocked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "nameKey": "group_addition_name",
+      "iconName": "ic_th_light_group_addition"
+    },
+    {
+      "id": 2,
+      "nameKey": "group_subtraction_name",
+      "iconName": "ic_th_light_group_subtraction"
+    },
+    {
+      "id": 3,
+      "nameKey": "group_multiplication_name",
+      "iconName": "ic_th_light_group_multiplication"
+    },
+    {
+      "id": 4,
+      "nameKey": "group_division_name",
+      "iconName": "ic_th_light_group_division"
+    },
+    {
+      "id": 5,
+      "nameKey": "group_square_name",
+      "iconName": "ic_th_light_group_square"
+    },
+    {
+      "id": 6,
+      "nameKey": "group_power_name",
+      "iconName": "ic_th_light_group_power"
+    },
+    {
+      "id": 7,
+      "nameKey": "group_root_name",
+      "iconName": "ic_th_light_group_root"
+    },
+    {
+      "id": 8,
+      "nameKey": "group_percent_name",
+      "iconName": "ic_th_light_group_percent"
+    }
+  ],
+  "unlockPrice": 200,
+  "levelCount": 100
+}

@@ -1,0 +1,37 @@
+{
+  "identifier": "7B0494D6-7374-4E7F-93F2-12E3B65754CF",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1234567890",
+      "localizations": [
+        {
+          "description": "Remove ads and unlock all tricks.",
+          "displayName": "Full Version",
+          "locale": "en_US"
+        },
+        {
+          "description": "Отключение рекламы и все трюки.",
+          "displayName": "Полная версия",
+          "locale": "ru"
+        }
+      ],
+      "productID": "remove_ads_v1",
+      "referenceName": "Full Version",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_storefront": "USA",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import GoogleSignIn
 
 @main
 struct Math_TricksApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onOpenURL {
+                    AppAnalytics.shared.configure()
+                    GIDSignIn.sharedInstance.handle($0)
+                }
+                .ignoresSafeArea()
+                .statusBarHidden(false)
         }
     }
 }

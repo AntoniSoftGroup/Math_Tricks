@@ -7,18 +7,17 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+struct ContentView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> AppRootViewController {
+        AppRootViewController()
+    }
+
+    func updateUIViewController(_ controller: AppRootViewController, context: Context) {
+        // SwiftUI updates must not reset the navigation stack or recreate the banner.
     }
 }
 
 #Preview {
     ContentView()
+        .ignoresSafeArea()
 }

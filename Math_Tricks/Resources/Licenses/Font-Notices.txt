@@ -1,0 +1,17 @@
+Roboto-Regular.ttf
+Copyright 2011 Google Inc. All Rights Reserved.
+Roboto
+Regular
+Roboto-Regular
+Licensed under the Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0
+
+roboto_mono.ttf
+Copyright 2015 The Roboto Mono Project Authors (https://github.com/googlefonts/robotomono)
+Roboto Mono
+Regular
+RobotoMono-Regular
+This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://openfontlicense.org
+https://openfontlicense.org
+
+Roboto uses Roboto-APACHE.txt. Roboto Mono uses RobotoMono-OFL.txt. Fonts are unmodified.

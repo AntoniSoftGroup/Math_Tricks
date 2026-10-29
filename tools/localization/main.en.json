@@ -1,0 +1,11 @@
+{
+  "settings": "Settings",
+  "graph": "Graph",
+  "leaderboard": "Leaderboard",
+  "onboarding_error": "Could not save your choice. Please try again.",
+  "unavailable": "This section is not available yet.",
+  "link_error": "Could not open the link.",
+  "mail_error": "No email app is available.",
+  "backspace": "Delete digit",
+  "ok": "OK"
+}

@@ -1,0 +1,937 @@
+[
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/bg_th_light_b_level.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/bg_th_light_b_level.imageset/bg_th_light_b_level.svg",
+    "sha256": "e5c6e487a9a94f0d9ce99a19552a391236737bef4ccc1f2f4fb6a34b04c91f0f"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/day_streak_play.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/day_streak_play.imageset/day_streak_play.svg",
+    "sha256": "0caef0e9f0f186360225e003ee7e47bb9b6961b88551c6a045cc1881d75f1320"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_ad_reward.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_ad_reward.imageset/ic_ad_reward.svg",
+    "sha256": "04c6a2dec42d378719e441a29e0943d9ae94e49cb53649b3e8583aa4ca9fda7b"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_arrow_down_small.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_arrow_down_small.imageset/ic_arrow_down_small.svg",
+    "sha256": "fb1572ada789cc0b8496eded273a02320f88f510913170cffd3f1588da165917"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_arrow_up_small.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_arrow_up_small.imageset/ic_arrow_up_small.svg",
+    "sha256": "91dc26432ff5523c9386e1278970ee67d69e789828a2004985230a91dbd04637"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_bell.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_bell.imageset/ic_bell.svg",
+    "sha256": "127e45f200b6ffb6d7063acd89c191bd25d36020c2151a7f54db82f9c3f87a8e"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_breadcrumb_arrow_separator.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_breadcrumb_arrow_separator.imageset/ic_breadcrumb_arrow_separator.svg",
+    "sha256": "920fa082e3d778dcf406deb352a2fd41cfbe7b9583e157f6abac0aae723736d3"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_buy_money_1.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_buy_money_1.imageset/ic_buy_money_1.svg",
+    "sha256": "feaf6c7ca807008e8fe9253ff61909622bf8e84c23c173e386fd15dbcb37e7d0"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_close.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_close.imageset/ic_close.svg",
+    "sha256": "a7cb3708ca479ba564b4242c4365d2d20503bc2073e502844b52b0bde24581f7"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_cloud_backup_download.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_cloud_backup_download.imageset/ic_cloud_backup_download.svg",
+    "sha256": "7cae759eea3afb3ea8fc50dae837c3204932dc8ba712e29cb64d61d4902ac7f6"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_cloud_backup_upload.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_cloud_backup_upload.imageset/ic_cloud_backup_upload.svg",
+    "sha256": "0514b73a8b4109b4d1a02e6e25fdccca61e436f52166f51e4014b15566fcac85"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_cloud_user.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_cloud_user.imageset/ic_cloud_user.svg",
+    "sha256": "f618a016d5e066d2c3bc97b3c9d3859f7919a9a40e0948cfab2ea75a016e8b28"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_coin.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_coin.imageset/ic_coin.svg",
+    "sha256": "f1b30ba96ace56c6ff2275d8287cc4dcc4c43abe334fb9b885a3415ddd024c45"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_coin_bag.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_coin_bag.imageset/ic_coin_bag.svg",
+    "sha256": "1ef2383d4d0ac8ffdca144df584afe133b51c7e4f2d7e06eb5766e0dc638b991"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_coin_small.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_coin_small.imageset/ic_coin_small.svg",
+    "sha256": "0ce56bdc8ae5de9a6656d2507534b51d3881305646df32b71376ed3e79551bc9"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_coin_stack.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_coin_stack.imageset/ic_coin_stack.svg",
+    "sha256": "8672acbb1bd206c5d42fd9ff3e5a8087ed61fde99fa853d930959fbe8e8110a1"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_drag_handle.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_drag_handle.imageset/ic_drag_handle.svg",
+    "sha256": "41cb8edcdb954e726c55cde8f7b6700a76df501fc18dabe02224006d541c3fdb"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_examples_recommendations.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_examples_recommendations.imageset/ic_examples_recommendations.svg",
+    "sha256": "8a3fb5ffa27729518b99761f75a9277bd647d289e7624333a5c2732189d76567"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_examples_statistics.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_examples_statistics.imageset/ic_examples_statistics.svg",
+    "sha256": "5ee7b9bfffaa13b5729df452322cf94335addb7983c8eacc4b8c117e9b4a3a63"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_file_backup_restore.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_file_backup_restore.imageset/ic_file_backup_restore.svg",
+    "sha256": "c9cea9526231438ffa1557a700a2dbfc01bc72415007bad3bfd5cee3442b7381"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_file_backup_save.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_file_backup_save.imageset/ic_file_backup_save.svg",
+    "sha256": "caca83dc10a4e4259967293ef05becd7a630724bb6fd7d1b14015a5b8f72f27d"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_fx.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_fx.imageset/ic_fx.svg",
+    "sha256": "d223e1ff7a772701c6997b4c30c5d7bf997e7522fa4de8468ebe810c03b4ffe6"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_gift.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_gift.imageset/ic_gift.svg",
+    "sha256": "e64a9afef8ce1ceb4933339e908d6566d36cded807b83704f1d29905bec8f1ea"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_hint_vector.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_hint_vector.imageset/ic_hint_vector.svg",
+    "sha256": "e0311c18618ca3d966bfdc7ebaff9475e6a5a8914abea6c19242372d1fd94278"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_launcher_age_screen_free.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_launcher_age_screen_free.imageset/ic_launcher_age_screen_free.svg",
+    "sha256": "3f5af8f204492b8e6715e7570962752c9b64a5df2f7e4451635f1cf90d530a72"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_menu_statistics.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_menu_statistics.imageset/ic_menu_statistics.svg",
+    "sha256": "216f963346bda14f46c6b8776227294683e9b49e208e755cc34b733c66678b9b"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_more.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_more.imageset/ic_more.svg",
+    "sha256": "690e52acdfc20e58f52d4297b1f82e535b9e5693d4e185fef20b9d59d7fdb011"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_multiplication_table.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_multiplication_table.imageset/ic_multiplication_table.svg",
+    "sha256": "5fe389414f92b988e29db176c83556a842a79e0930a2a18636f943a034285001"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_only_math.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_only_math.imageset/ic_only_math.svg",
+    "sha256": "8312769d4efa3a48a3f88f556ac070a6b807659ecbaa0713fc013c934d5e6cec"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_result_back.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_result_back.imageset/ic_result_back.svg",
+    "sha256": "9e73da6cd54cce0781dcc414bcf3e9350aed9252fd67e3a9dca50558d5ef4770"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_result_correct.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_result_correct.imageset/ic_result_correct.svg",
+    "sha256": "17a0a09ed6df1fb97352849cbd8f23b1462b91c4b2a3673355b80a8c901c9319"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_result_incorrect.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_result_incorrect.imageset/ic_result_incorrect.svg",
+    "sha256": "7c23055ec8272ca1336034ac811dbeb4cf7932cb5afed92ecdf3556cae24eea1"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_result_next.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_result_next.imageset/ic_result_next.svg",
+    "sha256": "cbcb0ec2114317a195fd0b732e174a9224198d2275a19d165d26a9a87aa08650"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_result_retry.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_result_retry.imageset/ic_result_retry.svg",
+    "sha256": "a1db3029b1e533a14156410243004fd6ba76dde35638ca765bcb3e4c51f3ffb4"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_result_share.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_result_share.imageset/ic_result_share.svg",
+    "sha256": "b4d334442057fe6d23a535ffedd9b337476f3607c5301ce4e97707fa28b1c9a0"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_result_trophy.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_result_trophy.imageset/ic_result_trophy.svg",
+    "sha256": "8f89afc7a459a93cdb06d742491f4b9895a95b9e8004b08548b9210b6f24ac22"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_rule_levels.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_rule_levels.imageset/ic_rule_levels.svg",
+    "sha256": "91e6e21786a92e1236ff0399894f2f3882282e957c475aab08cdce89baa37634"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_rule_levels_next.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_rule_levels_next.imageset/ic_rule_levels_next.svg",
+    "sha256": "7f8751bf092afb09f0ad853781062374d202a5847f15b6d470ba595fea667793"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_rule_levels_spacer.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_rule_levels_spacer.imageset/ic_rule_levels_spacer.svg",
+    "sha256": "ebf00b99d1e0441401761b250fb4cc6068159e7668d2082503c85813137458be"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_set_time_notification.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_set_time_notification.imageset/ic_set_time_notification.svg",
+    "sha256": "c62c6abaa9e2c2c283f364f1c3911e8c60de63d1a6856c974b2982e41d092211"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_settings_cloud.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_settings_cloud.imageset/ic_settings_cloud.svg",
+    "sha256": "378c072cd4564175e3a91d0fa525506ecf9c961435628b9c5973fbf1c754e9eb"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_settings_gear.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_settings_gear.imageset/ic_settings_gear.svg",
+    "sha256": "919b262d5e61825ee48e11bcbe42b00d84d988f84073fb0d8d6ffca6c8b72255"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_settings_reset_progress.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_settings_reset_progress.imageset/ic_settings_reset_progress.svg",
+    "sha256": "bf976630615e74b1068092c3a72e58350dfae9b0e98fce9a3a99f636b713cadf"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_skip_next_vector.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_skip_next_vector.imageset/ic_skip_next_vector.svg",
+    "sha256": "fb941b31eb88eadbbbd1ec7e3d1320b2d5bc061f4c6f4f35ab3c14d92ba5ce8e"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_solve_equal.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_solve_equal.imageset/ic_solve_equal.svg",
+    "sha256": "3b69ae5b4e8d15c263d29a22563a1bdd2ef2c9dc13ea3e53ac5fa0e914cc0055"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_statistics_delete.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_statistics_delete.imageset/ic_statistics_delete.svg",
+    "sha256": "320acf357f66f215c6f80720650eb680e3f8510886a9022c91556f787208eb5f"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_step_next.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_step_next.imageset/ic_step_next.svg",
+    "sha256": "83f7cfda7a7cc4e4fb590434bab04aa362bf0453cffe2b2185fe29133c59357c"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_step_prev.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_step_prev.imageset/ic_step_prev.svg",
+    "sha256": "f65bfa29c7cac097fba566a32665a1da704be68ac028424b6b5236aa2aea9bed"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_steps_arrow_down.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_steps_arrow_down.imageset/ic_steps_arrow_down.svg",
+    "sha256": "b85bf414fb88071a49862592f6e5a7f38cfb5f02eb0900f13b6b2c1312349c27"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_steps_arrow_up.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_steps_arrow_up.imageset/ic_steps_arrow_up.svg",
+    "sha256": "fe1c9f7ea0be3f660044f831865b8fb700822fa19ce2e0e9850e2576e61b882a"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_table_grid_9.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_table_grid_9.imageset/ic_table_grid_9.svg",
+    "sha256": "1dfef068186eeece42158f9233726f0d8e6c798a805b7b08306ccd2f2608af13"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_table_list_view.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_table_list_view.imageset/ic_table_list_view.svg",
+    "sha256": "a7a9ba5be07aee0bf628dbeab7688d9bdeec59ea88110bc7e230b517a6e0c62e"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_tap_hand.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_tap_hand.imageset/ic_tap_hand.svg",
+    "sha256": "f696acabba4ba2858ae500f0ef7fe618c3da46ea714c129bba9c1c8e0f22ed14"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_b_multiplayer_plus.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_b_multiplayer_plus.imageset/ic_th_b_multiplayer_plus.svg",
+    "sha256": "be6f5ab40036e124776b3b82c00fb89e4a0ca09ad76dd9ecfa188df3b86fba66"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_b_multiplayer_vs.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_b_multiplayer_vs.imageset/ic_th_b_multiplayer_vs.svg",
+    "sha256": "063af2c259ab364e2472127249933a8831f6281c581435c666c062c54c9e7dac"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_b_numpad_change.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_b_numpad_change.imageset/ic_th_b_numpad_change.svg",
+    "sha256": "0a411ff8c59094f15147209498a420e4a3d3755c5bfb7252efa4b83332b823b7"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_b_numpad_change_bool_false.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_b_numpad_change_bool_false.imageset/ic_th_b_numpad_change_bool_false.svg",
+    "sha256": "3376af71b2cdb66932498912218a95345a3f39a823353806159326a91cd01457"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_b_numpad_change_bool_true.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_b_numpad_change_bool_true.imageset/ic_th_b_numpad_change_bool_true.svg",
+    "sha256": "30968b0f33483c035f6ffed2cb17274beead1e07a1bd2e4d15fca9310cd3f933"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_b_tts_both.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_b_tts_both.imageset/ic_th_b_tts_both.svg",
+    "sha256": "3eebdb552ce8b19cd03ced4e7deaace0313b269d23612f9a89eb7c625af29f64"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_b_tts_off.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_b_tts_off.imageset/ic_th_b_tts_off.svg",
+    "sha256": "7c9880316129cfc8bd4198313dfbe7597961b45b32a4d3c7236ae9a487990502"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_b_tts_on.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_b_tts_on.imageset/ic_th_b_tts_on.svg",
+    "sha256": "34ff800fd8ebe3bf32e5bd180af8ff1c6ad07a9a34e10f814b751de59ccfaeb8"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_b_tts_start.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_b_tts_start.imageset/ic_th_b_tts_start.svg",
+    "sha256": "8eeed2cfd23193f874e4fcd05de7e3c0e29b65e65800cd22008b70f63d1d321e"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_back.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_back.imageset/ic_th_dark_b_back.svg",
+    "sha256": "5bd7146aa66c54a151566a4188a44245db0e0c7a849042ec0940a835bf93b044"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_delete.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_delete.imageset/ic_th_dark_b_delete.svg",
+    "sha256": "6c2c2540d371c36a29514e0913f475b1f0e2ce32eadc471bff667d3c53f12518"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_graph.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_graph.imageset/ic_th_dark_b_graph.svg",
+    "sha256": "b664583cb98b623f53af23ba3faad5582ecc51deda5bc52ff56f73203dd17acd"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_leaderboard.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_leaderboard.imageset/ic_th_dark_b_leaderboard.svg",
+    "sha256": "f03c2238db4f7fcd4f4b72aca7d89b6420369d750d05d21a7e17af59b7de1c45"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_lock.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_lock.imageset/ic_th_dark_b_lock.svg",
+    "sha256": "d2aacf257cb6232965cdaf05ea55088097a146cf6460b54fdb6981c5d7909bb2"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_money_total.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_money_total.imageset/ic_th_dark_b_money_total.svg",
+    "sha256": "e1c7b1ad31705b7c27a6a53a575d758acc8b4e66da47afef8b8c5b6aa1ec58e4"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_next.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_next.imageset/ic_th_dark_b_next.svg",
+    "sha256": "53cd19c42874b1f265fbb4e72c0d1041627ce58071df56e9dfbaaa54c8673e9c"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_no_ads.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_no_ads.imageset/ic_th_dark_b_no_ads.svg",
+    "sha256": "5607af6958149f62f6436a70dae95fcdbfbac4cf40165aa962ef596e72eb362d"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_retry.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_retry.imageset/ic_th_dark_b_retry.svg",
+    "sha256": "0099185bfb392403ce1ae99009b85904950c8d22b83fdfd7590f637d419bb1b7"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_settings.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_settings.imageset/ic_th_dark_b_settings.svg",
+    "sha256": "72ce5b31642278492fc62e65ba307fd9236dcaa96a453679d31dc5d8006babb9"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_shop.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_shop.imageset/ic_th_dark_b_shop.svg",
+    "sha256": "611e109eeccd22ab56ace9d1a008b4d295ed64156f3c1b6d13f6b293b534267b"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_star.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_star.imageset/ic_th_dark_b_star.svg",
+    "sha256": "0251d759a4756ef044911848f5844a21df1284c8c65862f723a81c81568559bb"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_star_0.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_star_0.imageset/ic_th_dark_b_star_0.svg",
+    "sha256": "536af4916b0610d97dd547fe0318c09f14a08be81f33853c6b8c6c0fd5fb2dd7"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_star_1.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_star_1.imageset/ic_th_dark_b_star_1.svg",
+    "sha256": "93495640cfa09faf84584543b122a402ba3ea365d8387a3e0a3a989f333b254c"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_star_2.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_star_2.imageset/ic_th_dark_b_star_2.svg",
+    "sha256": "08368c9e8b67c84f4a2d72106135551f4f0c17f7eb3d53c2b37edfa028618a4e"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_b_star_3.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_b_star_3.imageset/ic_th_dark_b_star_3.svg",
+    "sha256": "bf1c7548c0ef6111bbe1daf5c6b3ca19db8be6d4e4681d39e57de8ed2581f64c"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_cb_trick_off.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_cb_trick_off.imageset/ic_th_dark_cb_trick_off.svg",
+    "sha256": "5a7c48c645081e104c935c3f6e23936c06b34db61e11a8498f4e8eb2bd118da4"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_cb_trick_on.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_cb_trick_on.imageset/ic_th_dark_cb_trick_on.svg",
+    "sha256": "51166f189924f423fa29143fb130fdb04c50e32a8868bc15022b1e6d726c27c5"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_iw_numpad_change_block.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_iw_numpad_change_block.imageset/ic_th_dark_iw_numpad_change_block.svg",
+    "sha256": "93346e36ff98089463960de9d77106e9ca49c1bac6bbd0ab8a1dbda6d85d30ae"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_iw_numpad_change_bool.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_iw_numpad_change_bool.imageset/ic_th_dark_iw_numpad_change_bool.svg",
+    "sha256": "ae44b5ee6573665d31ac0ff752b6ebec173619476f2ffd7f93676efdf0ef5937"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_dark_iw_numpad_change_numpad.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_dark_iw_numpad_change_numpad.imageset/ic_th_dark_iw_numpad_change_numpad.svg",
+    "sha256": "6771dcaadf23d23ded9d7e97ce07d48a1c6996f67010335e53bdf6464ca6aa16"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_back.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_back.imageset/ic_th_light_b_back.svg",
+    "sha256": "038bfb032031b6b966a4ece886b95960933ec04c325ba94d74c0931a0bf986e7"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_by_heart.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_by_heart.imageset/ic_th_light_b_by_heart.svg",
+    "sha256": "91ddfe9a18e1458fe4e06c5ec66f9e3ef13205163813456dfd682336d7669490"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_delete.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_delete.imageset/ic_th_light_b_delete.svg",
+    "sha256": "398317aa371761b13aa09180d7870252cc176497e7a2f454a5327085cdbb90db"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_graph.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_graph.imageset/ic_th_light_b_graph.svg",
+    "sha256": "9b7852170934a1d78c50e95cfbbff2b1f07edb500b8c3f8ccdc28530d6f0b24e"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_graph_cube.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_graph_cube.imageset/ic_th_light_b_graph_cube.svg",
+    "sha256": "10d974d8f3d4c5c631525a29eb0c42aeaa3288ce6d3cdd2284b7532d0de109f7"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_gt_minute.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_gt_minute.imageset/ic_th_light_b_gt_minute.svg",
+    "sha256": "76eafdd950bf673e0b871fa5b01fa8242def2adedcff19c0fc60be39a3ff9304"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_gt_non_time.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_gt_non_time.imageset/ic_th_light_b_gt_non_time.svg",
+    "sha256": "c433f6e6cb9df2230953bfce03315552edb1dd4c747d69c29073cd0133b1b3e0"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_gt_single.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_gt_single.imageset/ic_th_light_b_gt_single.svg",
+    "sha256": "e589b80ce4e77b40765af70e122b15362242e25459a679c8e6afed8d528d98bc"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_gt_time.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_gt_time.imageset/ic_th_light_b_gt_time.svg",
+    "sha256": "f5d455c85dca79bd67d2a4e6c5744f825ff80a09f23d9639a7dd3c2200d56136"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_leaderboard.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_leaderboard.imageset/ic_th_light_b_leaderboard.svg",
+    "sha256": "17f077ffd76def5af86c9f6d9080b696fab8347d3141dff281b64c07343a5545"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_lock.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_lock.imageset/ic_th_light_b_lock.svg",
+    "sha256": "598bd71b8d759e92bdd91e3f61945b4d97c3ca074a20791f1297d3288aafe127"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_money_buy.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_money_buy.imageset/ic_th_light_b_money_buy.svg",
+    "sha256": "e2bb2727071338d9955995d6ca75591f9ecc13aff4e0f517199dcd82de0f3516"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_money_total.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_money_total.imageset/ic_th_light_b_money_total.svg",
+    "sha256": "57f2ec014f0a097f396857f4a6b80aaed302845b2abe1c3fede65c4f6d395e01"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_more.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_more.imageset/ic_th_light_b_more.svg",
+    "sha256": "5e49468ebaa844ce59b71073f38670a82eb9241287ae24205751f6338849c019"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_multiplayer.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_multiplayer.imageset/ic_th_light_b_multiplayer.svg",
+    "sha256": "57385f11e7336cc5f3da1e7189420386bd4b004257f8a23f7c4305e9a404b754"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_next.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_next.imageset/ic_th_light_b_next.svg",
+    "sha256": "39359581310a9a7478f1283ea98d65019e62078ea71244ef94ab9abbaf730140"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_no_ads.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_no_ads.imageset/ic_th_light_b_no_ads.svg",
+    "sha256": "bc38cc2e0e9d2fccba47039cb863fc52e04f893cbc35e19bb598b55296c849b1"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_retry.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_retry.imageset/ic_th_light_b_retry.svg",
+    "sha256": "29d331524f7397f17165aefbaff1819059289f497c351875abab4f36927cd4f0"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_settings.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_settings.imageset/ic_th_light_b_settings.svg",
+    "sha256": "9d9950764fc472e9d52f377c0d0da906e68355e028955eb412a888012a1a99c4"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_settings_exit.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_settings_exit.imageset/ic_th_light_b_settings_exit.svg",
+    "sha256": "aeabcc4ca1ac7a1633687dc996c42bcc38c716187afd5a018f6e07bae08a18a7"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_settings_font_size.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_settings_font_size.imageset/ic_th_light_b_settings_font_size.svg",
+    "sha256": "05c4f8af93ff8fd7fc8c452e11fb782c42c79b3f1284256eaf3064da1d1cfb96"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_settings_language.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_settings_language.imageset/ic_th_light_b_settings_language.svg",
+    "sha256": "2ab39f55d69197566357a4f5ce9f57d5c07f63e47c691bdd484b0e3817622f41"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_settings_notification.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_settings_notification.imageset/ic_th_light_b_settings_notification.svg",
+    "sha256": "73fbf71cceb280f8cb3019002b08c7029a612ef274d5ae4b08e72e6ecbd3cdaa"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_settings_numpad.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_settings_numpad.imageset/ic_th_light_b_settings_numpad.svg",
+    "sha256": "76ff3769ef73e6f331921a5fae459e9b07eaf94c3ce01f6a38f13bcb7c5faf78"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_settings_share.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_settings_share.imageset/ic_th_light_b_settings_share.svg",
+    "sha256": "53d107a614e8e83c08271178287f6ef0dbe8ab2bc5ce9a92806894578e5c8d5f"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_settings_sound.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_settings_sound.imageset/ic_th_light_b_settings_sound.svg",
+    "sha256": "e9e661466a106dc2ca6c9ea21483ab8aea91316e9e99ea7381a8eb66ae23ff31"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_settings_theme.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_settings_theme.imageset/ic_th_light_b_settings_theme.svg",
+    "sha256": "b3d0d67e3dfed76d2c3e3a107bfcc62f652c5479bb775688083cb760c9aa6cdb"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_settings_vibration.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_settings_vibration.imageset/ic_th_light_b_settings_vibration.svg",
+    "sha256": "1ef575ed652a6853cf11feba33cd6cfb2ab854ea02d47cb1777ae0c183371ddd"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_settings_wrong_input.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_settings_wrong_input.imageset/ic_th_light_b_settings_wrong_input.svg",
+    "sha256": "2ca13dddafc74f578c3b0e30a8eb0da26634dc0de1363a594ca86f55573817fd"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_shop.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_shop.imageset/ic_th_light_b_shop.svg",
+    "sha256": "bd39bc8394b631559adb256a4deccb1029ed890286ae2d760f7382e872bad047"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_single_player.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_single_player.imageset/ic_th_light_b_single_player.svg",
+    "sha256": "2a834069edfc8c596ae13c3762d945ffe7693bc0ca21d0e388522694f14a6f1a"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_star.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_star.imageset/ic_th_light_b_star.svg",
+    "sha256": "ebf7267134e3f21fd7c5cae47477857efde84d8d154e3ae84b67f1ff83540239"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_star_0.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_star_0.imageset/ic_th_light_b_star_0.svg",
+    "sha256": "7e68056bae592215bf62535e1ef8cdd86a074e0644bdcf4baf258bb592e7511c"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_star_1.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_star_1.imageset/ic_th_light_b_star_1.svg",
+    "sha256": "3bec9d168703b159207dd5a2425586436b283f86f698d87ed067e00605a09dd7"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_star_2.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_star_2.imageset/ic_th_light_b_star_2.svg",
+    "sha256": "ce3f32c2541eae575c34b72b4b2405f55b83f6e7a4a9ac65de1bf4abc766fc90"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_star_3.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_star_3.imageset/ic_th_light_b_star_3.svg",
+    "sha256": "f8c686bd648b4ee6c12855b007eb046a92bb406351c0d0a73b2be66c2b75dbbf"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_support.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_support.imageset/ic_th_light_b_support.svg",
+    "sha256": "52f5682dbf4ecbfca3779f94dc121ff48fc5c352efef80d1f5965d198b4133ab"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_training.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_training.imageset/ic_th_light_b_training.svg",
+    "sha256": "6ccdf488d6e283916906e2b2b9bcb0d7bcb3009406760280e816a726c3c7002c"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_b_two_players.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_b_two_players.imageset/ic_th_light_b_two_players.svg",
+    "sha256": "2211f58ece71f5205cbedcd9bbcb04d8e71667cdfd4a0eaf6a2abcc24783b076"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_cb_trick_off.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_cb_trick_off.imageset/ic_th_light_cb_trick_off.svg",
+    "sha256": "003781c0ca0d5acfb50e8c7c10c24c1512da36ede437839a55782a6cab888957"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_cb_trick_on.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_cb_trick_on.imageset/ic_th_light_cb_trick_on.svg",
+    "sha256": "4526b7b196b3e8119dff29fb4461c0052a9b0a6cd5a1f6d22397ea510b4d78d0"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_group_addition.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_group_addition.imageset/ic_th_light_group_addition.svg",
+    "sha256": "2b277f3ba0b2d717165e806389e08adeee3f4bb1b4930ad8182c9a6abdd13950"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_group_division.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_group_division.imageset/ic_th_light_group_division.svg",
+    "sha256": "f332c12c9b35d46267d1c10583cf099f5d6d1e7daff8d384e7da1b3cf2b375fc"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_group_multiplication.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_group_multiplication.imageset/ic_th_light_group_multiplication.svg",
+    "sha256": "bbc228e7e5fb9cb28b00f20b0d43a4b04bd4ee9eba08f37535f3da5c45c17a5b"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_group_percent.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_group_percent.imageset/ic_th_light_group_percent.svg",
+    "sha256": "74bc2edf9efc9970994e88d00ddf757132983a7b0867901f3d6ec97139ea8d6f"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_group_power.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_group_power.imageset/ic_th_light_group_power.svg",
+    "sha256": "41f6555d89cd90e93c3a4d60552d1a61bd2a50af26c9665edc8fca2685071252"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_group_root.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_group_root.imageset/ic_th_light_group_root.svg",
+    "sha256": "04e7abdb028212c131eaa803e2cb2c6d0ecca742c684f067b011ae3b04ef97b1"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_group_square.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_group_square.imageset/ic_th_light_group_square.svg",
+    "sha256": "38c11faea52456d647e2cc3b70f4e26b7b78a373abfa570db61eba17e191c4dd"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_group_subtraction.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_group_subtraction.imageset/ic_th_light_group_subtraction.svg",
+    "sha256": "4531902a3095edc8733778387f70a440567b3081b2eb8c055a59d16113fae1ff"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_iw_numpad_change_block.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_iw_numpad_change_block.imageset/ic_th_light_iw_numpad_change_block.svg",
+    "sha256": "5d7b6946a86f42b41b66b7e16520f1dc2582b4b9aaaee76e615606bf23e47939"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_iw_numpad_change_bool.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_iw_numpad_change_bool.imageset/ic_th_light_iw_numpad_change_bool.svg",
+    "sha256": "c730b453eae5a9c3263afa90eef99f71ec39ce77e267d8e339657b611e1c4286"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_light_iw_numpad_change_numpad.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_light_iw_numpad_change_numpad.imageset/ic_th_light_iw_numpad_change_numpad.svg",
+    "sha256": "0229b9fc63a0b6dfa82df6170e17e099ec260f9902816b0449ef1bd6ae539f4e"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_th_more_apps.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_th_more_apps.imageset/ic_th_more_apps.svg",
+    "sha256": "530124d2a393a5eb8e04839526a55574ad655d5c60a7185e2cc8341090d4d7f3"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_theme_preview_cycle.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_theme_preview_cycle.imageset/ic_theme_preview_cycle.svg",
+    "sha256": "894bcd1a9dcca415204e284af762ad245ed142e75d0c719d01fd80b3c4d5ae81"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_theme_preview_next.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_theme_preview_next.imageset/ic_theme_preview_next.svg",
+    "sha256": "779734a0e54ce062c260f53d57bb170a31606b8736ced093c824eca208970065"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_theme_preview_pause.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_theme_preview_pause.imageset/ic_theme_preview_pause.svg",
+    "sha256": "5ed4d30e3a66ceacb2d4ada8369dce6c73c00abb9f04473bdc8d97d162eb6dda"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_theme_preview_play.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_theme_preview_play.imageset/ic_theme_preview_play.svg",
+    "sha256": "94334db6f249b341c98dbf36568a58b071b4b965f70f705bd5173863666fcc92"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_theme_preview_previous.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_theme_preview_previous.imageset/ic_theme_preview_previous.svg",
+    "sha256": "a77272eaf7a567d956df90fdb2f95385afab7c3e2d2b58427f6b54f3a324299d"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_tree_structure.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_tree_structure.imageset/ic_tree_structure.svg",
+    "sha256": "8a15393190b8720855d14febf41bfa92df553b4a0721288144b61fc7bba9c26c"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_tricks_recommendations.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_tricks_recommendations.imageset/ic_tricks_recommendations.svg",
+    "sha256": "116748c70403b1db549a3af1c46f500e05c32c78d24e6f26ee0976dd716a0695"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_tricks_statistics.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_tricks_statistics.imageset/ic_tricks_statistics.svg",
+    "sha256": "13df12688d40b4cc5461dba8e6f633d59d2b2abc6078d5c2eb56313c1a973f4a"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_vector_b_no_ads.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_vector_b_no_ads.imageset/ic_vector_b_no_ads.svg",
+    "sha256": "aaf4093b0706f96fab6e04a872ab84e465d94564a74f37b4f19a6688131c1189"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_view_list_vector.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_view_list_vector.imageset/ic_view_list_vector.svg",
+    "sha256": "ce33b005129bc93d346b73722dc9cb18233bba1ba0d136a35c0c7cf3b530417c"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_zoom_in.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_zoom_in.imageset/ic_zoom_in.svg",
+    "sha256": "12c7f53fab18c04b60c93630a447c0ab761dae662e629ce451b6d4ab31a03c4c"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/ic_zoom_out.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/ic_zoom_out.imageset/ic_zoom_out.svg",
+    "sha256": "ba300ae00ae770de5d6b3529c6ccc79a2edf39060bf4569b4045fc7a69e30ada"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/icon_final_pro_128.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/icon_final_pro_128.imageset/icon_final_pro_128.svg",
+    "sha256": "082457ba8dfac170d2737e0906d76845706e77987380190cef71e3454d362ecf"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/icon_instagram.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/icon_instagram.imageset/icon_instagram.svg",
+    "sha256": "d6304ae76f889b8ac3be9c7a3f5a635850f78bc3628a56addb5ecc28ddad3416"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_dark_all_cb_button_checked.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_dark_all_cb_button_checked.imageset/theme_dark_all_cb_button_checked.svg",
+    "sha256": "6d0ef78b5d9482a5ef2b395d0ab1ea0711c3388d93f37d5bd73d176903d7a99c"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_dark_all_cb_button_unchecked.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_dark_all_cb_button_unchecked.imageset/theme_dark_all_cb_button_unchecked.svg",
+    "sha256": "417a2a9b71f7199e6804f0301e50936aa59366db361d32794ed210afe608e6a8"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_dark_b_add_off.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_dark_b_add_off.imageset/theme_dark_b_add_off.svg",
+    "sha256": "04e8d2eb809db59f8f356562e5e520eddbf4cc3221d3aeef736db692b8c740b2"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_dark_b_arrow_down_off.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_dark_b_arrow_down_off.imageset/theme_dark_b_arrow_down_off.svg",
+    "sha256": "cb601ef71117fba648c004312a56ac6de1b73cb7658e2bdc9875586109c35ccd"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_dark_b_arrow_up_off.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_dark_b_arrow_up_off.imageset/theme_dark_b_arrow_up_off.svg",
+    "sha256": "784fca521f6b6415e5543d4be295eda798da827a661a619d2c1c34798eaf159a"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_dark_b_delete_off.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_dark_b_delete_off.imageset/theme_dark_b_delete_off.svg",
+    "sha256": "a02dbeb7f098a175b82c1ddd4a21f9fa8960a572f329d83367d8b6a2cf51045b"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_dark_b_rtm_defeat.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_dark_b_rtm_defeat.imageset/theme_dark_b_rtm_defeat.svg",
+    "sha256": "ff34122556f8a11d74030adf4a7d199f88638d3f53658c873a2f717dea1e06bf"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_dark_b_rtm_victory.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_dark_b_rtm_victory.imageset/theme_dark_b_rtm_victory.svg",
+    "sha256": "0dbc2a0835f5a860211b74d763b7316a38d0fdcbe41a1eeaaeb42910a8b5cbda"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_dark_ib_youtube.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_dark_ib_youtube.imageset/theme_dark_ib_youtube.svg",
+    "sha256": "31e59cbd3a35a164f99f6162ea6cfcf4f89da3a1fe83f37c9a1ff0d506e3fd4d"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_dark_point.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_dark_point.imageset/theme_dark_point.svg",
+    "sha256": "30f1ebfd9d06b74f9a0551c89958bb7ea8e572590666bc8d918fb0af820dc441"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_dark_star.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_dark_star.imageset/theme_dark_star.svg",
+    "sha256": "97d003db88775b568270307b4f2ebb299c3fae30755ffe6d22d81e3b98fc752d"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_light_b_arrow_down_off.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_light_b_arrow_down_off.imageset/theme_light_b_arrow_down_off.svg",
+    "sha256": "961757bae4c7251a8b0f50f0526e400b6653b572828c583daf6a99bb3f427d56"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_light_b_arrow_up_off.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_light_b_arrow_up_off.imageset/theme_light_b_arrow_up_off.svg",
+    "sha256": "1f453e40e572875b2af2ca60340c5d46dbc0d291791143597e73ae6af841bac7"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_light_b_get_invitation.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_light_b_get_invitation.imageset/theme_light_b_get_invitation.svg",
+    "sha256": "517b77fe04840fa65fbf017f181f773a3008d0a1e69e2bb361d8a57f19303e22"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_light_b_set_invitation.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_light_b_set_invitation.imageset/theme_light_b_set_invitation.svg",
+    "sha256": "c030798d5484edf3d5e5631ab258f0282922584c01c5135ed3f94564cf75ff85"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable/theme_light_ib_youtube.xml",
+    "target": "Math_Tricks/Resources/AndroidIcons.xcassets/theme_light_ib_youtube.imageset/theme_light_ib_youtube.svg",
+    "sha256": "0564777f4d80b7e460023d07d6d6ed60fdfc5c17d606de871fd1d875531e20be"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/raw/drop_coins.mp3",
+    "target": "Math_Tricks/Resources/Sounds/drop_coins.mp3",
+    "sha256": "14c020955ff38bc3fac95bdc1a58b6a39d592404c74c082f6bf366d425f16fa2"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/raw/error.wav",
+    "target": "Math_Tricks/Resources/Sounds/error.wav",
+    "sha256": "12744cb54172b5b6e3eeb19f45ba22f0dd3db343f24f84595493e3df7de23eac"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/raw/keypress_standard.mp3",
+    "target": "Math_Tricks/Resources/Sounds/keypress_standard.mp3",
+    "sha256": "d22c55db24b1e964fe7815838fa0676554462cc5f5601cb09ab5be3dfc021043"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/raw/level_complete.mp3",
+    "target": "Math_Tricks/Resources/Sounds/level_complete.mp3",
+    "sha256": "20e204846dada3bd5971064fbf0fd43a11777eb404b65f31d6125a5810cf78e3"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/raw/solution_is_answer.mp3",
+    "target": "Math_Tricks/Resources/Sounds/solution_is_answer.mp3",
+    "sha256": "ecfb86cdb62e9d868b8f175cd6db7d1ecc21d2c6197f2b2defcd88779173fed5"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/raw/star_lose.mp3",
+    "target": "Math_Tricks/Resources/Sounds/star_lose.mp3",
+    "sha256": "d8c49289bc0bfc6dcc80b1effed582cfa7fb5b5b16686b335daea6a629f93162"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/raw/switch_numpad.mp3",
+    "target": "Math_Tricks/Resources/Sounds/switch_numpad.mp3",
+    "sha256": "09b096243ecd3b9658dbd0fdd9d74443aab5cf2164c30767dd57533e2d631635"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/raw/timer_end.mp3",
+    "target": "Math_Tricks/Resources/Sounds/timer_end.mp3",
+    "sha256": "c3945a67ef1baa706c80b556fc1fcee8509b3a979f6b95d8b2b45d82d7054c69"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/raw/wrong.mp3",
+    "target": "Math_Tricks/Resources/Sounds/wrong.mp3",
+    "sha256": "ff1f8cf72fab7c048f257fc9741d91c89ca5e12c7741fc211592ac881d5ac063"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/font/roboto_mono.ttf",
+    "target": "Math_Tricks/Resources/Fonts/roboto_mono.ttf",
+    "sha256": "ed588b7e31ab7b4b4bb6c124013d8b92f7ba2070d2291d1113c948fd0cad5667"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable-mdpi/theme_dark_border_expression_dark.9.png",
+    "target": "Math_Tricks/Resources/NinePatch/theme_dark_border_expression_dark.9.png",
+    "sha256": "37f2845c002499420609f36b6c9e702c74031be73359ba3bae05a6ae897e6faf"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable-xhdpi/bg_th_dark_b_main_off.9.png",
+    "target": "Math_Tricks/Resources/NinePatch/bg_th_dark_b_main_off.9.png",
+    "sha256": "9a2fc86376335ce264128d60c56e1a223ebe62e74e74c5ff924a455e4048751d"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable-xhdpi/bg_th_dark_b_main_on.9.png",
+    "target": "Math_Tricks/Resources/NinePatch/bg_th_dark_b_main_on.9.png",
+    "sha256": "9bce233b3816836eba231937ba78386753d444e5936e357d7536ccd7adc1bb9d"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable-xhdpi/bg_th_light_b_main_off.9.png",
+    "target": "Math_Tricks/Resources/NinePatch/bg_th_light_b_main_off.9.png",
+    "sha256": "63702e433b9116bcd3cf919f0f201434597c0fe0c84b3c91576fe4ba9522ef7e"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable-xhdpi/bg_th_light_b_main_on.9.png",
+    "target": "Math_Tricks/Resources/NinePatch/bg_th_light_b_main_on.9.png",
+    "sha256": "2fbcf31cf7a8f06f6618c099582a9f98bc839e17fe19a1eeb68f65fdd52bb533"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable-xhdpi/bg_th_dark_elv_item_off.9.png",
+    "target": "Math_Tricks/Resources/NinePatch/bg_th_dark_elv_item_off.9.png",
+    "sha256": "67a9ebf179b050e4f44cf90ee1a5af65c0cc293f56f70b06a8a2e829ee9f5aa6"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable-xhdpi/bg_th_light_elv_item_off.9.png",
+    "target": "Math_Tricks/Resources/NinePatch/bg_th_light_elv_item_off.9.png",
+    "sha256": "4f7e990a5c3f0691025aae41d41b9606e6b38020b1a6242ed2d045bc6f61907a"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable-xhdpi/theme_dark_group_indicator_down.9.png",
+    "target": "Math_Tricks/Resources/NinePatch/theme_dark_group_indicator_down.9.png",
+    "sha256": "adfdda7cace6b08a070ba13d96300ee090dee2bf084842719fa9f51d95567ea0"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable-xhdpi/theme_dark_group_indicator_up.9.png",
+    "target": "Math_Tricks/Resources/NinePatch/theme_dark_group_indicator_up.9.png",
+    "sha256": "3a5f7d5b1fe8ae9bbd44d5543340b6b452756c42cf7a46a42c6cb8e29f174e22"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable-xhdpi/theme_light_group_indicator_down.9.png",
+    "target": "Math_Tricks/Resources/NinePatch/theme_light_group_indicator_down.9.png",
+    "sha256": "b5d7cf1af5e32c803b22730f9402963d3e8fe3240b547bf49444b6914c6b5ee9"
+  },
+  {
+    "source": "android/Math_Tricks/app/src/main/res/drawable-xhdpi/theme_light_group_indicator_up.9.png",
+    "target": "Math_Tricks/Resources/NinePatch/theme_light_group_indicator_up.9.png",
+    "sha256": "eadb440722f00cb4374debb9e79f551146e1071cffc53103868f1eb6e162b25b"
+  }
+]
