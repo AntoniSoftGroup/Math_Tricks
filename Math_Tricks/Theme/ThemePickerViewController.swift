@@ -47,6 +47,8 @@ final class ThemePickerViewController: UIViewController, UIScrollViewDelegate {
         return palette.theme.isClassic ? (ThemeColor.luminance(palette.systemBar)>0.5 ? .darkContent : .lightContent) : (palette.theme.isDark ? .lightContent : .darkContent)
     }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown }
+    override func loadView() { view = AppDuoContentView() }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         backButton.isHidden=isInitialSetup
@@ -190,24 +192,36 @@ final class ThemePickerViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         background.frame=view.bounds
-        let safe=view.safeAreaLayoutGuide.layoutFrame
-        header.frame=CGRect(x:safe.minX,y:safe.minY,width:safe.width,height:AppMetrics.headerHeight)
+        let safe=view.appContentLayoutGuide.layoutFrame
+        header.frame=AppDuoLayout.unobscuredFrame(in:view,within: CGRect(x:safe.minX,y:safe.minY,width:safe.width,height:AppMetrics.headerHeight))
         let headerRTL = header.effectiveUserInterfaceLayoutDirection == .rightToLeft
         backButton.frame=CGRect(x:headerRTL ? header.bounds.width-AppMetrics.headerBackWidth : 0,y:0,width:AppMetrics.headerBackWidth,height:AppMetrics.headerHeight)
+        // AppLabel refreshes its role font on rotation; restore the compact header font before measuring.
+        applyButton.label.font=ResultUI.font(13,settings:data.snapshot?.settings ?? AppSettings())
         let applyWidth=min(160,max(100,((applyButton.label.text ?? "") as NSString).size(withAttributes:[.font:applyButton.label.font!]).width+32))
         applyButton.frame=CGRect(x:headerRTL ? 8 : header.bounds.width-applyWidth-8,y:(AppMetrics.headerHeight-48)/2,width:applyWidth,height:48)
         nameLabel.frame=CGRect(x:headerRTL ? applyWidth+20 : AppMetrics.headerBackWidth+4,y:0,width:max(1,header.bounds.width-applyWidth-AppMetrics.headerBackWidth-24),height:AppMetrics.headerHeight)
         stage.frame=CGRect(x:safe.minX,y:header.frame.maxY,width:safe.width,height:max(1,safe.maxY-header.frame.maxY))
-        let size=stage.bounds.size,landscape=view.bounds.width>view.bounds.height,panelWidth=landscape ? size.width*0.30 : size.width
-        let aspect=max(0.1,view.bounds.height/max(1,view.bounds.width)),carouselWidth=landscape ? size.width-panelWidth : size.width
+        let size=stage.bounds.size,landscape=view.bounds.width>view.bounds.height
+        let nominalPanelWidth=landscape ? size.width*0.5 : size.width
+        let showSwitches=landscape || expanded
+        let toggleHeight: CGFloat=landscape ? 0 : 104
+        let portraitPanelHeight: CGFloat=20+168+(showSwitches ? 112 : 0)+8
+        let nominalDockHeight=landscape ? size.height : min(size.height,max(1,portraitPanelHeight+toggleHeight))
+        let dockFrame=AppDuoLayout.unobscuredFrame(in:stage,within: CGRect(x:landscape ? size.width-nominalPanelWidth : 0,y:landscape ? 0 : size.height-nominalDockHeight,width:nominalPanelWidth,height:nominalDockHeight))
+        let panelWidth=dockFrame.width,dockHeight=dockFrame.height
+        dock.frame=dockFrame
+        let aspect=max(0.1,view.bounds.height/max(1,view.bounds.width)),carouselWidth=landscape ? size.width-nominalPanelWidth : size.width
         let nextWidth=landscape ? max(1,min(carouselWidth*0.82,(size.height-14)/aspect)) : min(282,carouselWidth*0.76)
         let cardHeight=(nextWidth-6)*aspect+6,carouselHeight=cardHeight+8
         if landscape { if fontControls.superview !== panel { fontControls.removeFromSuperview();panel.addSubview(fontControls) } }
         else if fontControls.superview !== stage { fontControls.removeFromSuperview();stage.addSubview(fontControls) }
-        let fontWidth=landscape ? panelWidth-16 : size.width
+        let nominalFontFrame=CGRect(x:landscape ? 8 : 0,y:landscape ? 8 : 0,width:landscape ? panelWidth-16 : size.width,height:100)
+        let fontFrame=landscape ? nominalFontFrame : AppDuoLayout.unobscuredFrame(in:stage,within:nominalFontFrame)
+        let fontWidth=fontFrame.width
         let labelHeight=max(23,ceil(fontLabel.sizeThatFits(CGSize(width:max(1,fontWidth-20),height:.greatestFiniteMagnitude)).height))
         let fontHeight=labelHeight+64,sliderTop=labelHeight+8
-        fontControls.frame=CGRect(x:landscape ? 8 : 0,y:landscape ? 8 : 0,width:fontWidth,height:fontHeight)
+        fontControls.frame=CGRect(x:fontFrame.minX,y:fontFrame.minY,width:fontWidth,height:fontHeight)
         fontLabel.frame=CGRect(x:4,y:8,width:max(1,fontWidth-20),height:labelHeight)
         let trackWidth=max(1,fontWidth-116)
         fontSlider.frame=CGRect(x:50,y:sliderTop,width:trackWidth,height:48)
@@ -227,7 +241,6 @@ final class ThemePickerViewController: UIViewController, UIScrollViewDelegate {
             for (index,card) in cards.enumerated() { card.setReferenceSize(view.bounds.size);card.frame=CGRect(x:CGFloat(index)*(cardWidth+16),y:4,width:cardWidth,height:cardHeight) }
             pages.setContentOffset(CGPoint(x:CGFloat(currentIndex)*(cardWidth+16)-inset,y:0),animated:false)
         }
-        let showSwitches=landscape || expanded
         switches.isHidden = !showSwitches;toggle.isHidden=landscape
         toggle.setImage(UIImage(systemName:expanded ? "chevron.up":"chevron.down"),for:.normal)
         toggle.accessibilityLabel=ResultText.text(expanded ? "theme_settings_collapse":"theme_settings_expand")
@@ -239,9 +252,6 @@ final class ThemePickerViewController: UIViewController, UIScrollViewDelegate {
         intensity.frame=CGRect(x:16,y:start+104,width:panelWidth-32,height:64)
         switches.frame=CGRect(x:8,y:start+168,width:panelWidth-16,height:showSwitches ? 112 : 0)
         let panelHeight=start+168+(showSwitches ? 112 : 0)+8
-        let toggleHeight: CGFloat=landscape ? 0 : 104
-        let dockHeight=landscape ? size.height : min(size.height,max(1,panelHeight+toggleHeight))
-        dock.frame=CGRect(x:landscape ? size.width-panelWidth : 0,y:landscape ? 0 : size.height-dockHeight,width:panelWidth,height:dockHeight)
         toggle.frame=CGRect(x:panelWidth-48,y:72,width:40,height:32)
         settingsScroll.frame=CGRect(x:0,y:toggleHeight,width:panelWidth,height:max(1,dockHeight-toggleHeight))
         panel.frame=CGRect(x:0,y:0,width:panelWidth,height:max(panelHeight,landscape ? settingsScroll.bounds.height : 0))

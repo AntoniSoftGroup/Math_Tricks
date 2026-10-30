@@ -10,10 +10,11 @@ final class MainMenuViewController: UIViewController {
     private var settings = AppSettings()
     private var previewSettings: AppSettings?
     private var lastLandscape: Bool?
+    private var lastDuoLayoutSize = CGSize.zero
     private var footerWidths:[NSLayoutConstraint]=[]
     private let layoutContainer = UIView()
-    private let header = UIView()
-    private let dailyPanel = UIView()
+    private let header = AppDuoAvoidingView()
+    private let dailyPanel = AppDuoAvoidingView()
     private let dailyDetails = UIView()
     private let dailyContents = UIStackView()
     private let dailyControls = UIStackView()
@@ -24,8 +25,6 @@ final class MainMenuViewController: UIViewController {
     private var buyWidth: NSLayoutConstraint?
     private var hasFullVersion: Bool { previewSettings == nil && AppPurchases.shared.hasFullVersion }
     private var settingsWidth:NSLayoutConstraint?
-    private var landscapeActionWidth:NSLayoutConstraint?
-    private var landscapeCountsWidth:NSLayoutConstraint?
     private let dailyActions=UIStackView()
     private let days = AppLabel(.headCount)
     private let today = AppLabel(.headCount)
@@ -76,13 +75,15 @@ final class MainMenuViewController: UIViewController {
         return palette.theme.isDark ? .lightContent : .darkContent
     }
 
+    override func loadView() { view = AppDuoContentView() }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
         view.accessibilityIdentifier = "screen.main"
         layoutContainer.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(layoutContainer)
-        let safe = view.safeAreaLayoutGuide
+        let safe = view.appContentLayoutGuide
         NSLayoutConstraint.activate([
             layoutContainer.topAnchor.constraint(equalTo: safe.topAnchor), layoutContainer.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
             layoutContainer.leadingAnchor.constraint(equalTo: safe.leadingAnchor), layoutContainer.trailingAnchor.constraint(equalTo: safe.trailingAnchor)
@@ -136,9 +137,10 @@ final class MainMenuViewController: UIViewController {
     private func pin(_ child: UIView, in parent: UIView, insets: UIEdgeInsets = .zero) {
         child.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(child)
+        let content = (parent as? AppDuoAvoidingView)?.unobscuredLayoutGuide
         NSLayoutConstraint.activate([
-            child.topAnchor.constraint(equalTo: parent.topAnchor, constant: insets.top), child.bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: -insets.bottom),
-            child.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: insets.left), child.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -insets.right)
+            child.topAnchor.constraint(equalTo: content?.topAnchor ?? parent.topAnchor, constant: insets.top), child.bottomAnchor.constraint(equalTo: content?.bottomAnchor ?? parent.bottomAnchor, constant: -insets.bottom),
+            child.leadingAnchor.constraint(equalTo: content?.leadingAnchor ?? parent.leadingAnchor, constant: insets.left), child.trailingAnchor.constraint(equalTo: content?.trailingAnchor ?? parent.trailingAnchor, constant: -insets.right)
         ])
     }
     private func buildHeader() {
@@ -229,8 +231,12 @@ final class MainMenuViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let landscape = view.bounds.width > view.bounds.height
-        if lastLandscape != landscape { rebuildLayout(landscape: landscape) }
-        fitBuyLabel(landscape:landscape)
+        let duoSize = view.usesDuoLayout ? layoutContainer.bounds.size : .zero
+        if lastLandscape != landscape || lastDuoLayoutSize != duoSize {
+            lastDuoLayoutSize = duoSize
+            rebuildLayout(landscape: landscape)
+        }
+        fitBuyLabel(landscape:false)
         fitRiddlesLabel()
     }
     private func fitRiddlesLabel() {
@@ -268,86 +274,104 @@ final class MainMenuViewController: UIViewController {
     private func rebuildLayout(landscape: Bool) {
         lastLandscape = landscape
         NSLayoutConstraint.deactivate(footerWidths);footerWidths.removeAll()
-        headerGroupWidth?.isActive = !landscape && !hasFullVersion
+        headerGroupWidth?.isActive = !hasFullVersion
         settingsWidth?.constant=AndroidDimensions.value("ll_head",traits:traitCollection,size:view.bounds.size,fallback:60)
-        landscapeActionWidth?.isActive=false;landscapeCountsWidth?.isActive=false
         layoutContainer.subviews.forEach { $0.removeFromSuperview() }
-        let column = stack(.vertical, [header])
-        column.spacing = 0
-        pin(column, in: layoutContainer)
-        // Return reusable arranged views to their portrait parents before regrouping.
-        if counts.superview !== dailyDetails.subviews.first {
-            if let details = dailyDetails.subviews.first as? UIStackView { details.insertArrangedSubview(counts, at: 0) }
+        days.textAlignment = .right
+        today.textAlignment = .right
+
+        if landscape {
+            // Two equal panes keep the menu's portrait button arrangement at any window width.
+            let left = AppScrollView()
+            let right = AppScrollView()
+            left.accessibilityIdentifier = "main.landscapeMenu"
+            right.accessibilityIdentifier = "main.landscapeDetails"
+            left.contentInsetAdjustmentBehavior = .never
+            right.contentInsetAdjustmentBehavior = .never
+            let panes = stack(.horizontal, [left, right])
+            panes.distribution = .fillEqually
+            pin(panes, in: layoutContainer)
+            let paneSize = CGSize(width: layoutContainer.bounds.width / 2, height: layoutContainer.bounds.height)
+            buildMenu(in: left, size: paneSize, includesSecondaryActions: false)
+
+            let secondaryArea = UIView()
+            let secondaryActions = stack(.vertical, [primary.last!, makeLinksFooter(size: paneSize)])
+            secondaryActions.translatesAutoresizingMaskIntoConstraints = false
+            secondaryArea.addSubview(secondaryActions)
+            NSLayoutConstraint.activate([
+                secondaryActions.leadingAnchor.constraint(equalTo: secondaryArea.leadingAnchor),
+                secondaryActions.trailingAnchor.constraint(equalTo: secondaryArea.trailingAnchor),
+                secondaryActions.topAnchor.constraint(greaterThanOrEqualTo: secondaryArea.topAnchor),
+                secondaryActions.bottomAnchor.constraint(lessThanOrEqualTo: secondaryArea.bottomAnchor),
+                secondaryActions.centerYAnchor.constraint(equalTo: secondaryArea.centerYAnchor)
+            ])
+            secondaryArea.setContentHuggingPriority(.init(1), for: .vertical)
+            let details = stack(.vertical, [header, dailyPanel, secondaryArea, makeRiddlesFooter()])
+            pinScrollableContent(details, in: right)
+        } else {
+            let column = stack(.vertical, [header, dailyPanel])
+            pin(column, in: layoutContainer)
+            let scroll = AppScrollView()
+            column.addArrangedSubview(scroll)
+            buildMenu(in: scroll, size: view.bounds.size)
+            column.addArrangedSubview(makeRiddlesFooter())
+            scroll.setContentHuggingPriority(.init(1), for: .vertical)
         }
-        if landscape {
-            dailyControls.insertArrangedSubview(counts,at:1)
-            landscapeActionWidth=dailyActions.widthAnchor.constraint(equalTo:dailyControls.widthAnchor,multiplier:0.6,constant:-57.6)
-            landscapeCountsWidth=counts.widthAnchor.constraint(equalTo:dailyControls.widthAnchor,multiplier:0.4,constant:-38.4)
-            landscapeActionWidth?.isActive=true;landscapeCountsWidth?.isActive=true
-        } else {column.addArrangedSubview(dailyPanel)}
-        days.textAlignment=landscape ? .natural : .right
-        today.textAlignment=landscape ? .natural : .right
-        let scroll = AppScrollView(); scroll.alwaysBounceVertical = false
-        column.addArrangedSubview(scroll)
-        let content = stack(.vertical, [])
-        content.spacing = 0
-        content.translatesAutoresizingMaskIntoConstraints = false
-        scroll.addSubview(content)
-        if landscape { content.addArrangedSubview(dailyPanel) }
+        render(data.snapshot)
+    }
+
+    private func makeLinksFooter(size: CGSize) -> UIView {
+        let footer = UIView()
+        let width=AndroidDimensions.value("a_main_b_rate",traits:traitCollection,size:size,fallback:150)
+        for item in [rate,support] {
+            footer.addSubview(item);item.label.numberOfLines=2
+            NSLayoutConstraint.activate([
+                item.topAnchor.constraint(equalTo:footer.topAnchor),item.bottomAnchor.constraint(equalTo:footer.bottomAnchor),
+                item.widthAnchor.constraint(lessThanOrEqualTo:footer.widthAnchor,multiplier:0.5)
+            ])
+            let preferred=item.widthAnchor.constraint(equalToConstant:width)
+            preferred.priority = .defaultHigh;preferred.isActive=true;footerWidths.append(preferred)
+        }
+        rate.leadingAnchor.constraint(equalTo:footer.leadingAnchor).isActive=true
+        support.trailingAnchor.constraint(equalTo:footer.trailingAnchor).isActive=true
+        return footer
+    }
+
+    private func buildMenu(in scroll: AppScrollView, size: CGSize, includesSecondaryActions: Bool = true) {
         let menuArea = UIView()
-        let menu = stack(.vertical, [])
-        menu.spacing = 0
-        if landscape {
-            let first = stack(.horizontal, Array(primary.prefix(3)))
-            first.distribution = .fillEqually
-            let second = stack(.horizontal, Array(primary.suffix(2)))
-            second.distribution = .fillEqually
-            menu.addArrangedSubview(first); menu.addArrangedSubview(second)
-        } else { primary.forEach { menu.addArrangedSubview($0) } }
-        if !landscape {
-            let footer=UIView()
-            let width=AndroidDimensions.value("a_main_b_rate",traits:traitCollection,size:view.bounds.size,fallback:150)
-            for item in [rate,support] {
-                footer.addSubview(item);item.label.numberOfLines=2
-                NSLayoutConstraint.activate([
-                    item.topAnchor.constraint(equalTo:footer.topAnchor),item.bottomAnchor.constraint(equalTo:footer.bottomAnchor),
-                    item.widthAnchor.constraint(lessThanOrEqualTo:footer.widthAnchor,multiplier:0.5)
-                ])
-                let preferred=item.widthAnchor.constraint(equalToConstant:width);preferred.priority = .defaultHigh;preferred.isActive=true;footerWidths.append(preferred)
-            }
-            rate.leadingAnchor.constraint(equalTo:footer.leadingAnchor).isActive=true
-            support.trailingAnchor.constraint(equalTo:footer.trailingAnchor).isActive=true
-            menu.setCustomSpacing(AndroidDimensions.value("b_setttings_padding_bottom",traits:traitCollection,size:view.bounds.size,fallback:25),after:primary.last!)
-            menu.addArrangedSubview(footer)
+        let buttons = includesSecondaryActions ? primary : Array(primary.dropLast())
+        let menu = stack(.vertical, buttons)
+        if includesSecondaryActions {
+            menu.setCustomSpacing(AndroidDimensions.value("b_setttings_padding_bottom",traits:traitCollection,size:size,fallback:25),after:primary.last!)
+            menu.addArrangedSubview(makeLinksFooter(size: size))
         }
         menu.translatesAutoresizingMaskIntoConstraints=false;menuArea.addSubview(menu)
-        let margin=AndroidDimensions.value(landscape ? "a_main_ll_b_margins_land" : "a_main_ll_b_margins",traits:traitCollection,size:view.bounds.size,fallback:landscape ? 0 : 40)
+        let margin=AndroidDimensions.value("a_main_ll_b_margins",traits:traitCollection,size:size,fallback:40)
         NSLayoutConstraint.activate([
             menu.leadingAnchor.constraint(equalTo:menuArea.leadingAnchor,constant:margin),menu.trailingAnchor.constraint(equalTo:menuArea.trailingAnchor,constant:-margin),
-            menu.topAnchor.constraint(greaterThanOrEqualTo:menuArea.topAnchor),menu.bottomAnchor.constraint(lessThanOrEqualTo:menuArea.bottomAnchor)
+            menu.topAnchor.constraint(greaterThanOrEqualTo:menuArea.topAnchor),menu.bottomAnchor.constraint(lessThanOrEqualTo:menuArea.bottomAnchor),
+            menu.centerYAnchor.constraint(equalTo:menuArea.centerYAnchor)
         ])
-        menu.centerYAnchor.constraint(equalTo:menuArea.centerYAnchor).isActive=true
-        content.addArrangedSubview(menuArea)
+        pinScrollableContent(menuArea, in: scroll)
+    }
+
+    private func pinScrollableContent(_ content: UIView, in scroll: AppScrollView) {
+        content.translatesAutoresizingMaskIntoConstraints = false
+        scroll.addSubview(content)
         NSLayoutConstraint.activate([
-            content.topAnchor.constraint(equalTo: scroll.contentLayoutGuide.topAnchor), content.bottomAnchor.constraint(equalTo: scroll.contentLayoutGuide.bottomAnchor),
-            content.leadingAnchor.constraint(equalTo: scroll.contentLayoutGuide.leadingAnchor), content.trailingAnchor.constraint(equalTo: scroll.contentLayoutGuide.trailingAnchor),
-            content.widthAnchor.constraint(equalTo: scroll.frameLayoutGuide.widthAnchor),
-            content.heightAnchor.constraint(greaterThanOrEqualTo: scroll.frameLayoutGuide.heightAnchor)
+            content.topAnchor.constraint(equalTo:scroll.contentLayoutGuide.topAnchor),content.bottomAnchor.constraint(equalTo:scroll.contentLayoutGuide.bottomAnchor),
+            content.leadingAnchor.constraint(equalTo:scroll.contentLayoutGuide.leadingAnchor),content.trailingAnchor.constraint(equalTo:scroll.contentLayoutGuide.trailingAnchor),
+            content.widthAnchor.constraint(equalTo:scroll.frameLayoutGuide.widthAnchor),
+            content.heightAnchor.constraint(greaterThanOrEqualTo:scroll.frameLayoutGuide.heightAnchor)
         ])
-        if landscape {
-            let footer = stack(.horizontal, [rate, instagram, support], spacing: 4)
-            footer.distribution = .fillEqually
-            column.addArrangedSubview(footer)
-        } else {
-            let footer = UIView()
-            instagram.setContentInsets(UIEdgeInsets(top:8,left:14,bottom:8,right:14))
-            pin(instagram, in: footer, insets: UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0))
-            column.addArrangedSubview(footer)
-            footer.isHidden = instagram.isHidden
-        }
-        // Ensure the scrollable center receives spare height; fixed panels fit their content.
-        scroll.setContentHuggingPriority(.init(1), for: .vertical)
-        render(data.snapshot)
+    }
+
+    private func makeRiddlesFooter() -> UIView {
+        let footer = UIView()
+        instagram.setContentInsets(UIEdgeInsets(top:8,left:14,bottom:8,right:14))
+        pin(instagram, in:footer, insets:UIEdgeInsets(top:6,left:0,bottom:6,right:0))
+        footer.isHidden = instagram.isHidden
+        return footer
     }
 
     private func render(_ progress: ProgressState?) {
@@ -363,7 +387,7 @@ final class MainMenuViewController: UIViewController {
             buyWidth?.isActive = true
         } else {
             buyWidth?.isActive = false
-            headerGroupWidth?.isActive = lastLandscape == false
+            headerGroupWidth?.isActive = true
         }
         let headerText: UIColor = palette.theme.isClassic ? (palette.theme == .light ? .white : palette.text) : palette.text
         headerButtons.forEach { $0.apply(settings: settings, tint: headerText) }
@@ -398,7 +422,7 @@ final class MainMenuViewController: UIViewController {
         let wasHidden = instagram.isHidden
         // Temporarily hide Math Riddles in the menu and theme previews.
         instagram.isHidden = true
-        if lastLandscape == false { instagram.superview?.isHidden = instagram.isHidden }
+        instagram.superview?.isHidden = instagram.isHidden
         if wasHidden != instagram.isHidden { view.setNeedsLayout() }
         view.setNeedsLayout()
         setNeedsStatusBarAppearanceUpdate()

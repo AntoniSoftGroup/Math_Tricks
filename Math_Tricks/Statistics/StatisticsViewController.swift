@@ -31,6 +31,7 @@ final class StatisticsViewController: ThemedViewController, UITableViewDataSourc
     private var overviewWidth:NSLayoutConstraint?
     private var landscape:Bool?
     private var clearButton:UIButton?
+    private var clearWidth:NSLayoutConstraint?
     private var shareButton:UIButton?
     private var sortButton:UIButton?
     private var pagePrevious:UIButton!
@@ -120,7 +121,8 @@ final class StatisticsViewController: ThemedViewController, UITableViewDataSourc
             configureScroll(overviewScroll,content:overviewCards)
             configureScroll(actionsScroll,content:overviewActions)
             clearButton=ResultUI.button(ResultText.text("statistics_clear"),icon:.statisticsDelete,settings:settings){[weak self] in self?.confirmClear()}
-            clearButton?.widthAnchor.constraint(lessThanOrEqualToConstant:140).isActive=true
+            clearWidth=clearButton?.widthAnchor.constraint(lessThanOrEqualToConstant:140)
+            clearWidth?.isActive=true
             var configuration=clearButton?.configuration
             configuration?.titleTextAttributesTransformer=UIConfigurationTextAttributesTransformer{[settings] incoming in var value=incoming;value.font=ResultUI.font(11,settings:settings);return value}
             clearButton?.configuration=configuration
@@ -167,10 +169,11 @@ final class StatisticsViewController: ThemedViewController, UITableViewDataSourc
     private func placeControls(landscape:Bool) {
         inputWidth?.isActive=false;overviewWidth?.isActive=false
         inputCard.removeFromSuperview()
-        let accessory=ResultUI.stack(.horizontal,spacing:8);accessory.alignment = .center
+        clearWidth?.constant=landscape ? 172 : 140
+        let accessory=ResultUI.stack(.horizontal,spacing:landscape ? 4 : 8);accessory.alignment = .center
         if landscape {
             accessory.addArrangedSubview(inputCard)
-            inputWidth=inputCard.widthAnchor.constraint(equalToConstant:min(300,view.bounds.width*0.32));inputWidth?.isActive=true
+            inputWidth=inputCard.widthAnchor.constraint(equalToConstant:max(140,min(300,view.bounds.width*0.32)-28));inputWidth?.isActive=true
         } else {column.insertArrangedSubview(inputCard,at:0)}
         if let clearButton {clearButton.removeFromSuperview();accessory.addArrangedSubview(clearButton)}
         header.setAccessoryView(accessory)

@@ -25,6 +25,8 @@ final class AppRootViewController: UIViewController {
 
     deinit { startupTask?.cancel(); serviceStartLink?.invalidate() }
 
+    override func loadView() { view = AppDuoContentView() }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let initialSettings = data.snapshot?.settings ?? data.launchSettings
@@ -57,7 +59,7 @@ final class AppRootViewController: UIViewController {
         view.addSubview(screenView)
         view.addSubview(bannerContainer)
 
-        let safeArea = view.safeAreaLayoutGuide
+        let safeArea = view.appContentLayoutGuide
         NSLayoutConstraint.activate([
             screenView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             screenView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),

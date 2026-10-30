@@ -31,6 +31,8 @@ final class ShellScreenViewController: UIViewController {
         UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown
     }
 
+    override func loadView() { view = AppDuoContentView() }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
@@ -46,7 +48,7 @@ final class ShellScreenViewController: UIViewController {
         view.addSubview(header)
         view.addSubview(scrollView)
 
-        let safeArea = view.safeAreaLayoutGuide
+        let safeArea = view.appContentLayoutGuide
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: safeArea.topAnchor),
             header.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),

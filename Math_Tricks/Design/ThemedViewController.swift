@@ -37,13 +37,15 @@ class ThemedViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         palette.theme.isClassic ? (ThemeColor.luminance(palette.systemBar) > 0.5 ? .darkContent : .lightContent) : (palette.theme.isDark ? .lightContent : .darkContent)
     }
+    override func loadView() { view = AppDuoContentView() }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         settings = data.snapshot?.settings ?? AppSettings()
         view.backgroundColor = .clear
         body.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(header); view.addSubview(body)
-        let safe = view.safeAreaLayoutGuide
+        let safe = view.appContentLayoutGuide
         let top=body.topAnchor.constraint(equalTo:header.bottomAnchor);bodyTop=top
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: safe.topAnchor), header.leadingAnchor.constraint(equalTo: safe.leadingAnchor),
@@ -80,7 +82,7 @@ class ThemedViewController: UIViewController {
     }
     func setHeaderHidden(_ hidden:Bool) {
         header.isHidden=hidden;bodyTop?.isActive=false
-        bodyTop=body.topAnchor.constraint(equalTo:hidden ? view.safeAreaLayoutGuide.topAnchor:header.bottomAnchor)
+        bodyTop=body.topAnchor.constraint(equalTo:hidden ? view.appContentLayoutGuide.topAnchor:header.bottomAnchor)
         bodyTop?.isActive=true
     }
     func buildContent() {}

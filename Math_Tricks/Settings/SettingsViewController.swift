@@ -139,10 +139,16 @@ final class SettingsViewController: ThemedViewController {
         row.isLayoutMarginsRelativeArrangement = true
         row.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
         let control = SettingsRow(); control.translatesAutoresizingMaskIntoConstraints = false
-        row.translatesAutoresizingMaskIntoConstraints = false; control.addSubview(row)
+        let foreground = AppDuoAvoidingView()
+        foreground.translatesAutoresizingMaskIntoConstraints = false
+        control.addSubview(foreground)
+        row.translatesAutoresizingMaskIntoConstraints = false; foreground.addSubview(row)
+        let content = foreground.unobscuredLayoutGuide
         NSLayoutConstraint.activate([
-            row.topAnchor.constraint(equalTo: control.topAnchor), row.bottomAnchor.constraint(equalTo: control.bottomAnchor),
-            row.leadingAnchor.constraint(equalTo: control.leadingAnchor), row.trailingAnchor.constraint(equalTo: control.trailingAnchor)
+            foreground.topAnchor.constraint(equalTo: control.topAnchor), foreground.bottomAnchor.constraint(equalTo: control.bottomAnchor),
+            foreground.leadingAnchor.constraint(equalTo: control.leadingAnchor), foreground.trailingAnchor.constraint(equalTo: control.trailingAnchor),
+            row.topAnchor.constraint(equalTo: content.topAnchor), row.bottomAnchor.constraint(equalTo: content.bottomAnchor),
+            row.leadingAnchor.constraint(equalTo: content.leadingAnchor), row.trailingAnchor.constraint(equalTo: content.trailingAnchor)
         ])
         interactiveRows.append(control)
         return control

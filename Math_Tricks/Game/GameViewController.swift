@@ -16,12 +16,14 @@ final class GameViewController: ThemedViewController, AppBackHandling {
     private var timer: Timer?
     private var observations = Set<AnyCancellable>()
     private var sceneActive = true
+    private var backgroundStartedAt: Date?
     private var pendingSolutionAnswer: String?
     private var solutionAnswerTask: Task<Void, Never>?
     private var status: AppLabel!
     private var levelLabel: AppLabel!
     private var scoreLabel: AppLabel!
     private var coinLabel: AppLabel!
+    private let coins = UIStackView()
     private let coinIcon = UIImageView(image:AppIcon.coins.image?.withRenderingMode(.alwaysTemplate))
     private let starImage = UIImageView()
     private let headerInformation=UIStackView()
@@ -48,6 +50,8 @@ final class GameViewController: ThemedViewController, AppBackHandling {
     private var layoutLandscape: Bool?
     private var layoutKeypadRight: Bool?
     private var lowerHeight: NSLayoutConstraint?
+    private var duoArrangement: (any AppDuoGameArranging)?
+    private var duoArrangementConstraints: [NSLayoutConstraint] = []
     private var equation: AppLabel!
     private var answer: AppLabel!
     private var trickName: AppLabel!
@@ -83,6 +87,7 @@ final class GameViewController: ThemedViewController, AppBackHandling {
     isolated deinit { timer?.invalidate();resultReadTask?.cancel() }
     override func buildContent() {
         view.accessibilityIdentifier = "screen.game"
+        (view as? AppDuoContentView)?.onDivisionChange = { [weak self] in self?.view.setNeedsLayout() }
         // The Android game divides the available screen between expression and keyboard.
         // Only the rule name and result page scroll; the keyboard stays in place.
         let headerLeft=headerInformation;headerLeft.axis = .vertical;headerLeft.alignment = .leading
@@ -111,14 +116,12 @@ final class GameViewController: ThemedViewController, AppBackHandling {
         expressionPanel.translatesAutoresizingMaskIntoConstraints=false;playing.addSubview(expressionPanel)
         expressionPanel.addSubview(expressionView)
         coinLabel=label("—",role:.catalogTrick);coinLabel.textAlignment = .right
-        let coins=UIStackView();coins.axis = .horizontal;coins.alignment = .center;coins.spacing=4
+        coins.axis = .horizontal;coins.alignment = .center;coins.spacing=4
         coinIcon.contentMode = .scaleAspectFit
         coins.addArrangedSubview(coinIcon);coins.addArrangedSubview(coinLabel)
         coins.translatesAutoresizingMaskIntoConstraints=false;expressionPanel.addSubview(coins)
         NSLayoutConstraint.activate([
             coinIcon.widthAnchor.constraint(equalToConstant:40),coinIcon.heightAnchor.constraint(equalToConstant:40),
-            coins.topAnchor.constraint(equalTo:expressionPanel.topAnchor,constant:8),
-            coins.trailingAnchor.constraint(equalTo:expressionPanel.trailingAnchor,constant:-16),
             expressionView.leadingAnchor.constraint(equalTo:expressionPanel.leadingAnchor),
             expressionView.trailingAnchor.constraint(equalTo:expressionPanel.trailingAnchor),
             expressionView.topAnchor.constraint(equalTo:expressionPanel.topAnchor),
@@ -219,7 +222,7 @@ final class GameViewController: ThemedViewController, AppBackHandling {
         NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)
             .receive(on: RunLoop.main).sink { [weak self] _ in self?.suspendForBackground() }.store(in: &observations)
         NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
-            .receive(on: RunLoop.main).sink { [weak self] _ in self?.sceneActive = true; self?.scheduleSolutionAnswer(); self?.render() }.store(in: &observations)
+            .receive(on: RunLoop.main).sink { [weak self] _ in self?.becameActive() }.store(in: &observations)
     }
     private func buildResultsIfNeeded() {
         guard !hasBuiltResults else { return }
@@ -297,11 +300,67 @@ final class GameViewController: ThemedViewController, AppBackHandling {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let landscape=view.bounds.width>view.bounds.height
-        if layoutLandscape != landscape || layoutKeypadRight != settings.keypadOnRight { rebuildLayout(landscape:landscape) }
+        let arrangementChanged = synchronizeDuoArrangement()
+        let fold = AppDuoLayout.divisionFrames(in: playing)
+            .map { $0.intersection(playing.bounds) }
+            .filter { frame in
+                guard !frame.isNull, !frame.isEmpty else { return false }
+                return frame.width < frame.height
+                    ? frame.minX > playing.bounds.minX && frame.maxX < playing.bounds.maxX
+                    : frame.minY > playing.bounds.minY && frame.maxY < playing.bounds.maxY
+            }
+            .max { max($0.width, $0.height) < max($1.width, $1.height) }
+        let landscape = fold.map { $0.height > $0.width }
+            ?? duoArrangement?.isHorizontal ?? (view.bounds.width > view.bounds.height)
+        if arrangementChanged || layoutLandscape != landscape || layoutKeypadRight != settings.keypadOnRight {
+            rebuildLayout(landscape:landscape)
+        }
         // Android gives approximately half the whole game area to the keyboard.
         let available=max(0,body.bounds.height)
         lowerHeight?.constant = min(available * 0.72,max(available * 0.45,(available+header.bounds.height)*0.5))
+    }
+
+    private func synchronizeDuoArrangement() -> Bool {
+        let shouldUse = AppDuoGameArrangement.canUse(in: playing)
+        guard shouldUse != (duoArrangement != nil) else { return false }
+        if let existing = duoArrangement {
+            NSLayoutConstraint.deactivate(duoArrangementConstraints)
+            duoArrangementConstraints = []
+            existing.controller.willMove(toParent: nil)
+            existing.controller.view.removeFromSuperview()
+            existing.controller.removeFromParent()
+            duoArrangement = nil
+        }
+        if shouldUse, let arrangement = AppDuoGameArrangement.make() {
+            duoArrangement = arrangement
+            arrangement.onAxisChange = { [weak self] in self?.view.setNeedsLayout() }
+            let controller = arrangement.controller
+            addChild(controller)
+            let content = controller.view!
+            content.translatesAutoresizingMaskIntoConstraints = false
+            playing.addSubview(content)
+            duoArrangementConstraints = [
+                content.topAnchor.constraint(equalTo: playing.topAnchor),
+                content.bottomAnchor.constraint(equalTo: playing.bottomAnchor),
+                content.leadingAnchor.constraint(equalTo: playing.leadingAnchor),
+                content.trailingAnchor.constraint(equalTo: playing.trailingAnchor)
+            ]
+            NSLayoutConstraint.activate(duoArrangementConstraints)
+            controller.didMove(toParent: self)
+            playing.bringSubviewToFront(resume)
+        }
+        return true
+    }
+
+    private func pinGameContent(_ content: UIView, in host: UIView) {
+        content.translatesAutoresizingMaskIntoConstraints = false
+        host.addSubview(content)
+        layoutConstraints += [
+            content.topAnchor.constraint(equalTo: host.topAnchor),
+            content.bottomAnchor.constraint(equalTo: host.bottomAnchor),
+            content.leadingAnchor.constraint(equalTo: host.leadingAnchor),
+            content.trailingAnchor.constraint(equalTo: host.trailingAnchor)
+        ]
     }
     private func rebuildLayout(landscape:Bool) {
         layoutLandscape=landscape;layoutKeypadRight=settings.keypadOnRight
@@ -314,13 +373,36 @@ final class GameViewController: ThemedViewController, AppBackHandling {
         headerBalance=headerInformation.widthAnchor.constraint(equalTo:scoreLabel.widthAnchor,multiplier:landscape ? 2:1)
         headerBalance?.priority = .init(999);headerBalance?.isActive = !scoreLabel.isHidden
         NSLayoutConstraint.deactivate(layoutConstraints);layoutConstraints=[]
+        lowerHeight = nil
+        lowerPanel.spacing = 0
+        lowerPanel.isHidden = duoArrangement != nil
+        utility.setContentHuggingPriority(.defaultLow, for: .vertical)
+        expressionPanel.removeFromSuperview();playing.addSubview(expressionPanel)
+        inputModes.removeFromSuperview()
+        coins.removeFromSuperview()
+        utility.removeArrangedSubview(timerBar);timerBar.removeFromSuperview()
         utility.removeArrangedSubview(ruleScroll);utilityActions.removeArrangedSubview(ruleScroll);ruleScroll.removeFromSuperview()
         utility.removeArrangedSubview(moveRow);moveRow.removeFromSuperview()
         for item in moveRow.arrangedSubviews {moveRow.removeArrangedSubview(item);item.removeFromSuperview()}
         for stack in [lowerPanel,utilityActions] { for view in stack.arrangedSubviews {stack.removeArrangedSubview(view);view.removeFromSuperview()} }
         change.removeFromSuperview();utility.removeFromSuperview();playing.addSubview(utility)
+        if let arrangement = duoArrangement {
+            // All persistent game views have been detached above. Discard only
+            // the empty layout stacks from the previous pose.
+            for host in [arrangement.primaryContent, arrangement.secondaryContent] {
+                host.subviews.forEach { $0.removeFromSuperview() }
+            }
+        }
         utilityActions.addArrangedSubview(skip)
+        var landscapeInputColumn: UIStackView?
         if !landscape {
+            trickName.setContentHuggingPriority(.defaultLow,for:.vertical)
+            utility.insertArrangedSubview(timerBar,at:0)
+            expressionPanel.addSubview(coins)
+            layoutConstraints += [
+                coins.topAnchor.constraint(equalTo:expressionPanel.topAnchor,constant:8),
+                coins.trailingAnchor.constraint(equalTo:expressionPanel.trailingAnchor,constant:-16)
+            ]
             utilityActions.addArrangedSubview(ruleScroll)
             layoutConstraints.append(ruleScroll.heightAnchor.constraint(equalToConstant:50))
             utilityActions.addArrangedSubview(hint)
@@ -328,25 +410,85 @@ final class GameViewController: ThemedViewController, AppBackHandling {
             layoutConstraints += [change.leadingAnchor.constraint(equalTo:expressionPanel.leadingAnchor,constant:8),change.bottomAnchor.constraint(equalTo:expressionPanel.bottomAnchor,constant:-8)]
             lowerPanel.addArrangedSubview(inputModes)
         } else {
-            utility.insertArrangedSubview(ruleScroll,at:2)
-            utilityActions.insertArrangedSubview(change,at:0)
-            utilityActions.insertArrangedSubview(UIView(),at:1);utilityActions.addArrangedSubview(hint)
-            if settings.keypadOnRight == true { lowerPanel.addArrangedSubview(utility);lowerPanel.addArrangedSubview(inputModes) }
-            else {lowerPanel.addArrangedSubview(inputModes);lowerPanel.addArrangedSubview(utility)}
-            layoutConstraints.append(inputModes.widthAnchor.constraint(equalTo:lowerPanel.widthAnchor,multiplier:11.0/21))
+            utility.insertArrangedSubview(ruleScroll,at:0)
             let keypadOnRight = settings.keypadOnRight == true
+            utilityActions.removeArrangedSubview(skip);skip.removeFromSuperview()
+            let actionSpacer = UIView()
+            let actions: [UIView] = keypadOnRight
+                ? [skip,hint,actionSpacer,change,move]
+                : [move,change,actionSpacer,skip,hint]
+            actions.forEach { utilityActions.addArrangedSubview($0) }
+            let inputColumn = UIStackView(arrangedSubviews:[expressionPanel,timerBar,inputModes])
+            inputColumn.axis = .vertical
+            landscapeInputColumn = inputColumn
+            if duoArrangement == nil {
+                if settings.keypadOnRight == true { lowerPanel.addArrangedSubview(utility);lowerPanel.addArrangedSubview(inputColumn) }
+                else {lowerPanel.addArrangedSubview(inputColumn);lowerPanel.addArrangedSubview(utility)}
+                layoutConstraints.append(inputColumn.widthAnchor.constraint(equalTo:lowerPanel.widthAnchor,multiplier:0.5))
+            }
+            ruleScroll.setContentHuggingPriority(.init(1),for:.vertical)
+            trickName.setContentHuggingPriority(.init(1),for:.vertical)
             move.setIcon(keypadOnRight ? .backward : .forward)
-            if keypadOnRight { moveRow.addArrangedSubview(UIView());moveRow.addArrangedSubview(move) }
-            else { moveRow.addArrangedSubview(move);moveRow.addArrangedSubview(UIView()) }
-            utility.addArrangedSubview(moveRow)
+            if keypadOnRight { moveRow.addArrangedSubview(coins);moveRow.addArrangedSubview(UIView()) }
+            else { moveRow.addArrangedSubview(UIView());moveRow.addArrangedSubview(coins) }
+            moveRow.directionalLayoutMargins = NSDirectionalEdgeInsets(top:0,leading:10,bottom:0,trailing:10)
+            utility.insertArrangedSubview(moveRow,at:0)
+            layoutConstraints += [
+                moveRow.heightAnchor.constraint(equalTo:move.heightAnchor),
+                change.widthAnchor.constraint(equalToConstant:45),
+                utilityActions.heightAnchor.constraint(equalTo:hint.heightAnchor)
+            ]
         }
-        layoutConstraints += [expressionPanel.topAnchor.constraint(equalTo:playing.topAnchor),expressionPanel.leadingAnchor.constraint(equalTo:playing.leadingAnchor),expressionPanel.trailingAnchor.constraint(equalTo:playing.trailingAnchor),
-            lowerPanel.leadingAnchor.constraint(equalTo:playing.leadingAnchor),lowerPanel.trailingAnchor.constraint(equalTo:playing.trailingAnchor),lowerPanel.bottomAnchor.constraint(equalTo:playing.bottomAnchor)]
-        let height=lowerPanel.heightAnchor.constraint(equalToConstant:body.bounds.height*0.5);height.priority = .init(999);lowerHeight=height;layoutConstraints.append(height)
+        if let arrangement = duoArrangement {
+            if landscape, let inputColumn = landscapeInputColumn {
+                let keypadOnRight = settings.keypadOnRight == true
+                pinGameContent(inputColumn, in: keypadOnRight ? arrangement.secondaryContent : arrangement.primaryContent)
+                pinGameContent(utility, in: keypadOnRight ? arrangement.primaryContent : arrangement.secondaryContent)
+                let height = inputModes.heightAnchor.constraint(equalToConstant: body.bounds.height * 0.5)
+                height.priority = .init(999)
+                lowerHeight = height
+                layoutConstraints.append(height)
+                let headerHeight = header.heightAnchor.constraint(equalToConstant: AppMetrics.headerHeight)
+                headerHeight.priority = .init(749)
+                layoutConstraints.append(headerHeight)
+            } else {
+                // In the laptop pose UIKit places this pane above the fold,
+                // and the keypad pane below it, including the system margins.
+                lowerPanel.removeArrangedSubview(inputModes)
+                inputModes.removeFromSuperview()
+                let upper = UIStackView(arrangedSubviews: [expressionPanel, utility])
+                upper.axis = .vertical
+                utility.setContentHuggingPriority(.required, for: .vertical)
+                pinGameContent(upper, in: arrangement.primaryContent)
+                pinGameContent(inputModes, in: arrangement.secondaryContent)
+            }
+            NSLayoutConstraint.activate(layoutConstraints)
+            arrangement.update(animated: isVisible)
+            playing.bringSubviewToFront(resume)
+            return
+        }
+        layoutConstraints += [
+            lowerPanel.leadingAnchor.constraint(equalTo:playing.leadingAnchor),
+            lowerPanel.trailingAnchor.constraint(equalTo:playing.trailingAnchor),
+            lowerPanel.bottomAnchor.constraint(equalTo:playing.bottomAnchor)
+        ]
+        let height=(landscape ? inputModes : lowerPanel).heightAnchor.constraint(equalToConstant:body.bounds.height*0.5)
+        height.priority = .init(999);lowerHeight=height;layoutConstraints.append(height)
         if landscape {
-            layoutConstraints.append(expressionPanel.bottomAnchor.constraint(equalTo:lowerPanel.topAnchor))
+            // Prefer growing the game content; only header compression requirements can override this height.
+            let preferredHeaderHeight=header.heightAnchor.constraint(equalToConstant:AppMetrics.headerHeight)
+            preferredHeaderHeight.priority = .init(749)
+            layoutConstraints += [
+                preferredHeaderHeight,
+                lowerPanel.topAnchor.constraint(equalTo:playing.topAnchor)
+            ]
         } else {
-            layoutConstraints += [utility.topAnchor.constraint(equalTo:expressionPanel.bottomAnchor),utility.leadingAnchor.constraint(equalTo:playing.leadingAnchor),utility.trailingAnchor.constraint(equalTo:playing.trailingAnchor),utility.bottomAnchor.constraint(equalTo:lowerPanel.topAnchor)]
+            layoutConstraints += [
+                expressionPanel.topAnchor.constraint(equalTo:playing.topAnchor),
+                expressionPanel.leadingAnchor.constraint(equalTo:playing.leadingAnchor),
+                expressionPanel.trailingAnchor.constraint(equalTo:playing.trailingAnchor),
+                utility.topAnchor.constraint(equalTo:expressionPanel.bottomAnchor),utility.leadingAnchor.constraint(equalTo:playing.leadingAnchor),utility.trailingAnchor.constraint(equalTo:playing.trailingAnchor),utility.bottomAnchor.constraint(equalTo:lowerPanel.topAnchor)
+            ]
         }
         NSLayoutConstraint.activate(layoutConstraints)
     }
@@ -367,6 +509,7 @@ final class GameViewController: ThemedViewController, AppBackHandling {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated); isVisible = true
+        continueAfterBackgroundIfNeeded()
         resultDetails.restore(settings:settings)
         if pendingSolutionAnswer != nil { scheduleSolutionAnswer() }
         else if session?.phase == .solution {
@@ -500,6 +643,7 @@ final class GameViewController: ThemedViewController, AppBackHandling {
                 try await data.commitGameSession(pending.session, mutation: pending.mutation)
                 saving = false; self.pending = nil
                 if sceneActive && isVisible && session?.phase == .paused { session?.resume(now: now); startTimer() }
+                continueAfterBackgroundIfNeeded()
                 render(); pending.completion?(); endBackgroundSave(); drainQueuedInput()
             } catch {
                 saving = false; render(); endBackgroundSave()
@@ -512,11 +656,14 @@ final class GameViewController: ThemedViewController, AppBackHandling {
         saving = true
         Task { [weak self] in
             guard let self else { return }
-            do { try await data.saveGameSession(session); saving = false; render(); completion?(); endBackgroundSave() }
+            do { try await data.saveGameSession(session); saving = false; continueAfterBackgroundIfNeeded(); render(); completion?(); endBackgroundSave() }
             catch { saving = false; endBackgroundSave(); showError(error, retry: { [weak self] in self?.savePaused(completion: completion) }) }
         }
     }
     private func suspendForBackground() {
+        if sceneActive, isVisible, (session?.phase == .running || (session?.phase == .paused && pending != nil)) {
+            backgroundStartedAt = Date()
+        }
         sceneActive = false; queuedInput.removeAll()
         if backgroundSave == .invalid {
             backgroundSave = UIApplication.shared.beginBackgroundTask(withName: "SaveMathTricksProgress") { [weak self] in
@@ -525,8 +672,34 @@ final class GameViewController: ThemedViewController, AppBackHandling {
         }
         AppSpeech.shared.stop()
         session?.pause(now: now); timer?.invalidate(); timer = nil
-        savePaused(); render()
+        if session?.isTerminal == true, pending == nil, !saving {
+            persist(GameMutation())
+        } else {
+            savePaused()
+        }
+        render()
         if !saving && pending == nil { endBackgroundSave() }
+    }
+    private func becameActive() {
+        sceneActive = true
+        continueAfterBackgroundIfNeeded()
+        scheduleSolutionAnswer()
+        render()
+    }
+    private func continueAfterBackgroundIfNeeded() {
+        guard sceneActive, isVisible, !saving, pending == nil, let startedAt = backgroundStartedAt else { return }
+        backgroundStartedAt = nil
+        guard session?.phase == .paused || session?.phase == .running else { return }
+        let currentTime = now
+        let inactiveTime = max(0,Date().timeIntervalSince(startedAt))
+        let previousStars = session?.stars
+        session?.resume(now:currentTime-inactiveTime)
+        session?.tick(now:currentTime)
+        if session?.isTerminal == true || session?.stars != previousStars {
+            persist(GameMutation())
+        } else {
+            resumePlaying()
+        }
     }
     private func endBackgroundSave() {
         guard backgroundSave != .invalid else { return }

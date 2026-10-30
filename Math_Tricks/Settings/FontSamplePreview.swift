@@ -168,6 +168,8 @@ final class FontSamplePreview: UIView, UITableViewDataSource {
         let landscape = sceneLandscape == true
         let palette = ThemePalette(settings:settings), headColor = palette.headerText
         let info = ResultUI.stack(landscape ? .horizontal : .vertical)
+        info.distribution = landscape ? .fillEqually : .fill
+        info.alignment = landscape ? .center : .leading
         for value in [MainText.format("activity_game_tv_level","3"),MainText.format("activity_game_tv_examples","7 / 10")] {
             let label = text(value,role:.headCount,color:headColor)
             label.numberOfLines=1;label.adjustsFontSizeToFitWidth=true;label.minimumScaleFactor=0.7
@@ -177,7 +179,7 @@ final class FontSamplePreview: UIView, UITableViewDataSource {
         score.numberOfLines=1;score.adjustsFontSizeToFitWidth=true;score.minimumScaleFactor=0.5
         let stars = UIImageView(image:palette.gameStars(2));stars.contentMode = .scaleAspectFit
         appearanceUpdates.append { stars.image=ThemePalette(settings:$0).gameStars(2) }
-        NSLayoutConstraint.activate([stars.widthAnchor.constraint(equalToConstant:90),stars.heightAnchor.constraint(equalToConstant:36)])
+        NSLayoutConstraint.activate([stars.widthAnchor.constraint(equalToConstant:75),stars.heightAnchor.constraint(equalToConstant:30)])
         let hud = row([info,score,stars]);hud.alignment = .center;hud.spacing=8
         let balance=info.widthAnchor.constraint(equalTo:score.widthAnchor,multiplier:landscape ? 2 : 1);balance.priority = .init(999);balance.isActive=true
         header.replaceTitle(with:hud)
@@ -196,17 +198,21 @@ final class FontSamplePreview: UIView, UITableViewDataSource {
         let voice=button("",icon:.voiceOn,kind:.icon);voice.isHidden = !AppSpeech.isEnabled
         voice.setContentInsets(UIEdgeInsets(top:2,left:4,bottom:2,right:4),minimumHeight:32);area.addSubview(voice)
         NSLayoutConstraint.activate([
-            coins.topAnchor.constraint(equalTo:area.topAnchor,constant:8),coins.trailingAnchor.constraint(equalTo:area.trailingAnchor,constant:-16),
             voice.trailingAnchor.constraint(equalTo:area.trailingAnchor,constant:-8),voice.bottomAnchor.constraint(equalTo:area.bottomAnchor,constant:-8),voice.widthAnchor.constraint(equalToConstant:44)
         ])
         let change=button("",icon:.changeInput,kind:.icon)
         change.setContentInsets(UIEdgeInsets(top:2,left:8,bottom:2,right:8),minimumHeight:40)
         if !landscape {
+            NSLayoutConstraint.activate([
+                coins.topAnchor.constraint(equalTo:area.topAnchor,constant:8),
+                coins.trailingAnchor.constraint(equalTo:area.trailingAnchor,constant:-16)
+            ])
             area.addSubview(change)
             NSLayoutConstraint.activate([change.leadingAnchor.constraint(equalTo:area.leadingAnchor,constant:8),change.bottomAnchor.constraint(equalTo:area.bottomAnchor,constant:-8)])
         }
         let utility=ResultUI.stack(.vertical)
-        let progress=AndroidGameProgressView();progress.apply(settings:settings);progress.setProgress(0.72,animated:false);utility.addArrangedSubview(progress)
+        let progress=AndroidGameProgressView();progress.apply(settings:settings);progress.setProgress(0.72,animated:false)
+        if !landscape { utility.addArrangedSubview(progress) }
         appearanceUpdates.append { progress.apply(settings:$0) }
         let rule=AppScrollView(), name=text(TrickCatalog.shared.trick(5).map { AndroidRichText.plain(CatalogText.text($0.nameKey)) } ?? "")
         name.role = .catalogTrick;name.textAlignment = .center;name.translatesAutoresizingMaskIntoConstraints=false;rule.addSubview(name)
@@ -230,13 +236,21 @@ final class FontSamplePreview: UIView, UITableViewDataSource {
         actions.isLayoutMarginsRelativeArrangement=true;actions.directionalLayoutMargins=NSDirectionalEdgeInsets(top:0,leading:8,bottom:0,trailing:8)
         utility.addArrangedSubview(actions)
         if landscape {
-            utility.addArrangedSubview(rule)
+            name.setContentHuggingPriority(.init(1),for:.vertical)
+            rule.setContentHuggingPriority(.init(1),for:.vertical)
+            utility.insertArrangedSubview(rule,at:0)
+            let preferredHeaderHeight=header.heightAnchor.constraint(equalToConstant:AppMetrics.headerHeight)
+            preferredHeaderHeight.priority = .init(749);preferredHeaderHeight.isActive=true
             let move=button("",icon:settings.keypadOnRight == true ? .backward : .forward,kind:.iconSurface)
             move.setContentInsets(UIEdgeInsets(top:15,left:15,bottom:15,right:15),minimumHeight:44.5)
-            move.widthAnchor.constraint(equalToConstant:45).isActive=true
-            let moveRow=row(settings.keypadOnRight == true ? [UIView(),move] : [move,UIView()])
-            moveRow.isLayoutMarginsRelativeArrangement=true;moveRow.directionalLayoutMargins=NSDirectionalEdgeInsets(top:0,leading:10,bottom:10,trailing:10)
-            utility.addArrangedSubview(moveRow)
+            NSLayoutConstraint.activate([move.widthAnchor.constraint(equalToConstant:45),move.heightAnchor.constraint(equalToConstant:44.5)])
+            let moveRow=row(settings.keypadOnRight == true ? [coins,UIView(),move] : [move,UIView(),coins])
+            moveRow.isLayoutMarginsRelativeArrangement=true;moveRow.directionalLayoutMargins=NSDirectionalEdgeInsets(top:0,leading:10,bottom:0,trailing:10)
+            utility.insertArrangedSubview(moveRow,at:0)
+            NSLayoutConstraint.activate([
+                moveRow.heightAnchor.constraint(equalTo:move.heightAnchor),
+                actions.heightAnchor.constraint(equalTo:hint.heightAnchor)
+            ])
         } else { rule.heightAnchor.constraint(equalToConstant:50).isActive=true;content.addArrangedSubview(utility) }
         let keyboard=ResultUI.stack(.vertical);keyboard.distribution = .fillEqually
         for numbers in (settings.numpad123 ? [[1,2,3],[4,5,6],[7,8,9]] : [[7,8,9],[4,5,6],[1,2,3]]) + [[0,-1]] {
@@ -248,11 +262,13 @@ final class FontSamplePreview: UIView, UITableViewDataSource {
         }
         let lower: UIStackView
         if landscape {
-            lower=row(settings.keypadOnRight == true ? [utility,keyboard] : [keyboard,utility]);lower.alignment = .fill
-            keyboard.widthAnchor.constraint(equalTo:lower.widthAnchor,multiplier:11.0/21).isActive=true
+            content.removeArrangedSubview(area);area.removeFromSuperview()
+            let inputColumn=UIStackView(arrangedSubviews:[progress,area,keyboard]);inputColumn.axis = .vertical
+            lower=row(settings.keypadOnRight == true ? [utility,inputColumn] : [inputColumn,utility]);lower.alignment = .fill
+            inputColumn.widthAnchor.constraint(equalTo:lower.widthAnchor,multiplier:0.5).isActive=true
         } else { lower=keyboard }
         content.addArrangedSubview(lower)
-        let height=lower.heightAnchor.constraint(equalTo:scene.heightAnchor,multiplier:0.5);height.priority = .init(999);height.isActive=true
+        let height=(landscape ? keyboard : lower).heightAnchor.constraint(equalTo:scene.heightAnchor,multiplier:0.5);height.priority = .init(999);height.isActive=true
     }
 
     private func buildSolution(_ content: UIStackView) {

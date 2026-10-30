@@ -2,7 +2,31 @@ import UIKit
 
 /// Shared by all app-owned scrolling surfaces; system pickers keep UIKit behaviour.
 private enum AppScrolling {
+    private static var duoInsetsKey: UInt8 = 0
+
+    private final class OriginalInsets {
+        let adjustment: UIScrollView.ContentInsetAdjustmentBehavior
+        let tableInsets: Bool?
+        init(_ scroll: UIScrollView) {
+            adjustment = scroll.contentInsetAdjustmentBehavior
+            tableInsets = (scroll as? UITableView)?.insetsContentViewsToSafeArea
+        }
+    }
+
     static func update(_ scroll: UIScrollView, allowed: Bool = true, clampOffset: Bool = false) {
+        // The Duo host has already handled the safe area. Applying it again in
+        // every scroll view would bring back the full-height camera rail.
+        if scroll.usesDuoLayout {
+            if objc_getAssociatedObject(scroll, &duoInsetsKey) == nil {
+                objc_setAssociatedObject(scroll, &duoInsetsKey, OriginalInsets(scroll), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+            if scroll.contentInsetAdjustmentBehavior != .never { scroll.contentInsetAdjustmentBehavior = .never }
+            if let table = scroll as? UITableView, table.insetsContentViewsToSafeArea { table.insetsContentViewsToSafeArea = false }
+        } else if let original = objc_getAssociatedObject(scroll, &duoInsetsKey) as? OriginalInsets {
+            objc_setAssociatedObject(scroll, &duoInsetsKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            scroll.contentInsetAdjustmentBehavior = original.adjustment
+            if let value = original.tableInsets { (scroll as? UITableView)?.insetsContentViewsToSafeArea = value }
+        }
         scroll.bounces = false
         scroll.bouncesZoom = false
         scroll.alwaysBounceVertical = false

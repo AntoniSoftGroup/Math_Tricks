@@ -276,7 +276,7 @@ final class AppCaptionIconButton: UIControl {
     }
 }
 
-final class AppHeaderView: UIView {
+final class AppHeaderView: AppDuoAvoidingView {
     private let titleLabel=AppLabel(.settingsTitle)
     private let row=UIStackView()
     private var backButton:AppButton?
@@ -285,13 +285,14 @@ final class AppHeaderView: UIView {
     private var rowTrailing: NSLayoutConstraint?
     init(title:String,onBack:(()->Void)?) {
         super.init(frame:.zero)
+        let content = unobscuredLayoutGuide
         translatesAutoresizingMaskIntoConstraints=false
         row.axis = .horizontal;row.alignment = .center;row.spacing=0
         row.translatesAutoresizingMaskIntoConstraints=false;addSubview(row)
-        let trailing = row.trailingAnchor.constraint(equalTo:trailingAnchor,constant:-8); rowTrailing = trailing
+        let trailing = row.trailingAnchor.constraint(equalTo:content.trailingAnchor,constant:-8); rowTrailing = trailing
         NSLayoutConstraint.activate([
-            row.topAnchor.constraint(equalTo:topAnchor),row.bottomAnchor.constraint(equalTo:bottomAnchor),
-            row.leadingAnchor.constraint(equalTo:leadingAnchor,constant:onBack == nil ? 0 : AppMetrics.headerBackWidth),trailing,
+            row.topAnchor.constraint(equalTo:content.topAnchor),row.bottomAnchor.constraint(equalTo:content.bottomAnchor),
+            row.leadingAnchor.constraint(equalTo:content.leadingAnchor,constant:onBack == nil ? 0 : AppMetrics.headerBackWidth),trailing,
             heightAnchor.constraint(greaterThanOrEqualToConstant:AppMetrics.headerHeight)
         ])
         if let onBack {
@@ -300,7 +301,7 @@ final class AppHeaderView: UIView {
             back.accessibilityIdentifier="navigationBack"
             insertSubview(back,at:0)
             NSLayoutConstraint.activate([
-                back.topAnchor.constraint(equalTo:topAnchor),back.leadingAnchor.constraint(equalTo:leadingAnchor),
+                back.topAnchor.constraint(equalTo:content.topAnchor),back.leadingAnchor.constraint(equalTo:content.leadingAnchor),
                 back.widthAnchor.constraint(equalToConstant:AppMetrics.headerBackWidth),
                 back.heightAnchor.constraint(equalToConstant:AppMetrics.headerHeight)
             ])

@@ -13,7 +13,7 @@ final class AgeScreenViewController: UIViewController {
     private let ageLabel = AppLabel(.expression)
     private let prompt = AppLabel(.dialog)
     private let heading = AppLabel(.score)
-    private let header = UIView()
+    private let header = AppDuoAvoidingView()
     private let info = UIStackView()
     private var buttons: [AppButton] = []
     private weak var contentArea:UIView?
@@ -28,6 +28,8 @@ final class AgeScreenViewController: UIViewController {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown }
     override var preferredStatusBarStyle: UIStatusBarStyle { settings.theme?.isDark == true ? .lightContent : .darkContent }
+
+    override func loadView() { view = AppDuoContentView() }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,16 +103,16 @@ final class AgeScreenViewController: UIViewController {
         keypadHeight=keypad.heightAnchor.constraint(equalToConstant:300);keypadHeight?.priority = .init(999);keypadHeight?.isActive=true
         let fill = content.heightAnchor.constraint(greaterThanOrEqualTo: scroll.heightAnchor)
         fill.priority = .defaultLow
-        let safe = view.safeAreaLayoutGuide
+        let safe = view.appContentLayoutGuide
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: safe.topAnchor), header.leadingAnchor.constraint(equalTo: safe.leadingAnchor),
             header.trailingAnchor.constraint(equalTo: safe.trailingAnchor), header.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
-            skip.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 4), skip.centerYAnchor.constraint(equalTo: header.centerYAnchor),
+            skip.leadingAnchor.constraint(equalTo: header.unobscuredLayoutGuide.leadingAnchor, constant: 4), skip.centerYAnchor.constraint(equalTo: header.unobscuredLayoutGuide.centerYAnchor),
             skip.widthAnchor.constraint(equalToConstant: AppMetrics.minimumTouchSize), skip.heightAnchor.constraint(equalToConstant: AppMetrics.minimumTouchSize),
-            heading.topAnchor.constraint(equalTo: header.topAnchor, constant: 12), heading.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -12),
+            heading.topAnchor.constraint(equalTo: header.unobscuredLayoutGuide.topAnchor, constant: 12), heading.bottomAnchor.constraint(equalTo: header.unobscuredLayoutGuide.bottomAnchor, constant: -12),
             heading.leadingAnchor.constraint(equalTo: skip.trailingAnchor),
             heading.trailingAnchor.constraint(lessThanOrEqualTo: logo.leadingAnchor, constant: -8),
-            logo.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -5), logo.centerYAnchor.constraint(equalTo: header.centerYAnchor),
+            logo.trailingAnchor.constraint(equalTo: header.unobscuredLayoutGuide.trailingAnchor, constant: -5), logo.centerYAnchor.constraint(equalTo: header.unobscuredLayoutGuide.centerYAnchor),
             logo.widthAnchor.constraint(equalToConstant: 80), logo.heightAnchor.constraint(equalToConstant: 50),
             scroll.topAnchor.constraint(equalTo: header.bottomAnchor), scroll.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
             scroll.leadingAnchor.constraint(equalTo: safe.leadingAnchor), scroll.trailingAnchor.constraint(equalTo: safe.trailingAnchor),

@@ -87,6 +87,8 @@ class AppListCell: UITableViewCell {
     private let selectionOverlay = AppListHighlightView()
     private var highlightEnabled = true
     private var hovering = false
+    private var originalContentFrame: CGRect?
+    private var displacedContentFrame: CGRect?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -108,8 +110,25 @@ class AppListCell: UITableViewCell {
         contentView.bringSubviewToFront(selectionOverlay)
     }
     override func layoutSubviews() {
+        restoreDuoContentFrame()
         super.layoutSubviews()
+        if usesDuoLayout {
+            let original = contentView.frame
+            let displaced = AppDuoLayout.unobscuredFrame(in: self, within: original)
+            if displaced != original {
+                originalContentFrame = original
+                displacedContentFrame = displaced
+                contentView.frame = displaced
+            }
+        }
         installOverlay()
+    }
+    private func restoreDuoContentFrame() {
+        if let originalContentFrame, contentView.frame == displacedContentFrame {
+            contentView.frame = originalContentFrame
+        }
+        originalContentFrame = nil
+        displacedContentFrame = nil
     }
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
@@ -127,6 +146,7 @@ class AppListCell: UITableViewCell {
         selectionOverlay.setActive(highlightEnabled && (isHighlighted || isSelected || hovering))
     }
     override func prepareForReuse() {
+        restoreDuoContentFrame()
         super.prepareForReuse()
         hovering = false
         selectionOverlay.reset()

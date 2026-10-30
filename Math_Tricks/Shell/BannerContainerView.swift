@@ -2,7 +2,7 @@ import UIKit
 import GoogleMobileAds
 
 /// The host survives navigation. Its height can follow an adaptive ad or collapse.
-final class BannerContainerView: UIView, BannerViewDelegate {
+final class BannerContainerView: AppDuoAvoidingView, BannerViewDelegate {
     var onBuyPro: (() -> Void)?
     private var banner: BannerView?
     private var loaded = false
@@ -49,9 +49,11 @@ final class BannerContainerView: UIView, BannerViewDelegate {
             collapse(); return
         }
         // Use Google's adaptive size directly so the container matches the requested ad.
-        let width = floor(bounds.width)
-        let isLandscape = presenter.view.window?.windowScene?.interfaceOrientation.isLandscape
-            ?? (presenter.view.bounds.width > presenter.view.bounds.height)
+        let width = floor(usesDuoLayout ? unobscuredLayoutGuide.layoutFrame.width : bounds.width)
+        let isLandscape = usesDuoLayout
+            ? presenter.view.bounds.width > presenter.view.bounds.height
+            : (presenter.view.window?.windowScene?.interfaceOrientation.isLandscape
+                ?? (presenter.view.bounds.width > presenter.view.bounds.height))
         let adaptiveSize = isLandscape
             ? landscapeAnchoredAdaptiveBanner(width: width)
             : portraitAnchoredAdaptiveBanner(width: width)
@@ -114,10 +116,10 @@ final class BannerContainerView: UIView, BannerViewDelegate {
             content.translatesAutoresizingMaskIntoConstraints = false
             addSubview(content)
             hostedConstraints = [
-                content.leadingAnchor.constraint(equalTo: leadingAnchor),
-                content.trailingAnchor.constraint(equalTo: trailingAnchor),
-                content.topAnchor.constraint(equalTo: topAnchor),
-                content.bottomAnchor.constraint(equalTo: bottomAnchor)
+                content.leadingAnchor.constraint(equalTo: unobscuredLayoutGuide.leadingAnchor),
+                content.trailingAnchor.constraint(equalTo: unobscuredLayoutGuide.trailingAnchor),
+                content.topAnchor.constraint(equalTo: unobscuredLayoutGuide.topAnchor),
+                content.bottomAnchor.constraint(equalTo: unobscuredLayoutGuide.bottomAnchor)
             ]
             NSLayoutConstraint.activate(hostedConstraints)
         }
