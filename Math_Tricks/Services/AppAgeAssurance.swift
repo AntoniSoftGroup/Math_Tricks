@@ -9,6 +9,10 @@ final class AppAgeAssurance {
     private(set) var requiresSystemAge = false
     private var checking = false
     private var startedAt: TimeInterval?
+    private var requestID: UUID?
+    private var requestTask: Task<Void, Never>?
+    private var deadlineTask: Task<Void, Never>?
+    private let backgroundTimeout: UInt64 = 10_000_000_000
 
     func needsManualAge(settings: AppSettings) -> Bool {
         isReady && !requiresSystemAge && settings.onboarding?.hasAgeChoice != true
@@ -30,10 +34,14 @@ final class AppAgeAssurance {
               presenter.view.window?.rootViewController?.presentedViewController == nil else { return }
         checking = true
         startedAt = ProcessInfo.processInfo.systemUptime
+        let id = UUID()
+        requestID = id
+        startBackgroundDeadline(for: id)
         #if DEBUG
         Self.checkAgePolicy()
         #endif
-        Task {
+        requestTask = Task { [weak self, weak presenter] in
+            guard let self else { return }
             var required = true
             do {
                 if #available(iOS 26.4, *) {
@@ -41,11 +49,20 @@ final class AppAgeAssurance {
                 } else {
                     required = try await AgeRangeService.shared.isEligibleForAgeFeatures
                 }
+                // A system call may ignore cancellation and return after the
+                // manual screen has opened. Never let that response change it.
+                guard checking, requestID == id else { return }
+                deadlineTask?.cancel(); deadlineTask = nil
                 guard required else { finish(systemAgeRequired: false); return }
+                guard let presenter else { finish(systemAgeRequired: false); return }
+                // The system sheet waits for the person's answer, without the
+                // background deadline interrupting their choice.
                 let response = try await AgeRangeService.shared.requestAgeRange(ageGates: 13, 16, 18, in: presenter)
+                guard checking, requestID == id else { return }
                 switch response {
                 case .sharing(let range):
                     try await data.updateSettings(.declaredAgeRange(DeclaredAgeBounds(lowerBound: range.lowerBound, upperBound: range.upperBound)))
+                    guard checking, requestID == id else { return }
                     finish(systemAgeRequired: false)
                 case .declinedSharing:
                     finish(systemAgeRequired: required)
@@ -53,16 +70,27 @@ final class AppAgeAssurance {
                     finish(systemAgeRequired: required)
                 }
             } catch {
+                guard checking, requestID == id else { return }
                 NSLog("Apple age range: %@", error.localizedDescription)
-                do {
-                    // Remember unknown age so ads remain CHILD/G and startup never retries this check.
-                    try await data.updateSettings(.age(nil))
-                    finish(systemAgeRequired: false)
-                } catch {
-                    NSLog("Age fallback could not save: %@", error.localizedDescription)
-                    finish(systemAgeRequired: true)
-                }
+                // Leave the age unselected so onboarding opens its normal age
+                // screen. Only the person's explicit choice is persisted.
+                finish(systemAgeRequired: false)
             }
+        }
+    }
+
+    private func startBackgroundDeadline(for id: UUID) {
+        deadlineTask?.cancel()
+        deadlineTask = Task { [weak self] in
+            guard let self else { return }
+            do { try await Task.sleep(nanoseconds: backgroundTimeout) }
+            catch { return }
+            guard checking, requestID == id else { return }
+            NSLog("Apple age range: background check timed out")
+            requestTask?.cancel()
+            // Do not await cancellation: an unresponsive API must not keep
+            // onboarding blocked. The request ID rejects any late response.
+            finish(systemAgeRequired: false)
         }
     }
 
@@ -73,6 +101,9 @@ final class AppAgeAssurance {
     }
 
     private func finish(systemAgeRequired: Bool) {
+        deadlineTask?.cancel(); deadlineTask = nil
+        requestID = nil
+        requestTask = nil
         if let startedAt {
             NSLog("Startup age check: %.3f s", ProcessInfo.processInfo.systemUptime - startedAt)
         }

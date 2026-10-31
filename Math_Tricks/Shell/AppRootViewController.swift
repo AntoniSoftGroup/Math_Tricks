@@ -22,8 +22,9 @@ final class AppRootViewController: AppDuoViewController {
     private let startupBegan = ProcessInfo.processInfo.systemUptime
     private let ageStatus = AppLabel(.body)
     private let ageActivity = UIActivityIndicatorView(style: .large)
+    private var ageStatusTask: Task<Void, Never>?
 
-    isolated deinit { startupTask?.cancel(); serviceStartLink?.invalidate() }
+    isolated deinit { startupTask?.cancel(); ageStatusTask?.cancel(); serviceStartLink?.invalidate() }
 
     override func loadView() { view = AppDuoContentView() }
 
@@ -74,7 +75,7 @@ final class AppRootViewController: AppDuoViewController {
         ageActivity.hidesWhenStopped = true
         view.addSubview(ageActivity)
         ageStatus.translatesAutoresizingMaskIntoConstraints = false
-        ageStatus.text = NSLocalizedString("checking", tableName:"AgeAssurance", comment:"")
+        ageStatus.text = NSLocalizedString("preparing", tableName:"AgeAssurance", comment:"")
         ageStatus.textAlignment = .center
         ageStatus.numberOfLines = 0
         ageStatus.isHidden = true
@@ -271,7 +272,18 @@ final class AppRootViewController: AppDuoViewController {
         }
         ageStatus.apply(settings:settings)
         ageStatus.textColor = palette.text
-        ageStatus.isHidden = assurance.isReady
+        if assurance.isReady {
+            ageStatusTask?.cancel(); ageStatusTask = nil
+            ageStatus.isHidden = true
+        } else if ageStatusTask == nil {
+            ageStatus.isHidden = true
+            ageStatusTask = Task { [weak self] in
+                do { try await Task.sleep(nanoseconds: 1_000_000_000) }
+                catch { return }
+                guard let self, !AppAgeAssurance.shared.isReady else { return }
+                ageStatus.isHidden = false
+            }
+        }
         if !assurance.isReady {
             screenNavigation.view.isHidden = true
             ageActivity.color = palette.text

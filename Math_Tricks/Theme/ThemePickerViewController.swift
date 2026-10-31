@@ -217,19 +217,21 @@ final class ThemePickerViewController: AppDuoViewController, UIScrollViewDelegat
         stage.layoutIfNeeded()
         synchronizeDuoPanes()
         let size=stage.bounds.size,landscape=view.bounds.width>view.bounds.height
-        let sideControls = usesDuoPanes || landscape
-        let carouselSize = usesDuoPanes ? carouselPane.bounds.size : CGSize(width:landscape ? size.width*0.5 : size.width,height:size.height)
-        let nominalPanelWidth=usesDuoPanes ? controlsPane.bounds.width : (landscape ? size.width*0.5 : size.width)
+        let tablet = traitCollection.userInterfaceIdiom == .pad
+        let tabletColumns = tablet && size.width >= 700 && !usesDuoPanes
+        let sideControls = usesDuoPanes || landscape || tabletColumns
+        let nominalPanelWidth=usesDuoPanes ? controlsPane.bounds.width
+            : tabletColumns ? min(420,max(320,size.width*0.38)) : (landscape ? size.width*0.5 : size.width)
+        let carouselSize = usesDuoPanes ? carouselPane.bounds.size
+            : CGSize(width:sideControls ? size.width-nominalPanelWidth : size.width,height:size.height)
         let showSwitches=sideControls || expanded
         let toggleHeight: CGFloat=sideControls ? 0 : 104
         let portraitPanelHeight: CGFloat=20+168+(showSwitches ? 112 : 0)+8
-        let nominalDockHeight=usesDuoPanes ? controlsPane.bounds.height : (landscape ? size.height : min(size.height,max(1,portraitPanelHeight+toggleHeight)))
-        let dockFrame=usesDuoPanes ? controlsPane.bounds : AppDuoLayout.unobscuredFrame(in:stage,within: CGRect(x:landscape ? size.width-nominalPanelWidth : 0,y:landscape ? 0 : size.height-nominalDockHeight,width:nominalPanelWidth,height:nominalDockHeight))
+        let nominalDockHeight=usesDuoPanes ? controlsPane.bounds.height : (sideControls ? size.height : min(size.height,max(1,portraitPanelHeight+toggleHeight)))
+        let dockFrame=usesDuoPanes ? controlsPane.bounds : AppDuoLayout.unobscuredFrame(in:stage,within: CGRect(x:sideControls ? size.width-nominalPanelWidth : 0,y:sideControls ? 0 : size.height-nominalDockHeight,width:nominalPanelWidth,height:nominalDockHeight))
         let panelWidth=dockFrame.width,dockHeight=dockFrame.height
         dock.frame=dockFrame
-        let aspect=max(0.1,view.bounds.height/max(1,view.bounds.width)),carouselWidth=usesDuoPanes ? carouselSize.width : (landscape ? size.width-nominalPanelWidth : size.width)
-        let nextWidth=sideControls ? max(1,min(carouselWidth*0.82,(carouselSize.height-14)/aspect)) : min(282,carouselWidth*0.76)
-        let cardHeight=(nextWidth-6)*aspect+6,carouselHeight=cardHeight+8
+        let aspect=max(0.1,view.bounds.height/max(1,view.bounds.width)),carouselWidth=carouselSize.width
         if sideControls { if fontControls.superview !== panel { fontControls.removeFromSuperview();panel.addSubview(fontControls) } }
         else if fontControls.superview !== stage { fontControls.removeFromSuperview();stage.addSubview(fontControls) }
         let nominalFontFrame=CGRect(x:sideControls ? 8 : 0,y:sideControls ? 8 : 0,width:sideControls ? panelWidth-16 : size.width,height:100)
@@ -247,6 +249,17 @@ final class ThemePickerViewController: AppDuoViewController, UIScrollViewDelegat
         let fraction=(systemPercent-80)/120,rtl=view.effectiveUserInterfaceLayoutDirection == .rightToLeft
         systemMarker.frame=CGRect(x:fontSlider.frame.minX+2+(trackWidth-4)*(rtl ? 1-fraction : fraction)-1,y:sliderTop+18,width:2,height:12)
         systemMarker.accessibilityLabel=ResultText.format("font_size_system",Int64(systemPercent.rounded()))
+        let nextWidth: CGFloat
+        if sideControls {
+            nextWidth = max(1,min(carouselWidth*(tablet ? 0.9 : 0.82),(carouselSize.height-14)/aspect))
+        } else if tablet {
+            // Narrow iPad windows keep the vertical layout and fit above the dock.
+            let availableHeight = max(1,dock.frame.minY-fontHeight-8)
+            nextWidth = max(1,min(carouselWidth*0.86,max(1,availableHeight-14)/aspect))
+        } else {
+            nextWidth = min(282,carouselWidth*0.76)
+        }
+        let cardHeight=max(1,(nextWidth-6)*aspect+6),carouselHeight=cardHeight+8
         pages.frame=CGRect(x:0,y:sideControls ? max(0,(carouselSize.height-carouselHeight)/2) : fontHeight,width:carouselWidth,height:carouselHeight)
         let layoutChanged=geometry != size || abs(cardWidth-nextWidth)>0.5
         if layoutChanged {

@@ -138,15 +138,20 @@ final class GameResultTableView: UIView, UITableViewDataSource, UITableViewDeleg
         let changed = portrait != nextPortrait || abs(contentWidth-width)>0.5
         if portrait != nextPortrait {portrait = nextPortrait;placeSummary()}
         contentWidth = width
-        toolbar.frame = CGRect(x:0,y:0,width:bounds.width,height:AppMetrics.headerHeight)
+        let headerHeight = AppDuoLayout.headerHeight(in: self)
+        toolbar.frame = CGRect(x:0,y:0,width:bounds.width,height:headerHeight)
+        let headerContent = AppDuoLayout.headerForegroundFrame(in: toolbar)
+        let rowY = headerContent.midY - AppMetrics.headerHeight / 2
         let rtl = effectiveUserInterfaceLayoutDirection == .rightToLeft
-        back.frame = CGRect(x:rtl ? bounds.width-AppMetrics.headerBackWidth : 0,y:0,width:AppMetrics.headerBackWidth,height:AppMetrics.headerHeight)
-        let balanceWidth = min(width/2,balance.sizeThatFits(CGSize(width:width/2,height:AppMetrics.headerHeight)).width)
-        balance.frame = CGRect(x:rtl ? 16 : bounds.width-16-balanceWidth,y:0,width:balanceWidth,height:AppMetrics.headerHeight)
-        leaderboard.frame = CGRect(x:rtl ? 24+balanceWidth : bounds.width-72-balanceWidth,y:(AppMetrics.headerHeight-48)/2,width:48,height:48)
+        back.frame = CGRect(x:rtl ? headerContent.maxX-AppMetrics.headerBackWidth : headerContent.minX,y:rowY,width:AppMetrics.headerBackWidth,height:AppMetrics.headerHeight)
+        let margin: CGFloat = usesDuoLayout ? 8 : 16
+        let balanceLimit = max(0,min(width/2,headerContent.width-AppMetrics.headerBackWidth-(leaderboard.isHidden ? 0 : 56)-2*margin))
+        let balanceWidth = min(balanceLimit,balance.sizeThatFits(CGSize(width:balanceLimit,height:AppMetrics.headerHeight)).width)
+        balance.frame = CGRect(x:rtl ? headerContent.minX+margin : headerContent.maxX-margin-balanceWidth,y:rowY,width:balanceWidth,height:AppMetrics.headerHeight)
+        leaderboard.frame = CGRect(x:rtl ? balance.frame.maxX+8 : balance.frame.minX-56,y:headerContent.midY-24,width:48,height:48)
         let footerHeight = footerHeight(width:width,layout:true)
-        footer.frame = CGRect(x:16,y:max(AppMetrics.headerHeight,bounds.height-footerHeight-8),width:width,height:footerHeight)
-        let top = AppMetrics.headerHeight+8,availableHeight = max(1,footer.frame.minY-top-8)
+        footer.frame = CGRect(x:16,y:max(headerHeight,bounds.height-footerHeight-8),width:width,height:footerHeight)
+        let top = headerHeight+8,availableHeight = max(1,footer.frame.minY-top-8)
         let tableWidth = portrait ? width : max(1,width-width/2.1-8)
         table.frame = CGRect(x:portrait ? 16 : 16+width/2.1+8,y:top,width:tableWidth,height:availableHeight)
         if !portrait,let summary {

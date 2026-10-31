@@ -190,11 +190,12 @@ final class FontSamplePreview: UIView, UITableViewDataSource {
         let expression=FittingMathExpressionView(equation:equation,answer:answer)
         expression.fillsSurface=true;expression.apply(settings:settings);ResultUI.pin(expression,in:area)
         appearanceUpdates.append { expression.apply(settings:$0) }
-        let coin=UIImageView(image:AppIcon.coins.image);coin.contentMode = .scaleAspectFit
+        let coin=UIImageView(image:AppIcon.coins.image?.withRenderingMode(.alwaysTemplate));coin.contentMode = .scaleAspectFit
+        coin.tintColor = palette.accent
         NSLayoutConstraint.activate([coin.widthAnchor.constraint(equalToConstant:40),coin.heightAnchor.constraint(equalToConstant:40)])
         let coins=row([coin,text("240",role:.catalogTrick)]);coins.alignment = .center;coins.spacing=4
         coins.translatesAutoresizingMaskIntoConstraints=false;area.addSubview(coins)
-        appearanceUpdates.append { coin.image=AppIcon.coins.image?.withTintColor(ThemePalette(settings:$0).accent,renderingMode:.alwaysOriginal) }
+        appearanceUpdates.append { coin.tintColor = ThemePalette(settings:$0).accent }
         let voice=button("",icon:.voiceOn,kind:.icon);voice.isHidden = !AppSpeech.isEnabled
         voice.setContentInsets(UIEdgeInsets(top:2,left:4,bottom:2,right:4),minimumHeight:32);area.addSubview(voice)
         NSLayoutConstraint.activate([
