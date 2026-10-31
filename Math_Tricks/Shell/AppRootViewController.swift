@@ -158,13 +158,7 @@ final class AppRootViewController: AppDuoViewController {
     }
 
     private func visibleScreenChanged(_ controller: UIViewController?) {
-        if let content = view as? AppDuoContentView {
-            let style: AppDuoContentView.CameraBandStyle = controller is MultiplayerViewController ? .vertical : .bottom
-            if content.cameraBandStyle != style {
-                content.cameraBandStyle = style
-                view.layoutIfNeeded()
-            }
-        }
+        if updateCameraBand(for: controller) { view.layoutIfNeeded() }
         if controller is MainMenuViewController || controller is TricksViewController || controller is ByHeartViewController || controller is GameModesViewController {
             AppGameCenter.shared.synchronize()
         }
@@ -215,7 +209,19 @@ final class AppRootViewController: AppDuoViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        updateCameraBand(for: screenNavigation.topViewController)
         updateBanner()
+    }
+
+    @discardableResult
+    private func updateCameraBand(for controller: UIViewController?) -> Bool {
+        guard let content = view as? AppDuoContentView else { return false }
+        let multiplayer = controller is MultiplayerViewController
+        let style: AppDuoContentView.CameraBandStyle = multiplayer
+            ? (view.bounds.width > view.bounds.height ? .vertical : .horizontal) : .bottom
+        guard content.cameraBandStyle != style else { return false }
+        content.cameraBandStyle = style
+        return true
     }
 
     private func startServices() {

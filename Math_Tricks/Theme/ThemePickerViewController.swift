@@ -204,15 +204,15 @@ final class ThemePickerViewController: AppDuoViewController, UIScrollViewDelegat
         background.frame=view.bounds
         let safe=view.appContentLayoutGuide.layoutFrame
         header.frame=CGRect(x:safe.minX,y:safe.minY,width:safe.width,height:AppDuoLayout.headerHeight(in:view))
-        let headerContent=AppDuoLayout.roundedCornerSafeFrame(in:header,
-            within:AppDuoLayout.unobscuredFrame(in:header,within:header.bounds))
+        let headerContent=AppDuoLayout.headerForegroundFrame(in:header)
         let headerRTL = header.effectiveUserInterfaceLayoutDirection == .rightToLeft
-        backButton.frame=CGRect(x:headerRTL ? headerContent.maxX-AppMetrics.headerBackWidth : headerContent.minX,y:headerContent.minY,width:AppMetrics.headerBackWidth,height:AppMetrics.headerHeight)
+        let headerRowY = headerContent.midY - AppMetrics.headerHeight / 2
+        backButton.frame=CGRect(x:headerRTL ? headerContent.maxX-AppMetrics.headerBackWidth : headerContent.minX,y:headerRowY,width:AppMetrics.headerBackWidth,height:AppMetrics.headerHeight)
         // AppLabel refreshes its role font on rotation; restore the compact header font before measuring.
         applyButton.label.font=ResultUI.font(13,settings:data.snapshot?.settings ?? AppSettings())
         let applyWidth=min(160,max(100,((applyButton.label.text ?? "") as NSString).size(withAttributes:[.font:applyButton.label.font!]).width+32))
-        applyButton.frame=CGRect(x:headerRTL ? headerContent.minX+8 : headerContent.maxX-applyWidth-8,y:headerContent.minY+(AppMetrics.headerHeight-48)/2,width:applyWidth,height:48)
-        nameLabel.frame=CGRect(x:headerContent.minX+(headerRTL ? applyWidth+20 : AppMetrics.headerBackWidth+4),y:headerContent.minY,width:max(1,headerContent.width-applyWidth-AppMetrics.headerBackWidth-24),height:AppMetrics.headerHeight)
+        applyButton.frame=CGRect(x:headerRTL ? headerContent.minX+8 : headerContent.maxX-applyWidth-8,y:headerContent.midY-24,width:applyWidth,height:48)
+        nameLabel.frame=CGRect(x:headerContent.minX+(headerRTL ? applyWidth+20 : AppMetrics.headerBackWidth+4),y:headerRowY,width:max(1,headerContent.width-applyWidth-AppMetrics.headerBackWidth-24),height:AppMetrics.headerHeight)
         stage.frame=CGRect(x:safe.minX,y:header.frame.maxY,width:safe.width,height:max(1,safe.maxY-header.frame.maxY))
         stage.layoutIfNeeded()
         synchronizeDuoPanes()

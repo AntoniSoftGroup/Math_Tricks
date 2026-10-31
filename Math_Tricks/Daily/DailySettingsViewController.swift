@@ -7,9 +7,17 @@ final class DailySettingsViewController:ThemedViewController {
     private var difficulty:AppButton!
     private var status:AppLabel!
     private var busy=false
+    private var originalColumn: UIStackView!
+    private var originalControls: [UIView] = []
+    private var reminderControls: [UIView] = []
+    private var split: AppDuoSplitView?
+    private var reminderColumn: UIStackView?
+    private var practiceColumn: UIStackView?
+    private var usesSplit = false
     override func buildContent(){
         view.accessibilityIdentifier="screen.dailySettings"
         let column=scrollStack()
+        originalColumn = column
         let row=UIStackView(arrangedSubviews:[label(MainText.text("enable_notifications")),enabled]);row.alignment = .center;column.addArrangedSubview(row)
         enabled.addTarget(self,action:#selector(enableChanged),for:.valueChanged)
         time.datePickerMode = .time;time.preferredDatePickerStyle = .wheels;time.addTarget(self,action:#selector(timeChanged),for:.valueChanged);column.addArrangedSubview(time)
@@ -18,7 +26,45 @@ final class DailySettingsViewController:ThemedViewController {
         column.addArrangedSubview(button(CatalogText.ui("select_tricks"),icon:.training){[weak self] in self?.router?.show(.selectDailyTricks)})
         column.addArrangedSubview(button(MainText.text("play_day_streak"),icon:.daily){[weak self] in self?.router?.show(.daily)})
         status=label("",role:.caption);status.textAlignment = .center;column.addArrangedSubview(status)
-        column.addArrangedSubview(button(CatalogText.ui("notification_system_settings"),icon:.settings,kind:.compact){if let url=URL(string:UIApplication.openSettingsURLString){UIApplication.shared.open(url)}})
+        let systemSettings = button(CatalogText.ui("notification_system_settings"),icon:.settings,kind:.compact){if let url=URL(string:UIApplication.openSettingsURLString){UIApplication.shared.open(url)}}
+        column.addArrangedSubview(systemSettings)
+        originalControls = column.arrangedSubviews
+        reminderControls = [row, time, systemSettings]
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let needsSplit = AppDuoGameArrangement.canUse(in: body)
+        guard needsSplit != usesSplit else { return }
+        usesSplit = needsSplit
+        if needsSplit, split == nil {
+            let panes = AppDuoSplitView()
+            panes.axis = view.bounds.width > view.bounds.height ? .horizontal : .vertical
+            panes.distribution = .fillEqually
+            panes.translatesAutoresizingMaskIntoConstraints = false
+            body.addSubview(panes)
+            NSLayoutConstraint.activate([
+                panes.topAnchor.constraint(equalTo: body.topAnchor), panes.bottomAnchor.constraint(equalTo: body.bottomAnchor),
+                panes.leadingAnchor.constraint(equalTo: body.leadingAnchor), panes.trailingAnchor.constraint(equalTo: body.trailingAnchor)
+            ])
+            let reminder = UIView(), practice = UIView()
+            panes.addArrangedSubview(reminder); panes.addArrangedSubview(practice)
+            reminderColumn = scrollStack(in: reminder)
+            practiceColumn = scrollStack(in: practice)
+            split = panes
+        }
+        for control in originalControls {
+            (control.superview as? UIStackView)?.removeArrangedSubview(control)
+            control.removeFromSuperview()
+        }
+        if needsSplit {
+            reminderControls.forEach { reminderColumn?.addArrangedSubview($0) }
+            originalControls.filter { control in !reminderControls.contains { $0 === control } }
+                .forEach { practiceColumn?.addArrangedSubview($0) }
+        } else {
+            originalControls.forEach { originalColumn.addArrangedSubview($0) }
+        }
+        originalColumn.superview?.isHidden = needsSplit
+        split?.isHidden = !needsSplit
     }
     override func update(_ progress:ProgressState?){
         if !busy {enabled.setOn(progress?.daily.notificationsEnabled==true,animated:false)}

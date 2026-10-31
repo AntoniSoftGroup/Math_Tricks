@@ -11,7 +11,7 @@ class AppDuoViewController: UIViewController {
 /// Shared camera-safe bounds. Folding does not resize an undivided screen;
 /// screens with two related panes opt into AppDuoSplitView themselves.
 final class AppDuoContentView: UIView {
-    enum CameraBandStyle { case bottom, vertical }
+    enum CameraBandStyle { case bottom, horizontal, vertical }
     let contentGuide = UILayoutGuide()
     private(set) var hasHinge = false
     var cameraBandStyle: CameraBandStyle = .bottom {
@@ -90,9 +90,11 @@ final class AppDuoContentView: UIView {
         let vertical = cameraBandStyle == .vertical && !band.isEmpty
         let left = vertical && band.midX < bounds.midX ? band.width : 0
         let right = vertical && band.midX >= bounds.midX ? band.width : 0
-        let bottom = max(safeAreaInsets.bottom, cameraBandStyle == .bottom ? band.height : 0)
+        let top = cameraBandStyle == .horizontal && !band.isEmpty && band.midY < bounds.midY ? band.height : 0
+        let cameraBottom = !vertical && !band.isEmpty && band.midY >= bounds.midY ? band.height : 0
+        let bottom = max(safeAreaInsets.bottom, cameraBottom)
         edges[0].constant = hasHinge ? left - safeAreaInsets.left : 0
-        edges[1].constant = hasHinge ? -safeAreaInsets.top : 0
+        edges[1].constant = hasHinge ? top - safeAreaInsets.top : 0
         edges[2].constant = hasHinge ? safeAreaInsets.right - right : 0
         edges[3].constant = hasHinge ? -(bottom - safeAreaInsets.bottom) : 0
         let regions = occlusions + divisions
@@ -216,6 +218,14 @@ enum AppDuoLayout {
         let cameras = occlusionFrames(in: view).map { $0.intersection(view.bounds) }
             .filter { !$0.isNull && !$0.isEmpty }
         guard let camera = cameras.max(by: { $0.width * $0.height < $1.width * $1.height }) else { return .zero }
+        if style == .horizontal {
+            if camera.midY < view.bounds.midY {
+                return CGRect(x: view.bounds.minX, y: view.bounds.minY,
+                              width: view.bounds.width, height: camera.maxY - view.bounds.minY)
+            }
+            return CGRect(x: view.bounds.minX, y: camera.minY,
+                          width: view.bounds.width, height: view.bounds.maxY - camera.minY)
+        }
         if camera.midX < view.bounds.midX {
             return CGRect(x: view.bounds.minX, y: view.bounds.minY,
                           width: camera.maxX - view.bounds.minX, height: view.bounds.height)
@@ -229,6 +239,20 @@ enum AppDuoLayout {
         let header = CGRect(x: view.bounds.minX, y: view.bounds.minY, width: view.bounds.width, height: minimum)
         let corners = roundedCornerInsets(in: view, within: header)
         return max(minimum + corners.top + corners.bottom, cameras.map { $0.maxY - view.bounds.minY }.max() ?? 0)
+    }
+
+    static func headerForegroundFrame(in view: UIView) -> CGRect {
+        let cameras = occlusionFrames(in: view).filter { camera in
+            guard let window = view.window else { return false }
+            return camera.intersects(view.bounds) && view.convert(camera, to: window).midY < window.bounds.midY
+        }
+        var frame = unobscuredFrame(in: view, within: view.bounds)
+        if let camera = cameras.max(by: { $0.width < $1.width }) {
+            let left = camera.midX < view.bounds.midX ? max(view.bounds.minX, camera.maxX) : view.bounds.minX
+            let right = camera.midX >= view.bounds.midX ? min(view.bounds.maxX, camera.minX) : view.bounds.maxX
+            frame = CGRect(x: left, y: view.bounds.minY, width: max(0, right - left), height: view.bounds.height)
+        }
+        return roundedCornerSafeFrame(in: view, within: frame)
     }
 
     /// Returns the largest unobscured part of this component, in local coordinates.
@@ -298,14 +322,8 @@ class AppDuoAvoidingView: UIView {
             }
             let corners = AppDuoLayout.roundedCornerInsets(in: self)
             cameraHeight?.constant = max(AppMetrics.headerHeight + corners.top + corners.bottom, cameras.map(\.maxY).max() ?? 0)
-            if let camera = cameras.max(by: { $0.width < $1.width }) {
-                // A top-left camera moves Back physically to its right in any language.
-                let left = camera.midX < bounds.midX ? max(bounds.minX, camera.maxX) : bounds.minX
-                let right = camera.midX >= bounds.midX ? min(bounds.maxX, camera.minX) : bounds.maxX
-                frame = CGRect(x: left, y: bounds.minY, width: max(0, right - left), height: bounds.height)
-            }
-        }
-        if extendsAcrossTopCamera || protectsRoundedCorners {
+            frame = AppDuoLayout.headerForegroundFrame(in: self)
+        } else if protectsRoundedCorners {
             frame = AppDuoLayout.roundedCornerSafeFrame(in: self, within: frame)
         }
         edges[0].constant = frame.minX - bounds.minX

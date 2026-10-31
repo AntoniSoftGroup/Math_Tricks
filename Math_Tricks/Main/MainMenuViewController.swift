@@ -295,7 +295,8 @@ final class MainMenuViewController: AppDuoViewController {
             right.contentInsetAdjustmentBehavior = .never
             let panes = AppDuoSplitView()
             panes.axis = landscape ? .horizontal : .vertical
-            panes.addArrangedSubview(left); panes.addArrangedSubview(right)
+            let orderedPanes = lastDuoInnerLayout && !landscape ? [right, left] : [left, right]
+            orderedPanes.forEach { panes.addArrangedSubview($0) }
             panes.distribution = .fillEqually
             pin(panes, in: layoutContainer)
             let paneSize = landscape

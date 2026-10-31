@@ -302,7 +302,7 @@ final class AppHeaderView: AppDuoAvoidingView {
             back.accessibilityIdentifier="navigationBack"
             insertSubview(back,at:0)
             NSLayoutConstraint.activate([
-                back.topAnchor.constraint(equalTo:content.topAnchor),back.leadingAnchor.constraint(equalTo:content.leadingAnchor),
+                back.centerYAnchor.constraint(equalTo:content.centerYAnchor),back.leadingAnchor.constraint(equalTo:content.leadingAnchor),
                 back.widthAnchor.constraint(equalToConstant:AppMetrics.headerBackWidth),
                 back.heightAnchor.constraint(equalToConstant:AppMetrics.headerHeight)
             ])

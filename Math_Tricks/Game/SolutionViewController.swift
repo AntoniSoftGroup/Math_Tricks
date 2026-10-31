@@ -29,6 +29,12 @@ final class SolutionViewController: ThemedViewController {
     private let column = UIStackView(), keyboard = UIStackView()
     private let workspace = AppDuoSplitView()
     private var toolsTop: NSLayoutConstraint!, backLeading: NSLayoutConstraint!, backDefaultLeading: NSLayoutConstraint!
+    private var toolsTrailing: NSLayoutConstraint!, diagramsTop: NSLayoutConstraint!
+    private var crumbsTrailing: NSLayoutConstraint!
+    private var columnLeading: NSLayoutConstraint!, columnTrailing: NSLayoutConstraint!
+    private var zoomDefaultTop: NSLayoutConstraint!, zoomDefaultCenter: NSLayoutConstraint!
+    private var zoomCameraTop: NSLayoutConstraint!, zoomCameraCenter: NSLayoutConstraint!
+    private let controlsHeader = AppDuoAvoidingView()
     private var schemeTools: UIStackView!
     private let leftPanel = UIStackView(), rightPanel = UIStackView()
     private let diagramPanel = UIView(), listPanel = UIView()
@@ -77,7 +83,9 @@ final class SolutionViewController: ThemedViewController {
         setHeaderHidden(true)
         column.axis = .vertical; column.spacing = 4; column.translatesAutoresizingMaskIntoConstraints = false
         body.addSubview(column)
-        NSLayoutConstraint.activate([column.topAnchor.constraint(equalTo:body.topAnchor),column.bottomAnchor.constraint(equalTo:body.bottomAnchor),column.leadingAnchor.constraint(equalTo:body.leadingAnchor,constant:5),column.trailingAnchor.constraint(equalTo:body.trailingAnchor,constant:-5)])
+        columnLeading = column.leadingAnchor.constraint(equalTo:body.leadingAnchor,constant:5)
+        columnTrailing = column.trailingAnchor.constraint(equalTo:body.trailingAnchor,constant:-5)
+        NSLayoutConstraint.activate([column.topAnchor.constraint(equalTo:body.topAnchor),column.bottomAnchor.constraint(equalTo:body.bottomAnchor),columnLeading,columnTrailing])
         method = AppCaptionIconButton(imageName: "ic_fx", iconSize: 24, captionSize: 9, bold: true, padding: 2) { [weak self] in
             guard let self else { return }; AppFeedback.shared.haptic(.step); variant = variant == 0 ? 1 : 0; generate()
         }
@@ -112,12 +120,21 @@ final class SolutionViewController: ThemedViewController {
         diagramScroll.contentInsetAdjustmentBehavior = .never
         diagramScroll.translatesAutoresizingMaskIntoConstraints = false; diagrams.translatesAutoresizingMaskIntoConstraints = false; diagrams.axis = .vertical
         diagrams.addArrangedSubview(scheme); diagrams.layer.addSublayer(nestingArrows); diagramScroll.addSubview(diagrams); diagramPanel.addSubview(diagramScroll)
+        diagramsTop = diagrams.topAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.topAnchor,constant:AppMetrics.headerHeight)
         NSLayoutConstraint.activate([diagramScroll.topAnchor.constraint(equalTo:diagramPanel.topAnchor),diagramScroll.bottomAnchor.constraint(equalTo:diagramPanel.bottomAnchor),diagramScroll.leadingAnchor.constraint(equalTo:diagramPanel.leadingAnchor),diagramScroll.trailingAnchor.constraint(equalTo:diagramPanel.trailingAnchor),
-            diagrams.topAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.topAnchor,constant:AppMetrics.headerHeight),diagrams.bottomAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.bottomAnchor,constant:-10),diagrams.leadingAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.leadingAnchor,constant:15),diagrams.trailingAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.trailingAnchor,constant:-15),diagrams.widthAnchor.constraint(equalTo:diagramScroll.frameLayoutGuide.widthAnchor,constant:-30),diagramPanel.heightAnchor.constraint(greaterThanOrEqualToConstant:AppMetrics.headerHeight)])
+            diagramsTop,diagrams.bottomAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.bottomAnchor,constant:-10),diagrams.leadingAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.leadingAnchor,constant:15),diagrams.trailingAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.trailingAnchor,constant:-15),diagrams.widthAnchor.constraint(equalTo:diagramScroll.frameLayoutGuide.widthAnchor,constant:-30),diagramPanel.heightAnchor.constraint(greaterThanOrEqualToConstant:AppMetrics.headerHeight)])
+        controlsHeader.extendsAcrossTopCamera = true
+        controlsHeader.translatesAutoresizingMaskIntoConstraints = false
+        diagramPanel.addSubview(controlsHeader)
+        let headerHeight = controlsHeader.heightAnchor.constraint(equalToConstant:AppMetrics.headerHeight)
+        headerHeight.priority = .defaultHigh
+        NSLayoutConstraint.activate([controlsHeader.topAnchor.constraint(equalTo:diagramPanel.topAnchor),
+            controlsHeader.leadingAnchor.constraint(equalTo:diagramPanel.leadingAnchor),
+            controlsHeader.trailingAnchor.constraint(equalTo:diagramPanel.trailingAnchor), headerHeight])
         diagramPanel.addSubview(schemeTools)
         toolsTop = schemeTools.topAnchor.constraint(equalTo: diagramPanel.topAnchor, constant: 5)
-        NSLayoutConstraint.activate([toolsTop,
-            schemeTools.trailingAnchor.constraint(equalTo: diagramPanel.trailingAnchor, constant: -10)])
+        toolsTrailing = schemeTools.trailingAnchor.constraint(equalTo: diagramPanel.trailingAnchor, constant: -10)
+        NSLayoutConstraint.activate([toolsTop, toolsTrailing])
         let zoomButtons = UIStackView(); zoomButtons.axis = .vertical; zoomButtons.spacing = 4; zoomButtons.translatesAutoresizingMaskIntoConstraints = false
         for (direction,icon) in [(1,AppIcon.zoomIn),(-1,AppIcon.zoomOut)] {
             let control = button("",icon:icon,kind:.icon) { [weak self] in self?.changeZoom(direction) }
@@ -130,17 +147,25 @@ final class SolutionViewController: ThemedViewController {
         back = button(CatalogText.ui("back"), icon: .back, kind: .icon) { [weak self] in AppFeedback.shared.haptic(.step); self?.router?.goBack() }
         back.setContentInsets(UIEdgeInsets(top:8,left:8,bottom:8,right:8),minimumHeight:AppMetrics.headerHeight)
         back.accessibilityIdentifier = "solution.back"
-        diagramPanel.addSubview(back)
-        backLeading = back.leftAnchor.constraint(equalTo:diagramPanel.leftAnchor)
+        controlsHeader.addSubview(back)
+        backLeading = back.leftAnchor.constraint(equalTo:controlsHeader.unobscuredLayoutGuide.leftAnchor)
         backDefaultLeading = back.leadingAnchor.constraint(equalTo:body.leadingAnchor)
         NSLayoutConstraint.activate([
-            back.topAnchor.constraint(equalTo:diagramPanel.topAnchor),backDefaultLeading,
+            back.centerYAnchor.constraint(equalTo:controlsHeader.unobscuredLayoutGuide.centerYAnchor),backDefaultLeading,
             back.widthAnchor.constraint(equalToConstant:AppMetrics.headerBackWidth),
             back.heightAnchor.constraint(equalToConstant:AppMetrics.headerHeight)
         ])
-        diagramPanel.addSubview(zoomButtons); diagramPanel.addSubview(crumbScroll)
+        diagramPanel.addSubview(zoomButtons); controlsHeader.addSubview(crumbScroll)
         crumbScroll.layer.cornerRadius = 12; crumbScroll.clipsToBounds = true
-        NSLayoutConstraint.activate([zoomButtons.topAnchor.constraint(equalTo:crumbScroll.bottomAnchor,constant:4),zoomButtons.centerXAnchor.constraint(equalTo:back.centerXAnchor),crumbScroll.topAnchor.constraint(equalTo:diagramPanel.topAnchor,constant:5),crumbScroll.leadingAnchor.constraint(equalTo:back.trailingAnchor,constant:8),crumbScroll.trailingAnchor.constraint(equalTo:schemeTools.leadingAnchor,constant:-8)])
+        zoomDefaultTop = zoomButtons.topAnchor.constraint(equalTo:crumbScroll.bottomAnchor,constant:4)
+        zoomDefaultCenter = zoomButtons.centerXAnchor.constraint(equalTo:back.centerXAnchor)
+        zoomCameraTop = zoomButtons.topAnchor.constraint(equalTo:diagramPanel.topAnchor)
+        zoomCameraCenter = zoomButtons.centerXAnchor.constraint(equalTo:diagramPanel.leftAnchor)
+        crumbsTrailing = crumbScroll.trailingAnchor.constraint(equalTo:controlsHeader.unobscuredLayoutGuide.trailingAnchor,constant:-78)
+        NSLayoutConstraint.activate([zoomDefaultTop,zoomDefaultCenter,
+            crumbScroll.centerYAnchor.constraint(equalTo:controlsHeader.unobscuredLayoutGuide.centerYAnchor),
+            crumbScroll.leadingAnchor.constraint(equalTo:back.trailingAnchor,constant:8),
+            crumbsTrailing])
         separate = button("",kind:.compact) { [weak self] in self?.openNested() }; separate.label.role = .detail
         separate.setContentInsets(UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16), minimumHeight: 44)
         separateContainer.axis = .vertical; separateContainer.alignment = .center; separateContainer.spacing = 2
@@ -344,20 +369,39 @@ final class SolutionViewController: ThemedViewController {
         listPanel.bringSubviewToFront(heightControls)
     }
     private func updateDuoCameraControls() {
+        columnLeading.constant = view.usesDuoLayout ? 0 : 5
+        columnTrailing.constant = view.usesDuoLayout ? 0 : -5
         let obstacles = AppDuoLayout.occlusionFrames(in: diagramPanel)
-        let backFrame = CGRect(x: 0, y: 0, width: AppMetrics.headerBackWidth, height: AppMetrics.headerHeight)
-        let leading = obstacles.filter { $0.intersects(backFrame) }.map(\.maxX).max() ?? 0
-        let toolsFrame = CGRect(x: diagramPanel.bounds.maxX - 70, y: 5, width: 60, height: max(1, schemeTools.bounds.height))
-        let top = obstacles.filter { $0.intersects(toolsFrame) }.map(\.maxY).max() ?? 5
+        let headerFrame = controlsHeader.convert(controlsHeader.bounds, to: diagramPanel)
+        let safe = AppDuoLayout.roundedCornerSafeFrame(in: diagramPanel, within: headerFrame)
+        // Tools stay on their physical side, below a camera when necessary.
+        // Back and breadcrumbs use the same foreground guide as every header.
+        let toolsMargin: CGFloat = view.usesDuoLayout ? 8 : 10
+        let toolsFrame = CGRect(x: safe.maxX - 60 - toolsMargin, y: safe.minY + 5, width: 60, height: max(1, schemeTools.bounds.height))
+        let top = max(safe.minY + 5, obstacles.filter { $0.intersects(toolsFrame) }.map(\.maxY).max() ?? 0)
         if view.usesDuoLayout {
             backDefaultLeading.isActive = false
             backLeading.isActive = true
-            if abs(backLeading.constant - leading) > 0.5 { backLeading.constant = leading }
         } else {
             backLeading.isActive = false
             backDefaultLeading.isActive = true
         }
         if abs(toolsTop.constant - top) > 0.5 { toolsTop.constant = top }
+        toolsTrailing.constant = safe.maxX - diagramPanel.bounds.maxX - toolsMargin
+        crumbsTrailing.constant = -60 - toolsMargin - 8
+        diagramsTop.constant = max(AppMetrics.headerHeight, headerFrame.height)
+        let leftCamera = obstacles.filter {
+            $0.intersects(headerFrame) && $0.midX < diagramPanel.bounds.midX
+        }.max { $0.width * $0.height < $1.width * $1.height }
+        if let camera = leftCamera {
+            zoomDefaultTop.isActive = false; zoomDefaultCenter.isActive = false
+            zoomCameraTop.constant = camera.maxY + 4
+            zoomCameraCenter.constant = min(max(18, camera.midX), max(18, diagramPanel.bounds.width - 18))
+            zoomCameraTop.isActive = true; zoomCameraCenter.isActive = true
+        } else {
+            zoomCameraTop.isActive = false; zoomCameraCenter.isActive = false
+            zoomDefaultTop.isActive = true; zoomDefaultCenter.isActive = true
+        }
     }
 
     private func updateNestingArrows() {

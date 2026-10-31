@@ -54,7 +54,7 @@ final class TricksViewController: ThemedViewController, UITableViewDataSource, U
                 button.setContentInsets(UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5))
                 button.label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
             }
-            let actions = UIStackView(arrangedSubviews: playButtons)
+            let actions = AppDuoStackView(arrangedSubviews: playButtons)
             actions.axis = .horizontal; actions.distribution = .fillEqually
             actions.isLayoutMarginsRelativeArrangement = true
             actions.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
@@ -99,7 +99,7 @@ final class TricksViewController: ThemedViewController, UITableViewDataSource, U
         counts.setContentHuggingPriority(.required, for: .horizontal)
         let compactWidth=counts.widthAnchor.constraint(equalToConstant:48)
         compactWidth.priority = .defaultHigh;compactWidth.isActive=true
-        let accessory = UIStackView(); accessory.axis = .horizontal; accessory.alignment = .center; accessory.spacing = 4
+        let accessory = AppDuoStackView(); accessory.axis = .horizontal; accessory.alignment = .center; accessory.spacing = 4
         accessory.isLayoutMarginsRelativeArrangement = true
         accessory.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 2, leading: 4, bottom: 2, trailing: 8)
         if !selectionOnly {
