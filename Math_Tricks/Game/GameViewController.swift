@@ -33,7 +33,7 @@ final class GameViewController: ThemedViewController, AppBackHandling {
     private var expressionView: FittingMathExpressionView!
     private var expressionPanel = UIView()
     private var utility = UIStackView()
-    private var utilityActions = UIStackView()
+    private var utilityActions = AppDuoStackView()
     private let ruleScroll = AppScrollView()
     private var lowerPanel = UIStackView()
     private var playing = UIView()
@@ -42,7 +42,7 @@ final class GameViewController: ThemedViewController, AppBackHandling {
     private var hasBuiltResults = false
     private var change: AppButton!
     private var move: AppButton!
-    private let moveRow = UIStackView()
+    private let moveRow = AppDuoStackView()
     private var voice: AppButton!
     private var replayVoice: AppButton!
     private var booleanProposal: AppLabel!

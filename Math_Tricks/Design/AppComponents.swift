@@ -51,7 +51,7 @@ final class AppButton: UIControl {
         background.isUserInteractionEnabled = false
         background.translatesAutoresizingMaskIntoConstraints = false
         addSubview(background)
-        let row = UIStackView();contentRow=row
+        let row = AppDuoStackView();contentRow=row
         row.axis = .horizontal
         row.alignment = .center
         row.spacing = 8

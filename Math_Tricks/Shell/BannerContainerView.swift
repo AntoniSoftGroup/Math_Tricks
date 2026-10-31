@@ -16,6 +16,7 @@ final class BannerContainerView: AppDuoAvoidingView, BannerViewDelegate {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        protectsRoundedCorners = true
         backgroundColor = UIColor(white: 0.94, alpha: 1)
         clipsToBounds = true
         accessibilityIdentifier = "sharedBannerContainer"
@@ -49,7 +50,9 @@ final class BannerContainerView: AppDuoAvoidingView, BannerViewDelegate {
             collapse(); return
         }
         // Use Google's adaptive size directly so the container matches the requested ad.
-        let width = floor(usesDuoLayout ? unobscuredLayoutGuide.layoutFrame.width : bounds.width)
+        let foreground = AppDuoLayout.roundedCornerSafeFrame(in: self,
+            within: AppDuoLayout.unobscuredFrame(in: self, within: bounds))
+        let width = floor(usesDuoLayout ? foreground.width : bounds.width)
         let isLandscape = usesDuoLayout
             ? presenter.view.bounds.width > presenter.view.bounds.height
             : (presenter.view.window?.windowScene?.interfaceOrientation.isLandscape
@@ -123,7 +126,8 @@ final class BannerContainerView: AppDuoAvoidingView, BannerViewDelegate {
             ]
             NSLayoutConstraint.activate(hostedConstraints)
         }
-        setHeight(height)
+        let corners = AppDuoLayout.roundedCornerInsets(in: self)
+        setHeight(height + corners.top + corners.bottom)
     }
 
     /// Keeps the hosted view available for later reuse, without reserving a gap.

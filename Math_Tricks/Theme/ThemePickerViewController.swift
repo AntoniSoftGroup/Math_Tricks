@@ -204,7 +204,8 @@ final class ThemePickerViewController: AppDuoViewController, UIScrollViewDelegat
         background.frame=view.bounds
         let safe=view.appContentLayoutGuide.layoutFrame
         header.frame=CGRect(x:safe.minX,y:safe.minY,width:safe.width,height:AppDuoLayout.headerHeight(in:view))
-        let headerContent=AppDuoLayout.unobscuredFrame(in:header,within:header.bounds)
+        let headerContent=AppDuoLayout.roundedCornerSafeFrame(in:header,
+            within:AppDuoLayout.unobscuredFrame(in:header,within:header.bounds))
         let headerRTL = header.effectiveUserInterfaceLayoutDirection == .rightToLeft
         backButton.frame=CGRect(x:headerRTL ? headerContent.maxX-AppMetrics.headerBackWidth : headerContent.minX,y:headerContent.minY,width:AppMetrics.headerBackWidth,height:AppMetrics.headerHeight)
         // AppLabel refreshes its role font on rotation; restore the compact header font before measuring.

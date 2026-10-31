@@ -22,7 +22,10 @@ Android, `ios-legacy`, архивы ZIP и проект AppStoreScreenshots не
 При камере внизу общий контейнер резервирует полосу на всю ширину от верхней
 границы системной области камеры до нижнего края дисплея и закрашивает её чёрным.
 Интерфейс и общий рекламный баннер заканчиваются над полосой. Её цвет не зависит
-от темы. Перевёрнутый портрет разрешён контроллерами только на Duo; в декларации
+от темы. В игре вдвоём вместо нижней полосы резервируется вертикальная полоса
+на всю высоту на стороне камеры — как в портрете, так и в ландшафте. Обе панели
+игроков, результаты и рекламный баннер сдвигаются общим корневым контейнером.
+Перевёрнутый портрет разрешён контроллерами только на Duo; в декларации
 приложения добавлена соответствующая ориентация.
 
 Координаты берутся из активных Reserved Regions, в локальных координатах view.
@@ -82,7 +85,7 @@ Android, `ios-legacy`, архивы ZIP и проект AppStoreScreenshots не
 | `Math_Tricks/Multiplayer/MultiplayerViewController.swift` | `buildContent()`, `synchronizeDuoPanes()`, `viewDidLayoutSubviews()`, `render()`: системные пары игроков и результатов, возврат в обычную компоновку, видимость и интерактивность результатов. |
 | `Math_Tricks/Multiplayer/MultiplayerSetupViewController.swift` | `buildContent()`, `synchronizeDuoPanes()`, `viewDidLayoutSubviews()`: системная пара длины/ввода; кнопки запуска входят во вторую панель; обычная компоновка восстанавливается на внешнем дисплее. |
 | `Math_Tricks/Settings/TextAndKeypadViewController.swift` | `buildContent()`, `buildKeypads()`, `synchronizeDuoPanes()`, `viewDidLayoutSubviews()`: системная пара образцов/регуляторов шрифта и двух вариантов клавиатуры; отдельная прокрутка внутри панелей. |
-| `Math_Tricks/Multiplayer/PlayerInputBoard.swift` | `init(frame:)`: содержимое игрока привязано к локальной области без камеры. |
+| `Math_Tricks/Multiplayer/PlayerInputBoard.swift` | `init(frame:)`: камера обходится корневым контейнером сразу для обоих игроков; локальное сжатие отдельной панели убрано. Поля строк заголовка не увеличиваются от safe area; элементы информационной панели защищены от скруглений внутреннего экрана. |
 | `Math_Tricks/Main/MainMenuViewController.swift` | Общая база Duo; `viewDidLoad()`: полная шапка. `viewDidLayoutSubviews()`, `rebuildLayout(landscape:)`: системная пара на внутреннем экране в обеих ориентациях, включая полностью раскрытый портрет. |
 | `Math_Tricks/Onboarding/AgeScreenViewController.swift` | Общая база Duo; `viewDidLoad()`: полная шапка; `supportedInterfaceOrientations`: ориентации Duo. |
 | `Math_Tricks/Shell/AppRootViewController.swift` | Общая база Duo; `loadView()`: общий контейнер камеры без повторного разделения корня; `prefersStatusBarHidden`: статус-бар скрыт на Duo; `isolated deinit`: очистка на главном actor. |
@@ -146,3 +149,55 @@ AppStoreScreenshots не изменены.
 
 Компиляция проверяет общий код в Xcode 26.6/SDK 26.5. Фактическое скрытие значков
 и высоту шапки Duo необходимо проверить при сборке SDK 27.1 или новее.
+
+## Общая полоса камеры, закругления и поля кнопок
+
+В этой правке изменён только `ios/Math_Tricks`. Android, `ios-legacy`, архивы ZIP
+и AppStoreScreenshots не изменялись.
+
+### Результат анализа
+
+- Раньше `PlayerInputBoard` отдельно выбирал свободный прямоугольник вокруг
+  камеры. Поэтому при пересечении камеры только одним игроком менялась лишь его
+  панель. Теперь камера резервирует общую вертикальную полосу у физического левого
+  или правого края окна. Полоса чёрная во всех темах и остаётся вертикальной при
+  обоих направлениях интерфейса. Ориентация и положение камеры берутся из текущих
+  координат Reserved Regions; ширина не прибавляется к системному отступу второй раз.
+- В `GameViewController` строки `utilityActions` и `moveRow` используют явные поля
+  и `isLayoutMarginsRelativeArrangement`. UIKit по умолчанию может расширять их
+  полями safe area. На Duo `AppDuoStackView` отключает такое расширение: заданные
+  поля кнопок сохраняются, а камеру и края учитывает внешний контейнер. То же
+  правило действует для содержимого общих кнопок и строк информации игроков.
+- В `MainMenuViewController.buildMenu(in:size:includesSecondaryActions:)` все
+  основные кнопки, включая «Два игрока», размещаются одним стеком с одинаковыми
+  боковыми ограничениями. Отдельного камерного отступа у этой кнопки нет; её
+  собственные размеры и общие поля меню не менялись.
+- На внутреннем экране элементы шапок и реклама защищаются safe area текущего
+  окна и минимальным полем 16 pt от физического края. Применяется больший отступ,
+  а не сумма двух отступов. Отступы считаются в локальных координатах: уже
+  отодвинутый элемент и внутренний край между панелями не получают повторного поля.
+  Фоны шапок сохраняют полную область. Прокручиваемая шапка, ушедшая за край окна,
+  не увеличивает высоту вслед за safe area.
+- Размер рекламы запрашивается по фактической защищённой ширине. Вертикальные
+  защитные поля при необходимости включаются в высоту контейнера, сохраняя высоту
+  самого баннера. Расчёт ширины доступен и при первоначально свёрнутом контейнере.
+
+### Файлы и методы этой правки
+
+| Файл | Изменение |
+|---|---|
+| `Math_Tricks/Design/AppDuoLayout.swift` | `AppDuoContentView.cameraBandStyle`, `updateConstraints()`, `layoutSubviews()`: общий боковой резерв и чёрная полоса. `AppDuoLayout.cameraBandFrame(in:style:)`: физическая сторона камеры. `isInnerDisplay(in:)`, `roundedCornerInsets(in:within:)`, `roundedCornerSafeFrame(in:within:)`, `headerHeight(in:minimum:)`: безопасные края внутреннего дисплея. `AppDuoAvoidingView.updateConstraints()`: отдельные правила камеры и закруглений. `AppDuoStackView.layoutSubviews()`: исключение повторных полей safe area только на Duo, восстановление исходного поведения вне Duo. |
+| `Math_Tricks/Shell/AppRootViewController.swift` | `visibleScreenChanged(_:)`: вертикальная полоса на всём окне при игре вдвоём; возврат к обычной нижней полосе при выходе. |
+| `Math_Tricks/Multiplayer/PlayerInputBoard.swift` | `init(frame:)`: убран локальный сдвиг всей панели от камеры; строки информации используют явные поля, информационная область защищена от скруглений. |
+| `Math_Tricks/Game/GameViewController.swift` | `utilityActions`, `moveRow`: стеки с явными полями без повторного отступа камеры. |
+| `Math_Tricks/Design/AppComponents.swift` | `AppButton.init(...)`: одинаковая политика полей внутренних строк всех кнопок на Duo. |
+| `Math_Tricks/Shell/BannerContainerView.swift` | `init(frame:)`, `update(presenter:visible:canRequestAds:)`, `setContent(_:height:)`: безопасные края, запрос по доступной ширине и корректная высота баннера. |
+| `Math_Tricks/Theme/ThemePickerViewController.swift` | `viewDidLayoutSubviews()`: ручная шапка использует ту же защиту от закруглений. |
+| `docs/IPHONE_DUO_LAYOUT.md` | Обновлены правила полосы, результаты анализа и перечень методов. |
+
+Компиляция — Xcode 26.6 / SDK 26.5, Debug для generic iOS, без подписи, установки,
+запуска и тестов. Ветка Duo требует SDK 27.1+; полосу камеры, закругления и реальные
+отступы нужно визуально проверить на соответствующем устройстве или симуляторе.
+
+Основание: [UIKit — insetsLayoutMarginsFromSafeArea](https://developer.apple.com/documentation/uikit/uiview/insetslayoutmarginsfromsafearea),
+[UIKit — safeAreaInsets](https://developer.apple.com/documentation/uikit/uiview/safeareainsets).

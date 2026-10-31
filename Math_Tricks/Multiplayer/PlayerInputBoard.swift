@@ -1,11 +1,12 @@
 import UIKit
 
-final class PlayerInputBoard:AppDuoAvoidingView {
+final class PlayerInputBoard:UIView {
     var onAction:((PlayerAction)->Void)?
     var onBack:(()->Void)?
     private lazy var backButton = AppButton(title:CatalogText.ui("back"),icon:.back,kind:.icon) { [weak self] in self?.onBack?() }
     private let content=UIStackView()
     private let informationPanel=UIStackView()
+    private let informationHost=AppDuoAvoidingView()
     private var keyboardHeight:NSLayoutConstraint?
     private let title=AppLabel(.trickName)
     private let count=AppLabel(.trickName)
@@ -34,19 +35,28 @@ final class PlayerInputBoard:AppDuoAvoidingView {
         super.init(frame:frame)
         let content=self.content;content.axis = .vertical;content.spacing=0
         content.translatesAutoresizingMaskIntoConstraints=false;addSubview(content)
-        let information=UIStackView(arrangedSubviews:[title,count]);information.alignment = .center;information.spacing=4
+        let information=AppDuoStackView(arrangedSubviews:[title,count]);information.alignment = .center;information.spacing=4
         title.numberOfLines=1;count.numberOfLines=1;count.textAlignment = .right;level.numberOfLines=1;level.textAlignment = .right
         title.setContentHuggingPriority(.defaultLow,for:.horizontal)
         informationPanel.axis = .vertical;informationPanel.spacing=0
         informationPanel.addArrangedSubview(information);informationPanel.addArrangedSubview(expression)
-        content.addArrangedSubview(informationPanel)
+        informationHost.avoidsCameraOcclusions = false
+        informationHost.protectsRoundedCorners = true
+        content.addArrangedSubview(informationHost)
+        informationPanel.translatesAutoresizingMaskIntoConstraints = false
+        informationHost.addSubview(informationPanel)
+        let informationGuide = informationHost.unobscuredLayoutGuide
+        NSLayoutConstraint.activate([
+            informationPanel.topAnchor.constraint(equalTo:informationGuide.topAnchor),informationPanel.bottomAnchor.constraint(equalTo:informationGuide.bottomAnchor),
+            informationPanel.leadingAnchor.constraint(equalTo:informationGuide.leadingAnchor),informationPanel.trailingAnchor.constraint(equalTo:informationGuide.trailingAnchor)
+        ])
         backButton.isHidden = true
         backButton.setContentInsets(UIEdgeInsets(top:8,left:8,bottom:8,right:8),minimumHeight:48)
         informationPanel.addSubview(backButton)
         NSLayoutConstraint.activate([backButton.leadingAnchor.constraint(equalTo:informationPanel.leadingAnchor,constant:14),
             backButton.centerYAnchor.constraint(equalTo:informationPanel.centerYAnchor),backButton.widthAnchor.constraint(equalToConstant:48),backButton.heightAnchor.constraint(equalToConstant:48)])
         information.layoutMargins=UIEdgeInsets(top:0,left:14,bottom:0,right:14);information.isLayoutMarginsRelativeArrangement=true
-        let scoreRow=UIStackView(arrangedSubviews:[score,level]);scoreRow.alignment = .center;score.setContentHuggingPriority(.defaultLow,for:.horizontal);informationPanel.addArrangedSubview(scoreRow)
+        let scoreRow=AppDuoStackView(arrangedSubviews:[score,level]);scoreRow.alignment = .center;score.setContentHuggingPriority(.defaultLow,for:.horizontal);informationPanel.addArrangedSubview(scoreRow)
         scoreRow.layoutMargins=UIEdgeInsets(top:0,left:14,bottom:0,right:14);scoreRow.isLayoutMarginsRelativeArrangement=true
         keyboard.axis = .vertical;keyboard.spacing=0
         keys.axis = .vertical;keys.spacing=0;keys.distribution = .fillEqually
@@ -64,8 +74,8 @@ final class PlayerInputBoard:AppDuoAvoidingView {
             booleans.addArrangedSubview(key(CatalogText.ui(value ? "true":"false"),icon:value ? .correct:.incorrect){[weak self] in self?.onAction?(.boolean(value))})
         }
         NSLayoutConstraint.activate([
-            content.topAnchor.constraint(equalTo:unobscuredLayoutGuide.topAnchor),content.bottomAnchor.constraint(equalTo:unobscuredLayoutGuide.bottomAnchor),
-            content.leadingAnchor.constraint(equalTo:unobscuredLayoutGuide.leadingAnchor),content.trailingAnchor.constraint(equalTo:unobscuredLayoutGuide.trailingAnchor),
+            content.topAnchor.constraint(equalTo:topAnchor),content.bottomAnchor.constraint(equalTo:bottomAnchor),
+            content.leadingAnchor.constraint(equalTo:leadingAnchor),content.trailingAnchor.constraint(equalTo:trailingAnchor),
         ])
         let height=keyboard.heightAnchor.constraint(equalToConstant:0);height.priority = .init(999);height.isActive=true;keyboardHeight=height
     }

@@ -158,6 +158,13 @@ final class AppRootViewController: AppDuoViewController {
     }
 
     private func visibleScreenChanged(_ controller: UIViewController?) {
+        if let content = view as? AppDuoContentView {
+            let style: AppDuoContentView.CameraBandStyle = controller is MultiplayerViewController ? .vertical : .bottom
+            if content.cameraBandStyle != style {
+                content.cameraBandStyle = style
+                view.layoutIfNeeded()
+            }
+        }
         if controller is MainMenuViewController || controller is TricksViewController || controller is ByHeartViewController || controller is GameModesViewController {
             AppGameCenter.shared.synchronize()
         }

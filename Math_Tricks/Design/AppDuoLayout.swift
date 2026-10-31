@@ -11,8 +11,15 @@ class AppDuoViewController: UIViewController {
 /// Shared camera-safe bounds. Folding does not resize an undivided screen;
 /// screens with two related panes opt into AppDuoSplitView themselves.
 final class AppDuoContentView: UIView {
+    enum CameraBandStyle { case bottom, vertical }
     let contentGuide = UILayoutGuide()
     private(set) var hasHinge = false
+    var cameraBandStyle: CameraBandStyle = .bottom {
+        didSet {
+            guard oldValue != cameraBandStyle else { return }
+            invalidateDuoLayout(in: self)
+        }
+    }
     var onDuoAvailabilityChange: ((Bool) -> Void)? {
         didSet { onDuoAvailabilityChange?(hasHinge) }
     }
@@ -79,10 +86,14 @@ final class AppDuoContentView: UIView {
     override func updateConstraints() {
         let occlusions = AppDuoLayout.occlusionFrames(in: self)
         let divisions = AppDuoLayout.divisionFrames(in: self)
-        let bottom = max(safeAreaInsets.bottom, AppDuoLayout.bottomCameraInset(in: self))
-        edges[0].constant = hasHinge ? -safeAreaInsets.left : 0
+        let band = AppDuoLayout.cameraBandFrame(in: self, style: cameraBandStyle)
+        let vertical = cameraBandStyle == .vertical && !band.isEmpty
+        let left = vertical && band.midX < bounds.midX ? band.width : 0
+        let right = vertical && band.midX >= bounds.midX ? band.width : 0
+        let bottom = max(safeAreaInsets.bottom, cameraBandStyle == .bottom ? band.height : 0)
+        edges[0].constant = hasHinge ? left - safeAreaInsets.left : 0
         edges[1].constant = hasHinge ? -safeAreaInsets.top : 0
-        edges[2].constant = hasHinge ? safeAreaInsets.right : 0
+        edges[2].constant = hasHinge ? safeAreaInsets.right - right : 0
         edges[3].constant = hasHinge ? -(bottom - safeAreaInsets.bottom) : 0
         let regions = occlusions + divisions
         if previousRegions != regions {
@@ -95,9 +106,9 @@ final class AppDuoContentView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        let inset = AppDuoLayout.bottomCameraInset(in: self)
-        cameraBar.frame = CGRect(x: bounds.minX, y: bounds.maxY - inset, width: bounds.width, height: inset)
-        cameraBar.isHidden = inset <= 0
+        let band = AppDuoLayout.cameraBandFrame(in: self, style: cameraBandStyle)
+        cameraBar.frame = band
+        cameraBar.isHidden = band.isEmpty
         bringSubviewToFront(cameraBar)
     }
 
@@ -124,6 +135,49 @@ extension UIView {
 }
 
 enum AppDuoLayout {
+    static func isInnerDisplay(in view: UIView) -> Bool {
+        guard view.usesDuoLayout, let window = view.window else { return false }
+        #if MATH_TRICKS_DUO_SDK
+        if #available(iOS 27.1, *) {
+            return !window.reservedRegions(kind: .division, options: .includeInactive).isEmpty
+        }
+        #endif
+        return false
+    }
+
+    /// Only foreground elements at the actual display edge need corner insets.
+    /// A scrolling header outside that edge must not grow to chase the safe area.
+    static func roundedCornerInsets(in view: UIView, within frame: CGRect? = nil) -> UIEdgeInsets {
+        guard isInnerDisplay(in: view), let window = view.window else { return .zero }
+        let frame = frame ?? view.bounds
+        // Keep the app's normal 16 pt margin when the system reports no edge
+        // inset; larger system safe areas take precedence without adding twice.
+        let safeWindow = window.safeAreaLayoutGuide.layoutFrame.intersection(
+            window.bounds.insetBy(dx: AppMetrics.margin, dy: AppMetrics.margin))
+        let safe = view.convert(safeWindow, from: window)
+        let display = view.convert(window.bounds, from: window)
+        // A collapsed banner still needs its protected width before requesting
+        // an adaptive ad, so include a zero-height frame on the display edge.
+        guard !safe.isEmpty, frame.width > 0,
+              frame.maxX > display.minX, frame.minX < display.maxX,
+              frame.maxY >= display.minY, frame.minY <= display.maxY else { return .zero }
+        let tolerance = 1 / max(1, view.traitCollection.displayScale)
+        return UIEdgeInsets(
+            top: frame.minY >= display.minY - tolerance ? max(0, safe.minY - frame.minY) : 0,
+            left: frame.minX >= display.minX - tolerance ? max(0, safe.minX - frame.minX) : 0,
+            bottom: frame.maxY <= display.maxY + tolerance ? max(0, frame.maxY - safe.maxY) : 0,
+            right: frame.maxX <= display.maxX + tolerance ? max(0, frame.maxX - safe.maxX) : 0
+        )
+    }
+
+    static func roundedCornerSafeFrame(in view: UIView, within frame: CGRect) -> CGRect {
+        let insets = roundedCornerInsets(in: view, within: frame)
+        return CGRect(x: min(frame.maxX, frame.minX + insets.left),
+                      y: min(frame.maxY, frame.minY + insets.top),
+                      width: max(0, frame.width - insets.left - insets.right),
+                      height: max(0, frame.height - insets.top - insets.bottom))
+    }
+
     /// Active folds only; a flat display keeps the existing layout and spacing.
     static func divisionFrames(in view: UIView) -> [CGRect] {
         guard view.usesDuoLayout else { return [] }
@@ -153,9 +207,28 @@ enum AppDuoLayout {
         }.map { max(0, view.bounds.maxY - $0.minY) }.max() ?? 0
     }
 
+    static func cameraBandFrame(in view: UIView, style: AppDuoContentView.CameraBandStyle) -> CGRect {
+        guard view.usesDuoLayout else { return .zero }
+        if style == .bottom {
+            let inset = bottomCameraInset(in: view)
+            return CGRect(x: view.bounds.minX, y: view.bounds.maxY - inset, width: view.bounds.width, height: inset)
+        }
+        let cameras = occlusionFrames(in: view).map { $0.intersection(view.bounds) }
+            .filter { !$0.isNull && !$0.isEmpty }
+        guard let camera = cameras.max(by: { $0.width * $0.height < $1.width * $1.height }) else { return .zero }
+        if camera.midX < view.bounds.midX {
+            return CGRect(x: view.bounds.minX, y: view.bounds.minY,
+                          width: camera.maxX - view.bounds.minX, height: view.bounds.height)
+        }
+        return CGRect(x: camera.minX, y: view.bounds.minY,
+                      width: view.bounds.maxX - camera.minX, height: view.bounds.height)
+    }
+
     static func headerHeight(in view: UIView, minimum: CGFloat = AppMetrics.headerHeight) -> CGFloat {
         let cameras = occlusionFrames(in: view).filter { $0.minY <= view.bounds.minY + minimum && $0.midY < view.bounds.midY }
-        return max(minimum, cameras.map { $0.maxY - view.bounds.minY }.max() ?? 0)
+        let header = CGRect(x: view.bounds.minX, y: view.bounds.minY, width: view.bounds.width, height: minimum)
+        let corners = roundedCornerInsets(in: view, within: header)
+        return max(minimum + corners.top + corners.bottom, cameras.map { $0.maxY - view.bounds.minY }.max() ?? 0)
     }
 
     /// Returns the largest unobscured part of this component, in local coordinates.
@@ -186,6 +259,8 @@ class AppDuoAvoidingView: UIView {
     private var edges: [NSLayoutConstraint] = []
     private var previousBounds = CGRect.null
     var extendsAcrossTopCamera = false
+    var protectsRoundedCorners = false
+    var avoidsCameraOcclusions = true
     private var cameraHeight: NSLayoutConstraint?
 
     override init(frame: CGRect) {
@@ -211,7 +286,7 @@ class AppDuoAvoidingView: UIView {
     }
 
     override func updateConstraints() {
-        var frame = AppDuoLayout.unobscuredFrame(in: self, within: bounds)
+        var frame = avoidsCameraOcclusions ? AppDuoLayout.unobscuredFrame(in: self, within: bounds) : bounds
         if extendsAcrossTopCamera {
             if cameraHeight == nil {
                 cameraHeight = heightAnchor.constraint(greaterThanOrEqualToConstant: AppMetrics.headerHeight)
@@ -221,7 +296,8 @@ class AppDuoAvoidingView: UIView {
                 guard let window else { return false }
                 return camera.intersects(bounds) && convert(camera, to: window).midY < window.bounds.midY
             }
-            cameraHeight?.constant = max(AppMetrics.headerHeight, cameras.map(\.maxY).max() ?? 0)
+            let corners = AppDuoLayout.roundedCornerInsets(in: self)
+            cameraHeight?.constant = max(AppMetrics.headerHeight + corners.top + corners.bottom, cameras.map(\.maxY).max() ?? 0)
             if let camera = cameras.max(by: { $0.width < $1.width }) {
                 // A top-left camera moves Back physically to its right in any language.
                 let left = camera.midX < bounds.midX ? max(bounds.minX, camera.maxX) : bounds.minX
@@ -229,10 +305,30 @@ class AppDuoAvoidingView: UIView {
                 frame = CGRect(x: left, y: bounds.minY, width: max(0, right - left), height: bounds.height)
             }
         }
+        if extendsAcrossTopCamera || protectsRoundedCorners {
+            frame = AppDuoLayout.roundedCornerSafeFrame(in: self, within: frame)
+        }
         edges[0].constant = frame.minX - bounds.minX
         edges[1].constant = frame.minY - bounds.minY
         edges[2].constant = frame.maxX - bounds.maxX
         edges[3].constant = frame.maxY - bounds.maxY
         super.updateConstraints()
+    }
+}
+
+/// Explicit app padding must not expand into a second full-height camera rail.
+/// Camera avoidance and corner protection belong to the surrounding container.
+final class AppDuoStackView: UIStackView {
+    private var originalSafeAreaMargins: Bool?
+
+    override func layoutSubviews() {
+        if usesDuoLayout {
+            if originalSafeAreaMargins == nil { originalSafeAreaMargins = insetsLayoutMarginsFromSafeArea }
+            if insetsLayoutMarginsFromSafeArea { insetsLayoutMarginsFromSafeArea = false }
+        } else if let original = originalSafeAreaMargins {
+            insetsLayoutMarginsFromSafeArea = original
+            originalSafeAreaMargins = nil
+        }
+        super.layoutSubviews()
     }
 }
