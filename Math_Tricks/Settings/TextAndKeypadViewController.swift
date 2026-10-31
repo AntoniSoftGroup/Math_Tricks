@@ -25,11 +25,23 @@ final class TextAndKeypadViewController:ThemedViewController {
     private let fontLayout=UIStackView(),fontSidebar=UIStackView()
     private let fontControlsScroll=AppScrollView(),fontPreviewHost=UIView()
     private var fontLandscape: Bool?
+    private let duoFontLayout = AppDuoSplitView(), duoKeypads = AppDuoSplitView()
+    private let keypadScroll = AppScrollView()
+    private var keypadWidthLimits: [NSLayoutConstraint] = []
+    private var duoKeypadConstraints: [NSLayoutConstraint] = []
+    private var usesDuoPanes = false
     init(fontMode:Bool,router:AppRouter,data:AppDataStore){self.fontMode=fontMode;super.init(title:CatalogText.ui(fontMode ? "font_size":"numpad"),router:router,data:data)}
     isolated deinit { fontPreviewTask?.cancel() }
     required init?(coder:NSCoder){fatalError("init(coder:) has not been implemented")}
     override func buildContent(){
         if fontMode {buildFont()} else {buildKeypads()}
+        let pair = fontMode ? duoFontLayout : duoKeypads
+        pair.translatesAutoresizingMaskIntoConstraints = false;pair.isHidden = true;body.addSubview(pair)
+        pair.onArrangementChange = { [weak self] in self?.view.setNeedsLayout() }
+        NSLayoutConstraint.activate([
+            pair.topAnchor.constraint(equalTo:body.topAnchor,constant:8),pair.bottomAnchor.constraint(equalTo:body.bottomAnchor,constant:-8),
+            pair.leadingAnchor.constraint(equalTo:body.leadingAnchor,constant:fontMode ? 16 : 0),pair.trailingAnchor.constraint(equalTo:body.trailingAnchor,constant:fontMode ? -16 : 0)
+        ])
     }
     private func buildFont(){
         reset=button(MainText.text("font_size_reset"),kind:.compact){[weak self] in self?.resetFont()}
@@ -76,7 +88,7 @@ final class TextAndKeypadViewController:ThemedViewController {
         NSLayoutConstraint.activate([column.topAnchor.constraint(equalTo:body.topAnchor,constant:8),column.bottomAnchor.constraint(equalTo:body.bottomAnchor,constant:-8),column.leadingAnchor.constraint(equalTo:body.leadingAnchor,constant:16),column.trailingAnchor.constraint(equalTo:body.trailingAnchor,constant:-16)])
     }
     private func buildKeypads(){
-        let scroll = AppScrollView(); scroll.translatesAutoresizingMaskIntoConstraints = false; body.addSubview(scroll)
+        let scroll = keypadScroll; scroll.translatesAutoresizingMaskIntoConstraints = false; body.addSubview(scroll)
         let host = UIView(); host.translatesAutoresizingMaskIntoConstraints = false; scroll.addSubview(host)
         previews.axis = .vertical;previews.alignment = .center;previews.spacing=12
         previews.translatesAutoresizingMaskIntoConstraints = false; host.addSubview(previews)
@@ -108,7 +120,8 @@ final class TextAndKeypadViewController:ThemedViewController {
             keypadSelections.append(select)
             let row=UIStackView(arrangedSubviews:[keyboard,select]);row.axis = .horizontal;row.alignment = .center
             card.content.addArrangedSubview(row);previews.addArrangedSubview(card)
-            card.widthAnchor.constraint(lessThanOrEqualTo:previews.widthAnchor).isActive=true
+            let widthLimit = card.widthAnchor.constraint(lessThanOrEqualTo:previews.widthAnchor)
+            widthLimit.isActive=true;keypadWidthLimits.append(widthLimit)
             let preferred=card.widthAnchor.constraint(equalToConstant:250);preferred.priority = .defaultHigh;preferred.isActive=true
         }
     }
@@ -122,10 +135,11 @@ final class TextAndKeypadViewController:ThemedViewController {
     }
     override func viewDidLayoutSubviews(){
         super.viewDidLayoutSubviews()
+        synchronizeDuoPanes()
         if !fontMode {previews.axis=view.bounds.width>view.bounds.height ? .horizontal:.vertical;previews.distribution=previews.axis == .horizontal ? .fillEqually:.fill}
         else if view.bounds.width > 0 {
             let landscape=view.bounds.width>view.bounds.height
-            if fontLandscape != landscape {
+            if !usesDuoPanes, fontLandscape != landscape {
                 fontLandscape=landscape
                 for stack in [fontLayout,fontSidebar] {for child in stack.arrangedSubviews {stack.removeArrangedSubview(child);child.removeFromSuperview()}}
                 fontLayout.axis=landscape ? .horizontal : .vertical;fontLayout.distribution=landscape ? .fillEqually : .fill
@@ -147,6 +161,54 @@ final class TextAndKeypadViewController:ThemedViewController {
             }
         }
     }
+    private func synchronizeDuoPanes() {
+        let shouldUse = AppDuoGameArrangement.canUse(in: body)
+        if usesDuoPanes != shouldUse {
+            usesDuoPanes = shouldUse
+            if fontMode {
+                fontLandscape = nil
+                for stack in [fontLayout,fontSidebar] {
+                    for child in stack.arrangedSubviews { stack.removeArrangedSubview(child);child.removeFromSuperview() }
+                }
+                if shouldUse {
+                    fontSidebar.axis = .vertical;fontSidebar.spacing = 8
+                    fontSidebar.addArrangedSubview(fontControlsScroll)
+                    fontSidebar.addArrangedSubview(UIView());fontSidebar.addArrangedSubview(apply)
+                    duoFontLayout.addArrangedSubview(fontPreviewHost);duoFontLayout.addArrangedSubview(fontSidebar)
+                } else {
+                    duoFontLayout.removeAllArrangedSubviews()
+                }
+                fontLayout.isHidden = shouldUse;duoFontLayout.isHidden = !shouldUse
+            } else {
+                if shouldUse {
+                    NSLayoutConstraint.deactivate(keypadWidthLimits)
+                    for card in keypadCards {
+                        previews.removeArrangedSubview(card);card.removeFromSuperview()
+                        let scroll = AppScrollView(), content = UIView()
+                        content.translatesAutoresizingMaskIntoConstraints = false;scroll.addSubview(content);content.addSubview(card)
+                        duoKeypadConstraints += [
+                            content.topAnchor.constraint(equalTo:scroll.contentLayoutGuide.topAnchor),content.bottomAnchor.constraint(equalTo:scroll.contentLayoutGuide.bottomAnchor),
+                            content.leadingAnchor.constraint(equalTo:scroll.contentLayoutGuide.leadingAnchor),content.trailingAnchor.constraint(equalTo:scroll.contentLayoutGuide.trailingAnchor),
+                            content.widthAnchor.constraint(equalTo:scroll.frameLayoutGuide.widthAnchor),content.heightAnchor.constraint(greaterThanOrEqualTo:scroll.frameLayoutGuide.heightAnchor),
+                            card.centerXAnchor.constraint(equalTo:content.centerXAnchor),card.centerYAnchor.constraint(equalTo:content.centerYAnchor),
+                            card.leadingAnchor.constraint(greaterThanOrEqualTo:content.leadingAnchor,constant:8),card.trailingAnchor.constraint(lessThanOrEqualTo:content.trailingAnchor,constant:-8),
+                            card.topAnchor.constraint(greaterThanOrEqualTo:content.topAnchor,constant:8),card.bottomAnchor.constraint(lessThanOrEqualTo:content.bottomAnchor,constant:-8)
+                        ]
+                        duoKeypads.addArrangedSubview(scroll)
+                    }
+                    NSLayoutConstraint.activate(duoKeypadConstraints)
+                } else {
+                    NSLayoutConstraint.deactivate(duoKeypadConstraints);duoKeypadConstraints = []
+                    duoKeypads.removeAllArrangedSubviews()
+                    keypadCards.forEach { $0.removeFromSuperview();previews.addArrangedSubview($0) }
+                    NSLayoutConstraint.activate(keypadWidthLimits)
+                }
+                keypadScroll.isHidden = shouldUse;duoKeypads.isHidden = !shouldUse
+            }
+        }
+        if usesDuoPanes { (fontMode ? duoFontLayout : duoKeypads).synchronizeArrangement() }
+    }
+
     override func update(_ progress:ProgressState?){
         if !loadedDraft,progress != nil {draft=settings;loadedDraft=true}
         if fontMode {

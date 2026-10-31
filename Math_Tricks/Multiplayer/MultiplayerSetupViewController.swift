@@ -4,6 +4,15 @@ final class MultiplayerSetupViewController: ThemedViewController {
     private let selected: Bool
     private var length: AppLabel!
     private let setupRow = UIStackView()
+    private let setupSplit = AppDuoSplitView()
+    private let duoOptions = UIStackView()
+    private let nextRow = UIStackView()
+    private var setupHosts: [UIView] = []
+    private var regularConstraints: [NSLayoutConstraint] = []
+    private var duoBottom: NSLayoutConstraint!
+    private var duoInputWidth: NSLayoutConstraint?
+    private var setupScroll: UIScrollView!
+    private var usesDuoPanes = false
     private var mode = GameInputMode.digits
     private var inputButtons: [UIButton] = []
     private let lengthBackground = ThemeSurfaceView(.button)
@@ -16,7 +25,7 @@ final class MultiplayerSetupViewController: ThemedViewController {
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override func buildContent() {
-        let nextRow=UIStackView();nextRow.axis = .horizontal;nextRow.alignment = .center;nextRow.spacing=0
+        let nextRow=self.nextRow;nextRow.axis = .horizontal;nextRow.alignment = .center;nextRow.spacing=0
         nextRow.translatesAutoresizingMaskIntoConstraints=false;body.addSubview(nextRow)
         for (kind,icon) in [(MultiplayerKind.cooperative,AppIcon.cooperative),(.versus,.versus)] {
             let key=button(CatalogText.ui(kind == .cooperative ? "cooperative":"versus"),icon:icon,kind:.iconSurface){[weak self] in self?.start(kind)}
@@ -24,12 +33,24 @@ final class MultiplayerSetupViewController: ThemedViewController {
             nextRow.addArrangedSubview(key)
         }
         let center=UIView();center.translatesAutoresizingMaskIntoConstraints=false;body.addSubview(center)
-        NSLayoutConstraint.activate([
-            center.topAnchor.constraint(equalTo:body.topAnchor),center.leadingAnchor.constraint(equalTo:body.leadingAnchor),center.trailingAnchor.constraint(equalTo:body.trailingAnchor),center.bottomAnchor.constraint(equalTo:nextRow.topAnchor),
+        regularConstraints = [
+            center.bottomAnchor.constraint(equalTo:nextRow.topAnchor),
             nextRow.bottomAnchor.constraint(equalTo:body.bottomAnchor),nextRow.centerXAnchor.constraint(equalTo:body.centerXAnchor)
+        ]
+        duoBottom = center.bottomAnchor.constraint(equalTo:body.bottomAnchor)
+        NSLayoutConstraint.activate(regularConstraints + [
+            center.topAnchor.constraint(equalTo:body.topAnchor),center.leadingAnchor.constraint(equalTo:body.leadingAnchor),center.trailingAnchor.constraint(equalTo:body.trailingAnchor)
+        ])
+        setupSplit.translatesAutoresizingMaskIntoConstraints = false
+        setupSplit.isHidden = true; center.addSubview(setupSplit)
+        duoOptions.axis = .vertical;duoOptions.alignment = .center
+        setupSplit.onArrangementChange = { [weak self] in self?.view.setNeedsLayout() }
+        NSLayoutConstraint.activate([
+            setupSplit.topAnchor.constraint(equalTo:center.topAnchor),setupSplit.bottomAnchor.constraint(equalTo:center.bottomAnchor),
+            setupSplit.leadingAnchor.constraint(equalTo:center.leadingAnchor),setupSplit.trailingAnchor.constraint(equalTo:center.trailingAnchor)
         ])
         header.setTitle(MainText.text("player_alert_dialog_tv_steps_name"))
-        let scroll=AppScrollView();scroll.translatesAutoresizingMaskIntoConstraints=false;center.addSubview(scroll)
+        let scroll=AppScrollView();setupScroll=scroll;scroll.translatesAutoresizingMaskIntoConstraints=false;center.addSubview(scroll)
         let content=setupRow;content.axis = .vertical;content.distribution = .fillEqually;content.alignment = .fill
         content.translatesAutoresizingMaskIntoConstraints=false;scroll.addSubview(content)
         NSLayoutConstraint.activate([
@@ -72,7 +93,7 @@ final class MultiplayerSetupViewController: ThemedViewController {
             NSLayoutConstraint.activate([item.centerXAnchor.constraint(equalTo:host.centerXAnchor),item.centerYAnchor.constraint(equalTo:host.centerYAnchor),
                 item.topAnchor.constraint(greaterThanOrEqualTo:host.topAnchor,constant:10),item.bottomAnchor.constraint(lessThanOrEqualTo:host.bottomAnchor,constant:-10),
                 item.leadingAnchor.constraint(greaterThanOrEqualTo:host.leadingAnchor),item.trailingAnchor.constraint(lessThanOrEqualTo:host.trailingAnchor)])
-            content.addArrangedSubview(host)
+            setupHosts.append(host);content.addArrangedSubview(host)
         }
     }
     override func update(_ progress: ProgressState?) {
@@ -90,7 +111,35 @@ final class MultiplayerSetupViewController: ThemedViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        synchronizeDuoPanes()
         setupRow.axis = view.bounds.width > view.bounds.height ? .horizontal : .vertical
+        setupSplit.synchronizeArrangement()
+    }
+    private func synchronizeDuoPanes() {
+        let shouldUse = AppDuoGameArrangement.canUse(in: body)
+        guard shouldUse != usesDuoPanes else { return }
+        usesDuoPanes = shouldUse
+        if shouldUse {
+            NSLayoutConstraint.deactivate(regularConstraints)
+            duoBottom.isActive = true
+            for host in setupHosts { setupRow.removeArrangedSubview(host);host.removeFromSuperview() }
+            nextRow.removeFromSuperview()
+            duoOptions.addArrangedSubview(setupHosts[1]);duoOptions.addArrangedSubview(nextRow)
+            duoInputWidth = setupHosts[1].widthAnchor.constraint(equalTo:duoOptions.widthAnchor)
+            duoInputWidth?.isActive = true
+            setupSplit.addArrangedSubview(setupHosts[0]);setupSplit.addArrangedSubview(duoOptions)
+        } else {
+            duoInputWidth?.isActive = false;duoInputWidth = nil
+            setupSplit.removeAllArrangedSubviews()
+            duoOptions.removeArrangedSubview(setupHosts[1]);setupHosts[1].removeFromSuperview()
+            duoOptions.removeArrangedSubview(nextRow);nextRow.removeFromSuperview()
+            setupHosts.forEach { setupRow.addArrangedSubview($0) }
+            body.addSubview(nextRow)
+            duoBottom.isActive = false
+            NSLayoutConstraint.activate(regularConstraints)
+        }
+        setupScroll.isHidden = shouldUse
+        setupSplit.isHidden = !shouldUse
     }
     private func chooseMode(_ input:GameInputMode) {
         guard !launching,data.snapshot != nil else{return};mode=input;update(data.snapshot)

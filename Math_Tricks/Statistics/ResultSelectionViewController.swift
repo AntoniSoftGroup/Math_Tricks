@@ -1,7 +1,7 @@
 import UIKit
 
 /// Android spinner popup or single-choice radio dialog, with scrolling at large text sizes.
-final class ResultSelectionViewController: UIViewController {
+final class ResultSelectionViewController: AppDuoViewController {
     private let values: [String], selection: Int, settings: AppSettings
     private weak var anchor: UIView?
     private let handler: (Int) -> Void
@@ -9,7 +9,7 @@ final class ResultSelectionViewController: UIViewController {
     private var options: [UIButton] = []
     init(title: String,values: [String],selection: Int,settings: AppSettings,anchor: UIView?,handler: @escaping (Int) -> Void) {
         self.values=values;self.selection=selection;self.settings=settings;self.anchor=anchor;self.handler=handler
-        super.init(nibName:nil,bundle:nil);self.title=title;modalPresentationStyle = .overFullScreen
+        super.init(nibName:nil,bundle:nil);self.title=title;modalPresentationStyle = .overFullScreen; modalPresentationCapturesStatusBarAppearance = true
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override func viewDidLoad() {
@@ -51,7 +51,7 @@ final class ResultSelectionViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let safe=view.safeAreaLayoutGuide.layoutFrame,dropdown=anchor != nil
+        let safe=view.appContentLayoutGuide.layoutFrame,dropdown=anchor != nil
         let rect=anchor.map { $0.convert($0.bounds,to:view) }
         let width=min(safe.width-24,dropdown ? max(180,rect?.width ?? 240) : 360)
         var y: CGFloat=0

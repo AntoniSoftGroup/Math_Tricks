@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 /// A common Android-style header and a body above the root-owned banner.
-class ThemedViewController: UIViewController {
+class ThemedViewController: AppDuoViewController {
     let data: AppDataStore
     weak var router: AppRouter?
     let body = UIView()
@@ -33,7 +33,7 @@ class ThemedViewController: UIViewController {
         self.title = title
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { viewIfLoaded?.usesDuoLayout == true || UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         palette.theme.isClassic ? (ThemeColor.luminance(palette.systemBar) > 0.5 ? .darkContent : .lightContent) : (palette.theme.isDark ? .lightContent : .darkContent)
     }

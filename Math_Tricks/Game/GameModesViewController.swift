@@ -5,7 +5,7 @@ final class GameModesViewController:ThemedViewController,UITextFieldDelegate {
     private let levelField=UITextField()
     private let selector=UIView()
     private let modesScroll=AppScrollView()
-    private let layout=UIStackView()
+    private let layout=AppDuoSplitView()
     private let modesStack=UIStackView()
     private let fieldSurface=ThemeSurfaceView(.button)
     private var recordLabels:[GameMode:AppLabel]=[:]
@@ -23,6 +23,12 @@ final class GameModesViewController:ThemedViewController,UITextFieldDelegate {
     }
     required init?(coder:NSCoder){fatalError("init(coder:) has not been implemented")}
     override func buildContent() {
+        layout.onArrangementChange = { [weak self] in
+            self?.wide = nil
+            self?.selectorWidth?.isActive = false
+            self?.selectorHeight?.isActive = false
+            self?.view.setNeedsLayout()
+        }
         view.accessibilityIdentifier=selected ? "screen.selectedGameModes" : "screen.gameModes"
         layout.axis = .vertical;layout.translatesAutoresizingMaskIntoConstraints=false
         body.addSubview(layout);layout.addArrangedSubview(selector);layout.addArrangedSubview(modesScroll)
@@ -142,15 +148,16 @@ final class GameModesViewController:ThemedViewController,UITextFieldDelegate {
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let landscape = view.bounds.width > view.bounds.height
+        layout.synchronizeArrangement()
+        let landscape = layout.isHorizontal ?? (view.bounds.width > view.bounds.height)
         guard wide != landscape else { return }
         wide = landscape
         selectorWidth?.isActive = false
-        selectorHeight.isActive = !landscape
+        selectorHeight.isActive = !landscape && !layout.usesNativeArrangement
         layout.axis = landscape ? .horizontal : .vertical
         modesStack.spacing = landscape ? 12 : 0
-        if landscape {
-            selectorWidth = selector.widthAnchor.constraint(equalTo: layout.widthAnchor, multiplier: 1/3)
+        if landscape && !layout.usesNativeArrangement {
+            selectorWidth = selector.widthAnchor.constraint(equalTo: layout.widthAnchor, multiplier: view.usesDuoLayout ? 0.5 : 1/3)
             selectorWidth?.isActive = true
         }
     }
@@ -162,7 +169,7 @@ final class GameModesViewController:ThemedViewController,UITextFieldDelegate {
         // layout pass. Do not shrink the caption to zero before it is displayed.
         let screenWidth = body.bounds.width
         guard screenWidth > 0 else { return }
-        let contentWidth = landscape ? screenWidth * 2 / 3 : screenWidth
+        let contentWidth = modesScroll.bounds.width > 0 ? modesScroll.bounds.width : (landscape ? screenWidth * (view.usesDuoLayout ? 0.5 : 2 / 3) : screenWidth)
         let available=max(120,contentWidth-16-(selected ? 0 : 96))
         var width=min(normal,available)
         if playButtons.contains(where: { $0.label.sizeThatFits(CGSize(width:max(1,width-120),height:.greatestFiniteMagnitude)).height > $0.label.font.lineHeight*2+1 }) { width=available }

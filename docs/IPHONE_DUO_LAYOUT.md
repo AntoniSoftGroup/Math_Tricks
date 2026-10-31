@@ -1,92 +1,128 @@
 # Интерфейс iPhone Duo
 
-Изменён только современный проект `ios/Math_Tricks`. Android и `ios-legacy`
-не изменялись. Существовавшие до этой задачи правки сохранены.
+Изменён только современный iOS-проект `ios/Math_Tricks`.
+Android, `ios-legacy`, архивы ZIP и проект AppStoreScreenshots не изменялись.
 
-## Поведение
+## Камера и внешняя панель
 
-Адаптация включается только при наличии системного шарнира в иерархии iPhone.
-Обычные iPhone и iPad сохраняют прежние ограничения safe area и раскладку.
-Размеры модели устройства и положение камеры не зашиты в код.
+`UIHingeInteraction` ограничивает новые правила устройством Duo. Другие устройства
+сохраняют системные safe area и статус-бар. На Duo время, Wi-Fi, заряд и прочие
+элементы статус-бара скрываются общим контроллером, включая собственные диалоги.
 
-На Duo основное содержимое использует боковую область экрана, которую ранее
-целиком исключала safe area камеры и статус-бара. Освобождается только сторона,
-на которой действительно есть перекрытие. Верхняя и нижняя safe area, включая
-отступ домашнего индикатора, сохраняются.
+На внешнем дисплее фон шапки занимает полную ширину и высоту верхней области
+камеры. Содержимое шапки обходит камеру по горизонтали; при камере сверху слева
+кнопка Back оказывается справа от занятой области. Solution обрабатывает Back
+отдельно, а кнопки таблицы умножения и метода переносит под правую верхнюю камеру.
 
-Шапки, строки настроек, содержимое ячеек, элементы выбора темы и баннер обходят
-камеру и статус-бар локально. Каждый компонент проверяет пересечение в собственных
-координатах. Фон и остальные части экрана не сужаются вместе с ним. Отступы
-Reserved Regions уже включены Apple в frame и повторно не добавляются.
+При камере внизу общий контейнер резервирует полосу на всю ширину от верхней
+границы системной области камеры до нижнего края дисплея и закрашивает её чёрным.
+Интерфейс и общий рекламный баннер заканчиваются над полосой. Её цвет не зависит
+от темы. Перевёрнутый портрет разрешён контроллерами только на Duo; в декларации
+приложения добавлена соответствующая ориентация.
 
-На Duo прокрутка не добавляет системную боковую safe area второй раз. Исходные
-настройки прокрутки восстанавливаются, если представление покидает иерархию Duo.
-На внутреннем экране Duo игровыми областями управляет системный
-`UIArrangementViewController` с `UISplitArrangement`. Контейнер остаётся
-подключённым и на плоском внутреннем экране, поэтому UIKit обрабатывает переходы
-при сгибании и раскрытии. Поддерживаются обе оси разделения. При горизонтальном
-сгибе, включая портретное положение «как ноутбук», пример и служебные элементы
-находятся в верхней области, клавиатура — в нижней. При вертикальном сгибе
-используются боковые области и выбранная сторона клавиатуры.
+Координаты берутся из активных Reserved Regions, в локальных координатах view.
+Их системные поля повторно не добавляются. Неактивная внутренняя камера не
+резервирует место. Внутренний плоский дисплей использует всю доступную площадь,
+с сохранением нижнего безопасного отступа системного жеста.
 
-Ручной расчёт ширины промежутка и дополнительные поля по 8 pt удалены.
-Отступы вокруг сгиба задаёт системный контейнер Apple. Из Reserved Regions
-берётся только доступность внутреннего разделения и направление активного сгиба,
-а не координаты для ручного перемещения игровых панелей.
+## Сгиб и анимация
 
-Для явных обновлений контейнера используется `updateArrangement(_:animated:)`;
-при включённом Reduce Motion анимация явно запрошенного обновления отключена.
-Собственный таймер, угол-зависимая интерполяция и фиксированная длительность
-анимации не добавлены. Состояние сессии и существующие игровые представления
-сохраняются при смене контейнера и раскладки.
+Для связанных панелей применяется `UIArrangementViewController` с `.split`:
 
-На внешнем экране Duo, в окне без линии разделения и на обычных iPhone/iPad
-остаётся прежняя раскладка. Системный контейнер туда не устанавливается, чтобы
-его правила сворачивания не скрыли клавиатуру на компактном экране.
+- Game сохраняет свой существующий системный контейнер.
+- GameType разделяет выбор уровня и список режимов; на Duo в ландшафте панели
+  равны, вместо прежнего отношения 1:2.
+- Solution разделяет схему и панель шагов, действий и клавиатуры.
+- Rule разделяет схему с операндами и список шагов с действиями.
+- Игра вдвоём и её результаты размещают игроков в отдельных системных панелях.
+- Главное меню использует пару меню/сведений и в раскрытом портрете, и в ландшафте.
+- Настройка игры вдвоём разделяет выбор длины и способы ввода с кнопками запуска.
+- Настройки текста разделяют образцы и регуляторы; выбор клавиатуры — два варианта.
+- Выбор темы разделяет карусель образцов и панель настройки цвета/шрифта.
 
-## Файлы и методы
+Контейнер сохраняется и на плоском внутреннем дисплее, чтобы UIKit управлял
+переходом от отсутствующего отступа к активному сгибу и обратно. Обе оси
+поддерживаются. Существующие views и их состояние сохраняются при переносе.
+При выходе с внутреннего дисплея восстанавливается обычная стековая компоновка.
+Вложенные системные контроллеры снимаются с родителя при удалении их host view.
 
-| Файл | Изменение |
+На полностью раскрытом внутреннем экране две смысловые панели уже расположены
+одна над другой в портрете, рядом — в ландшафте. При лёгком или сильном сгибе UIKit
+анимирует отступ между существующими панелями, не создавая их заново. Доступность
+внутреннего дисплея проверяется с `.includeInactive`, поэтому отсутствие активного
+сгиба не отключает пару.
+
+Окна без двух смысловых панелей, в том числе списки, формы и собственные диалоги,
+сохраняют всю область и существующую прокрутку при сгибе. Общий контейнер больше
+не устанавливает overlay-область и не переносит содержимое в верхнюю половину.
+Правила камеры и нижней чёрной полосы продолжают действовать независимо от сгиба.
+
+Отступы и переходы внутри системных областей анимирует UIKit. Ручная интерполяция
+угла, таймер анимации и фиксированная длительность не добавлены. Корневой host
+навигации и баннера сам не делится: размещением содержимого управляют экраны.
+
+## Изменённые файлы и методы
+
+Все пути ниже относительно `ios/Math_Tricks`.
+
+| Файл | Методы / изменение |
 |---|---|
-| `Math_Tricks/Design/AppDuoLayout.swift` | Новый `AppDuoContentView`: определение доступности Duo через `UIHingeInteraction`, обновление `contentGuide` в `updateConstraints()`. `AppDuoLayout.occlusionFrames(in:)` и `unobscuredFrame(in:within:)`: локальные области камеры и статус-бара. `AppDuoAvoidingView.updateConstraints()`: перемещение только содержимого компонента. |
-| `Math_Tricks/Design/AppDuoLayout.swift` (сгиб) | `divisionFrames(in:)`: активная системная область сгиба без дополнительных полей. `AppDuoContentView.updateConstraints()`: отслеживание изменения системной области и вызов `onDivisionChange`. |
-| `Math_Tricks/Game/GameViewController.swift` (сгиб) | `synchronizeDuoArrangement()`, `pinGameContent(_:in:)`, `viewDidLayoutSubviews()`, `rebuildLayout(landscape:)`: подключение и удаление системного дочернего контейнера, размещение существующих элементов в его областях без сброса игры. Ручные ширины и промежутки вокруг сгиба удалены. |
-| `Math_Tricks/Game/AppDuoGameArrangement.swift` | `canUse(in:)`, `make()`: выбор системного контейнера только для внутреннего разделения Duo. `NativeDuoGameArrangement.viewDidLoad()`, `update(animated:)`, `viewDidLayoutSubviews()`: настройка split на обеих осях, системные переходы и отслеживание оси компоновки. Новые типы скрыты за флагом SDK и проверкой iOS 27.1. |
-| `Math_Tricks/Shell/AppRootViewController.swift` | `loadView()`, `viewDidLoad()`: общий контейнер экрана и баннер используют область содержимого Duo. |
-| `Math_Tricks/Design/ThemedViewController.swift` | `loadView()`, `viewDidLoad()`, `setHeaderHidden(_:)`: подключение общей области к тематическим экранам. |
-| `Math_Tricks/Shell/ShellScreenViewController.swift` | `loadView()`, `viewDidLoad()`: та же область в экранах оболочки. |
-| `Math_Tricks/Design/AppComponents.swift` | `AppHeaderView.init(title:onBack:)`: фон шапки занимает всю ширину, строка и кнопка возврата обходят перекрытия. |
-| `Math_Tricks/Main/MainMenuViewController.swift` | `loadView()`, `viewDidLoad()`, `pin(_:in:insets:)`: основная область расширяется, шапка и ежедневная панель обходят камеру независимо. `viewDidLayoutSubviews()`: на Duo пересчёт при любом изменении размера области, включая раскрытие и Split View без смены пропорций окна. |
-| `Math_Tricks/Onboarding/AgeScreenViewController.swift` | `loadView()`, `viewDidLoad()`: область Duo и локальный обход камеры шапкой ввода возраста. |
-| `Math_Tricks/Theme/ThemePickerViewController.swift` | `loadView()`, `viewDidLayoutSubviews()`: полная область карусели, отдельный обход камеры шапкой, настройкой шрифта и панелью цветов. |
-| `Math_Tricks/Shell/BannerContainerView.swift` | `update(presenter:visible:canRequestAds:)`, `setContent(_:height:)`: размер рекламы по доступной локальной ширине; на Duo формат выбирается по размерам окна. |
-| `Math_Tricks/Design/AppScrollView.swift` | `AppScrolling.update(_:allowed:clampOffset:)`: предотвращает повторный боковой системный отступ только на Duo. |
-| `Math_Tricks/Design/AppListCell.swift` | `layoutSubviews()`, `restoreDuoContentFrame()`, `prepareForReuse()`: обход камеры отдельной ячейкой с восстановлением её исходного размера. |
-| `Math_Tricks/Settings/SettingsViewController.swift` | `makeRow(_:icon:toggle:)`: независимая область содержимого для переключателей и подписей каждой строки. |
-| `Math_Tricks.xcodeproj/project.pbxproj` | В Debug и Release добавлен SDK-зависимый флаг `MATH_TRICKS_DUO_SDK`. |
+| `Math_Tricks/Design/AppDuoLayout.swift` | `AppDuoViewController.loadView()`, `prefersStatusBarHidden`: общий Duo-контейнер и скрытие статус-бара. `AppDuoContentView.init`, `updateConstraints()`, `layoutSubviews()`, `setContentAnchors(to:)`: полная область и чёрная нижняя полоса; единые окна не сжимаются при сгибе. `AppDuoLayout.bottomCameraInset(in:)`, `headerHeight(in:minimum:)`: геометрия камеры. `AppDuoAvoidingView.updateConstraints()`: полный фон шапки и горизонтальный обход камеры. |
+| `Math_Tricks/Game/AppDuoGameArrangement.swift` | `make()`, `NativeDuoGameArrangement.viewDidLoad()`, `update(animated:)`: системный split на обеих осях, включая плоский внутренний экран; single-pane/overlay удалён. `AppDuoSplitView.addArrangedSubview(_:)`, `synchronizeArrangement()`, `didMoveToWindow()`, `removeAllArrangedSubviews()`, `detachArrangement()`: переиспользуемая системная пара и корректное снятие дочернего контроллера. |
+| `Math_Tricks/Design/AppComponents.swift` | `AppHeaderView.init(title:onBack:)`: включён фон на всю верхнюю область камеры. |
+| `Math_Tricks/Design/ThemedViewController.swift` | Общая база Duo; `supportedInterfaceOrientations`: перевёрнутый портрет только для Duo/планшетов. |
+| `Math_Tricks/Game/GameModesViewController.swift` | `buildContent()`, `viewWillLayoutSubviews()`, `viewDidLayoutSubviews()`: системная пара, снятие обычных ограничений и равные половины Duo; ширина кнопок по фактической панели. |
+| `Math_Tricks/Game/SolutionViewController.swift` | `buildContent()`, `viewDidLayoutSubviews()`: системные схема/шаги. `updateDuoCameraControls()`: Back справа от левой камеры, таблица/метод ниже правой камеры; Back входит в панель схемы при сгибе. |
+| `Math_Tricks/Catalog/RuleViewController.swift` | `buildContent()`, `viewDidLayoutSubviews()`: системная пара схемы и шагов, отключение ручных размеров панелей на внутреннем Duo. |
+| `Math_Tricks/Multiplayer/MultiplayerViewController.swift` | `buildContent()`, `synchronizeDuoPanes()`, `viewDidLayoutSubviews()`, `render()`: системные пары игроков и результатов, возврат в обычную компоновку, видимость и интерактивность результатов. |
+| `Math_Tricks/Multiplayer/MultiplayerSetupViewController.swift` | `buildContent()`, `synchronizeDuoPanes()`, `viewDidLayoutSubviews()`: системная пара длины/ввода; кнопки запуска входят во вторую панель; обычная компоновка восстанавливается на внешнем дисплее. |
+| `Math_Tricks/Settings/TextAndKeypadViewController.swift` | `buildContent()`, `buildKeypads()`, `synchronizeDuoPanes()`, `viewDidLayoutSubviews()`: системная пара образцов/регуляторов шрифта и двух вариантов клавиатуры; отдельная прокрутка внутри панелей. |
+| `Math_Tricks/Multiplayer/PlayerInputBoard.swift` | `init(frame:)`: содержимое игрока привязано к локальной области без камеры. |
+| `Math_Tricks/Main/MainMenuViewController.swift` | Общая база Duo; `viewDidLoad()`: полная шапка. `viewDidLayoutSubviews()`, `rebuildLayout(landscape:)`: системная пара на внутреннем экране в обеих ориентациях, включая полностью раскрытый портрет. |
+| `Math_Tricks/Onboarding/AgeScreenViewController.swift` | Общая база Duo; `viewDidLoad()`: полная шапка; `supportedInterfaceOrientations`: ориентации Duo. |
+| `Math_Tricks/Shell/AppRootViewController.swift` | Общая база Duo; `loadView()`: общий контейнер камеры без повторного разделения корня; `prefersStatusBarHidden`: статус-бар скрыт на Duo; `isolated deinit`: очистка на главном actor. |
+| `Math_Tricks/Shell/ShellScreenViewController.swift` | Общая база Duo и ориентации Duo для окон оболочки. |
+| `Math_Tricks/Theme/ThemePickerViewController.swift` | Общая база Duo; `viewDidLoad()`, `synchronizeDuoPanes()`, `viewDidLayoutSubviews()`: системная пара карусели и настроек на внутреннем дисплее в обеих ориентациях; полный фон шапки и отдельная область её элементов; ориентации Duo; `isolated deinit`. |
+| `Math_Tricks/Design/AppDialogViewController.swift` | Общая база Duo; `init`, `viewDidLoad()`: собственный диалог скрывает статус-бар и использует общую область содержимого. |
+| `Math_Tricks/Catalog/TrainingUnlockViewController.swift` | Общая база Duo; `init`, `viewDidLoad()`: те же правила для диалога покупки приёма. |
+| `Math_Tricks/Statistics/ResultDetailsViewController.swift` | Общая база Duo; оба `init`, `viewDidLoad()`: те же правила для деталей результата. |
+| `Math_Tricks/Statistics/ResultSelectionViewController.swift` | Общая база Duo; `init`, `viewDidLayoutSubviews()`: те же правила для списка выбора. |
+| `Math_Tricks.xcodeproj/project.pbxproj` | Debug/Release: объявлена возможность перевёрнутого портрета iPhone; обычные iPhone по-прежнему ограничены маской контроллеров. |
+| `docs/IPHONE_DUO_LAYOUT.md` | Актуальное поведение, перечень файлов/методов и ограничения проверки. |
 
-## Сборка
+## Компиляция и проверка
 
-- Xcode 26.6: новые объявления исключаются через `#if MATH_TRICKS_DUO_SDK`.
-  Для SDK 26.x флаг пустой; доступность API не проверяется только через
-  `#available`, поскольку этого недостаточно для компиляции со старым SDK.
-- Xcode 27.0: флаг также отключён — Reserved Regions появились в SDK 27.1.
-- Xcode 27.1 и новее: флаг включается автоматически; обращения к API дополнительно
-  защищены `if #available(iOS 27.1, *)`. Deployment target iOS 15 не менялся.
+Новые API защищены `MATH_TRICKS_DUO_SDK` и `if #available(iOS 27.1, *)`.
+Флаг отключается при сборке SDK 26.x и 27.0. Для Duo требуется SDK 27.1 или новее:
+старый SDK оставляет приложение в системном режиме совместимости.
 
-Полноэкранная адаптация Duo требует сборки SDK 27.1 или новее. Сборка старым SDK
-подчиняется системному режиму совместимости, его границы нельзя отменить кодом
-внутри приложения.
+Здесь установлен Xcode 26.6 с iPhoneOS SDK 26.5. Компиляция Debug/generic iOS
+успешна; подпись, установка, запуск и тесты не выполнялись. Эта сборка проверяет
+общий код и совместимость со старым SDK; ветка с новыми API исключена.
+Компиляция ветки Duo SDK 27.1, геометрия камер и системная анимация сгиба требуют
+проверки в Xcode 27.1/новее на Duo или соответствующем симуляторе.
 
-Проверка: Debug для generic iOS в установленном Xcode 26.6; SDK в этой установке —
-iPhoneOS 26.5. Тесты, установка и запуск не выполнялись. Xcode 27.1 и симулятор Duo
-здесь отсутствуют, поэтому сборка новой ветки с этим SDK и визуальная проверка
-камеры, поворотов, раскрытия, Dynamic Island и Split View остаются непроверенными.
+## Документация Apple
 
-## Рекомендации Apple
+- [Подготовка к iPhone Duo](https://developer.apple.com/iphone-duo/prepare/)
+- [UIArrangementViewController](https://developer.apple.com/documentation/uikit/uiarrangementviewcontroller)
+- [UISplitArrangement](https://developer.apple.com/documentation/uikit/uisplitarrangement-swift.struct)
+- [UIView.ReservedRegion](https://developer.apple.com/documentation/uikit/uiview/reservedregion)
+- [UIHingeInteraction](https://developer.apple.com/documentation/uikit/uihingeinteraction)
 
-- [Prepare your app for iPhone Duo](https://developer.apple.com/iphone-duo/prepare/): размеры текущего окна, динамическое изменение размеров и требования SDK.
-- [UIArrangementViewController](https://developer.apple.com/documentation/uikit/uiarrangementviewcontroller): системная split-компоновка и `updateArrangement(_:animated:)`.
-- [UIView.ReservedRegion](https://developer.apple.com/documentation/uikit/uiview/reservedregion): локальные координаты, включённые в frame поля и отслеживание изменений в `updateConstraints()`.
-- [Strike a pose with adaptive layouts on iPhone Duo](https://developer.apple.com/videos/play/tech-talks/111463/): смещение отдельных элементов вокруг занятых областей.
-- [UIHingeInteraction](https://developer.apple.com/documentation/uikit/uihingeinteraction): `nil` для иерархии без шарнира.
+## Уточнение портретного режима
+
+В этой правке удалён общий перенос единых окон вверх. Изменены:
+`AppDuoLayout.swift` (`updateConstraints`, `layoutSubviews`),
+`AppDuoGameArrangement.swift` (`make`, `NativeDuoGameArrangement`),
+`MainMenuViewController.swift` (`viewDidLayoutSubviews`, `rebuildLayout`),
+`MultiplayerSetupViewController.swift`, `TextAndKeypadViewController.swift`,
+`ThemePickerViewController.swift` (`buildContent`/`viewDidLoad`,
+`synchronizeDuoPanes`, `viewDidLayoutSubviews`). В `RuleViewController.swift`,
+`GameModesViewController.swift`, `GameViewController.swift`,
+`SolutionViewController.swift`, `MultiplayerViewController.swift` и
+`AppRootViewController.swift` сняты больше не нужные отключения single-pane host.
+Существующий игровой split сохранён. Списки и остальные единые окна не делятся.
+
+Изменён только `ios/Math_Tricks`. Android, `ios-legacy`, ZIP-архивы и
+AppStoreScreenshots не изменены.

@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 /// Android activity_main: shared header, daily panel, menu and footer; the banner belongs to the root.
-final class MainMenuViewController: UIViewController {
+final class MainMenuViewController: AppDuoViewController {
     private weak var router: AppRouter?
     private let data: AppDataStore
     private var observation: AnyCancellable?
@@ -11,6 +11,7 @@ final class MainMenuViewController: UIViewController {
     private var previewSettings: AppSettings?
     private var lastLandscape: Bool?
     private var lastDuoLayoutSize = CGSize.zero
+    private var lastDuoInnerLayout = false
     private var footerWidths:[NSLayoutConstraint]=[]
     private let layoutContainer = UIView()
     private let header = AppDuoAvoidingView()
@@ -68,7 +69,7 @@ final class MainMenuViewController: UIViewController {
         if isViewLoaded { render(nil) }
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { viewIfLoaded?.usesDuoLayout == true || UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         let palette = ThemePalette(settings: settings)
         if palette.theme.isClassic { return ThemeColor.luminance(palette.systemBar) > 0.5 ? .darkContent : .lightContent }
@@ -79,6 +80,7 @@ final class MainMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        header.extendsAcrossTopCamera = true
         view.backgroundColor = .clear
         view.accessibilityIdentifier = "screen.main"
         layoutContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -231,9 +233,11 @@ final class MainMenuViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let landscape = view.bounds.width > view.bounds.height
+        let duoInner = AppDuoGameArrangement.canUse(in: layoutContainer)
         let duoSize = view.usesDuoLayout ? layoutContainer.bounds.size : .zero
-        if lastLandscape != landscape || lastDuoLayoutSize != duoSize {
+        if lastLandscape != landscape || lastDuoLayoutSize != duoSize || lastDuoInnerLayout != duoInner {
             lastDuoLayoutSize = duoSize
+            lastDuoInnerLayout = duoInner
             rebuildLayout(landscape: landscape)
         }
         fitBuyLabel(landscape:false)
@@ -280,18 +284,23 @@ final class MainMenuViewController: UIViewController {
         days.textAlignment = .right
         today.textAlignment = .right
 
-        if landscape {
-            // Two equal panes keep the menu's portrait button arrangement at any window width.
+        if landscape || lastDuoInnerLayout {
+            // The inner Duo display keeps the same two groups even when flat.
+            // UIKit places them above/below in portrait and animates fold margins.
             let left = AppScrollView()
             let right = AppScrollView()
             left.accessibilityIdentifier = "main.landscapeMenu"
             right.accessibilityIdentifier = "main.landscapeDetails"
             left.contentInsetAdjustmentBehavior = .never
             right.contentInsetAdjustmentBehavior = .never
-            let panes = stack(.horizontal, [left, right])
+            let panes = AppDuoSplitView()
+            panes.axis = landscape ? .horizontal : .vertical
+            panes.addArrangedSubview(left); panes.addArrangedSubview(right)
             panes.distribution = .fillEqually
             pin(panes, in: layoutContainer)
-            let paneSize = CGSize(width: layoutContainer.bounds.width / 2, height: layoutContainer.bounds.height)
+            let paneSize = landscape
+                ? CGSize(width: layoutContainer.bounds.width / 2, height: layoutContainer.bounds.height)
+                : CGSize(width: layoutContainer.bounds.width, height: layoutContainer.bounds.height / 2)
             buildMenu(in: left, size: paneSize, includesSecondaryActions: false)
 
             let secondaryArea = UIView()

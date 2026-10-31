@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 /// Temporary destinations for checking the shell before the real screens migrate.
-final class ShellScreenViewController: UIViewController {
+final class ShellScreenViewController: AppDuoViewController {
     let route: AppRoute
     private weak var router: AppRouter?
     private let contentStack = UIStackView()
@@ -28,7 +28,7 @@ final class ShellScreenViewController: UIViewController {
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown
+        viewIfLoaded?.usesDuoLayout == true || UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown
     }
 
     override func loadView() { view = AppDuoContentView() }

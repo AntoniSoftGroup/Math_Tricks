@@ -1,6 +1,6 @@
 import UIKit
 
-final class PlayerInputBoard:UIView {
+final class PlayerInputBoard:AppDuoAvoidingView {
     var onAction:((PlayerAction)->Void)?
     var onBack:(()->Void)?
     private lazy var backButton = AppButton(title:CatalogText.ui("back"),icon:.back,kind:.icon) { [weak self] in self?.onBack?() }
@@ -64,8 +64,8 @@ final class PlayerInputBoard:UIView {
             booleans.addArrangedSubview(key(CatalogText.ui(value ? "true":"false"),icon:value ? .correct:.incorrect){[weak self] in self?.onAction?(.boolean(value))})
         }
         NSLayoutConstraint.activate([
-            content.topAnchor.constraint(equalTo:topAnchor),content.bottomAnchor.constraint(equalTo:bottomAnchor),
-            content.leadingAnchor.constraint(equalTo:leadingAnchor),content.trailingAnchor.constraint(equalTo:trailingAnchor),
+            content.topAnchor.constraint(equalTo:unobscuredLayoutGuide.topAnchor),content.bottomAnchor.constraint(equalTo:unobscuredLayoutGuide.bottomAnchor),
+            content.leadingAnchor.constraint(equalTo:unobscuredLayoutGuide.leadingAnchor),content.trailingAnchor.constraint(equalTo:unobscuredLayoutGuide.trailingAnchor),
         ])
         let height=keyboard.heightAnchor.constraint(equalToConstant:0);height.priority = .init(999);height.isActive=true;keyboardHeight=height
     }

@@ -3,7 +3,7 @@ import Combine
 
 /// Shared app dialog. UIKit owns presentation; the message can scroll in landscape
 /// or at accessibility text sizes, including the action buttons.
-final class AppDialogViewController: UIViewController {
+final class AppDialogViewController: AppDuoViewController {
     enum ActionLayout { case stacked, footer }
     struct Action {
         let title: String
@@ -35,7 +35,7 @@ final class AppDialogViewController: UIViewController {
         self.data = data
         super.init(nibName: nil, bundle: nil)
         self.title = title
-        modalPresentationStyle = .overFullScreen
+        modalPresentationStyle = .overFullScreen; modalPresentationCapturesStatusBarAppearance = true
         modalTransitionStyle = .crossDissolve
     }
 
@@ -157,7 +157,7 @@ final class AppDialogViewController: UIViewController {
                 footer.addArrangedSubview(button)
             } else { content.addArrangedSubview(button) }
         }
-        let safe = view.safeAreaLayoutGuide
+        let safe = view.appContentLayoutGuide
         let width = card.widthAnchor.constraint(equalToConstant: 360)
         width.priority = .defaultHigh
         NSLayoutConstraint.activate([
@@ -246,7 +246,7 @@ final class ExitConfirmation {
         label.layer.cornerRadius = 10; label.clipsToBounds = true; label.translatesAutoresizingMaskIntoConstraints = false
         presenter.view.addSubview(label)
         NSLayoutConstraint.activate([label.centerXAnchor.constraint(equalTo: presenter.view.centerXAnchor),
-            label.bottomAnchor.constraint(equalTo: presenter.view.safeAreaLayoutGuide.bottomAnchor, constant: -24),
+            label.bottomAnchor.constraint(equalTo: presenter.view.appContentLayoutGuide.bottomAnchor, constant: -24),
             label.widthAnchor.constraint(lessThanOrEqualTo: presenter.view.widthAnchor, multiplier: 0.9),
             label.heightAnchor.constraint(greaterThanOrEqualToConstant: 44)])
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { label.removeFromSuperview() }

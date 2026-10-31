@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 /// Like activity_main_host: changing screens and the shared banner are siblings.
-final class AppRootViewController: UIViewController {
+final class AppRootViewController: AppDuoViewController {
     private let themeBackground = ThemeBackgroundView()
     private let topSystemBar = UIView()
     private let bottomSystemBar = UIView()
@@ -23,7 +23,7 @@ final class AppRootViewController: UIViewController {
     private let ageStatus = AppLabel(.body)
     private let ageActivity = UIActivityIndicatorView(style: .large)
 
-    deinit { startupTask?.cancel(); serviceStartLink?.invalidate() }
+    isolated deinit { startupTask?.cancel(); serviceStartLink?.invalidate() }
 
     override func loadView() { view = AppDuoContentView() }
 
@@ -317,7 +317,7 @@ final class AppRootViewController: UIViewController {
 
     override var childForStatusBarStyle: UIViewController? { screenNavigation }
     override var childForStatusBarHidden: UIViewController? { nil }
-    override var prefersStatusBarHidden: Bool { false }
+    override var prefersStatusBarHidden: Bool { viewIfLoaded?.usesDuoLayout == true }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         screenNavigation.supportedInterfaceOrientations
     }

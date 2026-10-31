@@ -6,6 +6,9 @@ final class MultiplayerViewController: ThemedViewController, AppBackHandling {
     private var session: MultiplayerSession?
     private let boards = [PlayerInputBoard(),PlayerInputBoard()]
     private let row = UIStackView()
+    private let duoRow = AppDuoSplitView()
+    private let duoResults = AppDuoSplitView()
+    private var usesDuoPanes = false
     private let middle = UIStackView()
     private let gameColumn = UIStackView()
     private var initiallyStarted=false
@@ -51,6 +54,8 @@ final class MultiplayerViewController: ThemedViewController, AppBackHandling {
             if index == 0 { board.onBack = { [weak self] in self?.requestBack() } }
         }
         column.addArrangedSubview(row)
+        column.addArrangedSubview(duoRow); duoRow.isHidden = true
+        duoRow.onArrangementChange = { [weak self] in self?.view.setNeedsLayout() }
         resume = button(CatalogText.ui("resume"), kind: .compact) { [weak self] in self?.resumeGame() }
         resume.isHidden=true
         column.addArrangedSubview(resume)
@@ -61,6 +66,11 @@ final class MultiplayerViewController: ThemedViewController, AppBackHandling {
             panel.onExit = { [weak self] in self?.router?.goBack(confirmed:true) }
             resultPanels.append(panel);resultRow.addArrangedSubview(panel)
         }
+        duoResults.translatesAutoresizingMaskIntoConstraints = false; body.addSubview(duoResults); duoResults.isHidden = true
+        NSLayoutConstraint.activate([
+            duoResults.topAnchor.constraint(equalTo:body.topAnchor), duoResults.bottomAnchor.constraint(equalTo:body.bottomAnchor),
+            duoResults.leadingAnchor.constraint(equalTo:body.leadingAnchor), duoResults.trailingAnchor.constraint(equalTo:body.trailingAnchor)
+        ])
         resultRow.translatesAutoresizingMaskIntoConstraints=false;body.addSubview(resultRow)
         NSLayoutConstraint.activate([resultRow.topAnchor.constraint(equalTo:body.topAnchor),resultRow.bottomAnchor.constraint(equalTo:body.bottomAnchor),resultRow.leadingAnchor.constraint(equalTo:body.leadingAnchor),resultRow.trailingAnchor.constraint(equalTo:body.trailingAnchor)])
         NSLayoutConstraint.activate([column.topAnchor.constraint(equalTo: body.topAnchor),column.bottomAnchor.constraint(equalTo: body.bottomAnchor),column.leadingAnchor.constraint(equalTo: body.leadingAnchor),column.trailingAnchor.constraint(equalTo: body.trailingAnchor)])
@@ -85,6 +95,14 @@ final class MultiplayerViewController: ThemedViewController, AppBackHandling {
     override func update(_ progress: ProgressState?) { render() }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        synchronizeDuoPanes()
+        if usesDuoPanes {
+            duoRow.synchronizeArrangement(); duoResults.synchronizeArrangement()
+            duoResults.isHidden = resultRow.isHidden
+            duoRow.axis = duoRow.isHorizontal == true ? .horizontal : .vertical
+            boards[1].transform = CGAffineTransform(rotationAngle:.pi)
+            return
+        }
         let landscape=view.bounds.width>view.bounds.height
         if landscapeLayout != landscape {
             landscapeLayout=landscape;boardEquality?.isActive=false
@@ -107,6 +125,32 @@ final class MultiplayerViewController: ThemedViewController, AppBackHandling {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated); visible = false; queue.removeAll(); session?.pause(now: now); timer?.invalidate(); timer = nil; savePaused()
     }
+    private func synchronizeDuoPanes() {
+        let shouldUse = AppDuoGameArrangement.canUse(in: body)
+        guard shouldUse != usesDuoPanes else { return }
+        usesDuoPanes = shouldUse
+        boardEquality?.isActive = false
+        landscapeLayout = nil
+        if shouldUse {
+            for host in boardHosts { row.removeArrangedSubview(host); host.removeFromSuperview() }
+            row.removeArrangedSubview(middle)
+            boardHosts[0].removeArrangedSubview(middle); middle.removeFromSuperview()
+            boardHosts[0].insertArrangedSubview(middle, at: 0)
+            duoRow.addArrangedSubview(boardHosts[1]); duoRow.addArrangedSubview(boardHosts[0])
+            for panel in resultPanels {
+                resultRow.removeArrangedSubview(panel); panel.removeFromSuperview()
+                duoResults.addArrangedSubview(panel)
+            }
+        } else {
+            duoRow.removeAllArrangedSubviews(); duoResults.removeAllArrangedSubviews()
+            resultPanels.forEach { resultRow.addArrangedSubview($0) }
+        }
+        row.isHidden = shouldUse
+        resultRow.isUserInteractionEnabled = !shouldUse
+        duoRow.isHidden = !shouldUse
+        duoResults.isHidden = !shouldUse || resultRow.isHidden
+    }
+
     private func startTimer() {
         guard timer == nil, visible, session?.running == true else { return }
         let value = Timer(timeInterval: 0.05, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
@@ -209,6 +253,10 @@ final class MultiplayerViewController: ThemedViewController, AppBackHandling {
         }
         resume.isHidden = session.running || session.finished || saving || pending != nil; resume.isEnabled = !saving && pending == nil && active
         row.alpha=session.finished ? 0:1;row.isUserInteractionEnabled = !session.finished;resultRow.isHidden = !session.finished
+        duoRow.alpha = session.finished ? 0 : 1
+        duoRow.isUserInteractionEnabled = !session.finished
+        duoResults.isHidden = !usesDuoPanes || !session.finished
+        view.setNeedsLayout()
         if session.finished {
             for (index,player) in [1,0].enumerated() {
                 let font=AppTypography.font(.multiplayerResult,settings:settings,traits:traitCollection)

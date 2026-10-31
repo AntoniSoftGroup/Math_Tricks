@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 /// Optional manual age entry; mandatory declarations are handled by Apple.
-final class AgeScreenViewController: UIViewController {
+final class AgeScreenViewController: AppDuoViewController {
     var prepareThemePreview: ((AppSettings) -> Void)?
     private var previewPrepared = false
     private let data: AppDataStore
@@ -26,13 +26,14 @@ final class AgeScreenViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { viewIfLoaded?.usesDuoLayout == true || UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown }
     override var preferredStatusBarStyle: UIStatusBarStyle { settings.theme?.isDark == true ? .lightContent : .darkContent }
 
     override func loadView() { view = AppDuoContentView() }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        header.extendsAcrossTopCamera = true
         view.backgroundColor = .clear
         view.accessibilityIdentifier = "screen.age"
         header.translatesAutoresizingMaskIntoConstraints = false

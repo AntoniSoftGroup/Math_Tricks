@@ -285,6 +285,7 @@ final class AppHeaderView: AppDuoAvoidingView {
     private var rowTrailing: NSLayoutConstraint?
     init(title:String,onBack:(()->Void)?) {
         super.init(frame:.zero)
+        extendsAcrossTopCamera = true
         let content = unobscuredLayoutGuide
         translatesAutoresizingMaskIntoConstraints=false
         row.axis = .horizontal;row.alignment = .center;row.spacing=0

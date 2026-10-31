@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 /// Android's coin unlock dialog. Successful purchase returns to the same list.
-final class TrainingUnlockViewController: UIViewController {
+final class TrainingUnlockViewController: AppDuoViewController {
     private let trick: CatalogTrick
     private let data: AppDataStore
     private let name = UILabel()
@@ -23,7 +23,7 @@ final class TrainingUnlockViewController: UIViewController {
     init(trick: CatalogTrick, data: AppDataStore, onBuyPro: @escaping () -> Void) {
         self.trick = trick; self.data = data; self.onBuyPro = onBuyPro
         super.init(nibName: nil, bundle: nil)
-        modalPresentationStyle = .overFullScreen
+        modalPresentationStyle = .overFullScreen; modalPresentationCapturesStatusBarAppearance = true
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
@@ -52,7 +52,7 @@ final class TrainingUnlockViewController: UIViewController {
         errorLabel.textAlignment = .center; errorLabel.isHidden = true; column.addArrangedSubview(errorLabel)
         let actions = UIStackView(arrangedSubviews: [cancel, confirm]); actions.axis = .horizontal; actions.distribution = .fillEqually
         column.addArrangedSubview(actions)
-        let safe = view.safeAreaLayoutGuide
+        let safe = view.appContentLayoutGuide
         let width = card.widthAnchor.constraint(equalToConstant: 400); width.priority = .defaultHigh
         let height = scroll.heightAnchor.constraint(equalTo: column.heightAnchor); height.priority = .defaultHigh
         NSLayoutConstraint.activate([

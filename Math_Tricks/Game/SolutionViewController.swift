@@ -26,7 +26,10 @@ final class SolutionViewController: ThemedViewController {
         get { let saved = UserDefaults.standard.double(forKey:"rule_scheme_zoom"); return saved > 0 ? saved : 1 }
         set { UserDefaults.standard.set(Double(newValue),forKey:"rule_scheme_zoom") }
     }
-    private let column = UIStackView(), workspace = UIStackView(), keyboard = UIStackView()
+    private let column = UIStackView(), keyboard = UIStackView()
+    private let workspace = AppDuoSplitView()
+    private var toolsTop: NSLayoutConstraint!, backLeading: NSLayoutConstraint!, backDefaultLeading: NSLayoutConstraint!
+    private var schemeTools: UIStackView!
     private let leftPanel = UIStackView(), rightPanel = UIStackView()
     private let diagramPanel = UIView(), listPanel = UIView()
     private let diagramScroll = AppScrollView(), stepsScroll = AppScrollView()
@@ -62,6 +65,13 @@ final class SolutionViewController: ThemedViewController {
     private var solutionsLeft: Int { charged ? game?.solutionAllHintsRemaining ?? 0 : localSolutions }
     private var fullySolved: Bool { !steps.isEmpty && reached >= steps.count - 1 && steps.last?.isFinal == true }
     override func buildContent() {
+        workspace.onArrangementChange = { [weak self] in
+            self?.landscape = nil
+            self?.listWidth?.isActive = false
+            self?.listHeight?.isActive = false
+            self?.backDefaultLeading?.isActive = false
+            self?.view.setNeedsLayout()
+        }
         if let game { catalogCategoryID = game.catalogCategoryID }
         view.accessibilityIdentifier = preview ? "screen.solutionPreview" : "screen.solution"
         setHeaderHidden(true)
@@ -76,6 +86,7 @@ final class SolutionViewController: ThemedViewController {
         }
         multiplicationTable.label.text = CatalogText.ui("solution_multiplication_table")
         let schemeTools = UIStackView(arrangedSubviews: [multiplicationTable, method])
+        self.schemeTools = schemeTools
         schemeTools.axis = .vertical; schemeTools.alignment = .center; schemeTools.translatesAutoresizingMaskIntoConstraints = false
         for control in [multiplicationTable!,method!] {
             control.widthAnchor.constraint(equalToConstant:60).isActive = true
@@ -104,7 +115,8 @@ final class SolutionViewController: ThemedViewController {
         NSLayoutConstraint.activate([diagramScroll.topAnchor.constraint(equalTo:diagramPanel.topAnchor),diagramScroll.bottomAnchor.constraint(equalTo:diagramPanel.bottomAnchor),diagramScroll.leadingAnchor.constraint(equalTo:diagramPanel.leadingAnchor),diagramScroll.trailingAnchor.constraint(equalTo:diagramPanel.trailingAnchor),
             diagrams.topAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.topAnchor,constant:AppMetrics.headerHeight),diagrams.bottomAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.bottomAnchor,constant:-10),diagrams.leadingAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.leadingAnchor,constant:15),diagrams.trailingAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.trailingAnchor,constant:-15),diagrams.widthAnchor.constraint(equalTo:diagramScroll.frameLayoutGuide.widthAnchor,constant:-30),diagramPanel.heightAnchor.constraint(greaterThanOrEqualToConstant:AppMetrics.headerHeight)])
         diagramPanel.addSubview(schemeTools)
-        NSLayoutConstraint.activate([schemeTools.topAnchor.constraint(equalTo: diagramPanel.topAnchor, constant: 5),
+        toolsTop = schemeTools.topAnchor.constraint(equalTo: diagramPanel.topAnchor, constant: 5)
+        NSLayoutConstraint.activate([toolsTop,
             schemeTools.trailingAnchor.constraint(equalTo: diagramPanel.trailingAnchor, constant: -10)])
         let zoomButtons = UIStackView(); zoomButtons.axis = .vertical; zoomButtons.spacing = 4; zoomButtons.translatesAutoresizingMaskIntoConstraints = false
         for (direction,icon) in [(1,AppIcon.zoomIn),(-1,AppIcon.zoomOut)] {
@@ -118,9 +130,11 @@ final class SolutionViewController: ThemedViewController {
         back = button(CatalogText.ui("back"), icon: .back, kind: .icon) { [weak self] in AppFeedback.shared.haptic(.step); self?.router?.goBack() }
         back.setContentInsets(UIEdgeInsets(top:8,left:8,bottom:8,right:8),minimumHeight:AppMetrics.headerHeight)
         back.accessibilityIdentifier = "solution.back"
-        body.addSubview(back)
+        diagramPanel.addSubview(back)
+        backLeading = back.leftAnchor.constraint(equalTo:diagramPanel.leftAnchor)
+        backDefaultLeading = back.leadingAnchor.constraint(equalTo:body.leadingAnchor)
         NSLayoutConstraint.activate([
-            back.topAnchor.constraint(equalTo:body.topAnchor),back.leadingAnchor.constraint(equalTo:body.leadingAnchor),
+            back.topAnchor.constraint(equalTo:diagramPanel.topAnchor),backDefaultLeading,
             back.widthAnchor.constraint(equalToConstant:AppMetrics.headerBackWidth),
             back.heightAnchor.constraint(equalToConstant:AppMetrics.headerHeight)
         ])
@@ -303,10 +317,17 @@ final class SolutionViewController: ThemedViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let wide = view.bounds.width > view.bounds.height
-        if landscape != wide { landscape = wide; workspace.axis = wide ? .horizontal : .vertical; listWidth.isActive = wide; listHeight.isActive = !wide; heightControls.isHidden = wide }
+        workspace.synchronizeArrangement()
+        let wide = workspace.isHorizontal ?? (view.bounds.width > view.bounds.height)
+        if landscape != wide {
+            landscape = wide; workspace.axis = wide ? .horizontal : .vertical
+            listWidth.isActive = wide && !workspace.usesNativeArrangement
+            listHeight.isActive = !wide && !workspace.usesNativeArrangement
+            heightControls.isHidden = wide || workspace.usesNativeArrangement
+        }
+        updateDuoCameraControls()
         keyboardHeight.constant = smallKeyboard ? 72 : wide ? 136 : 192
-        if !wide, workspace.bounds.height > 0 {
+        if !wide, !workspace.usesNativeArrangement, workspace.bounds.height > 0 {
             let height = stepsHeightPreference.height(in: heightLimits())
             if abs(listHeight.constant - height) > 0.5 { listHeight.constant = height; view.setNeedsLayout() }
         }
@@ -322,6 +343,23 @@ final class SolutionViewController: ThemedViewController {
         }
         listPanel.bringSubviewToFront(heightControls)
     }
+    private func updateDuoCameraControls() {
+        let obstacles = AppDuoLayout.occlusionFrames(in: diagramPanel)
+        let backFrame = CGRect(x: 0, y: 0, width: AppMetrics.headerBackWidth, height: AppMetrics.headerHeight)
+        let leading = obstacles.filter { $0.intersects(backFrame) }.map(\.maxX).max() ?? 0
+        let toolsFrame = CGRect(x: diagramPanel.bounds.maxX - 70, y: 5, width: 60, height: max(1, schemeTools.bounds.height))
+        let top = obstacles.filter { $0.intersects(toolsFrame) }.map(\.maxY).max() ?? 5
+        if view.usesDuoLayout {
+            backDefaultLeading.isActive = false
+            backLeading.isActive = true
+            if abs(backLeading.constant - leading) > 0.5 { backLeading.constant = leading }
+        } else {
+            backLeading.isActive = false
+            backDefaultLeading.isActive = true
+        }
+        if abs(toolsTop.constant - top) > 0.5 { toolsTop.constant = top }
+    }
+
     private func updateNestingArrows() {
         let ids = parents.indices.map { depth in "\(parents[depth].example.signature):\(depth + 1 < parents.count ? parents[depth + 1].example.signature : example.signature)" }
         nestingArrows.update(parents:frozenSchemes,active:scheme,ids:ids,container:diagrams,palette:palette,scale:schemeStyle().fontSize / schemeStyle().originalSize)

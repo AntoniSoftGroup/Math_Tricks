@@ -1,7 +1,7 @@
 import UIKit
 
 /// Shared Android-style details sheet for saved metrics and an individual answer.
-final class ResultDetailsViewController: UIViewController {
+final class ResultDetailsViewController: AppDuoViewController {
     private let sheetTitle: String
     private let settings: AppSettings
     private let metrics: [ResultMetric]?
@@ -11,12 +11,12 @@ final class ResultDetailsViewController: UIViewController {
     var onSolution: ((CGFloat) -> Void)?
     init(title: String,metrics: [ResultMetric],settings: AppSettings) {
         sheetTitle = title; self.metrics = metrics; self.settings = settings; question = nil; restoredOffset = 0
-        super.init(nibName: nil,bundle: nil); modalPresentationStyle = .overFullScreen
+        super.init(nibName: nil,bundle: nil); modalPresentationStyle = .overFullScreen; modalPresentationCapturesStatusBarAppearance = true
     }
     init(question: SessionResultQuestion,settings: AppSettings,offset: CGFloat = 0) {
         self.question = question; self.settings = settings; metrics = nil; restoredOffset = offset
         sheetTitle = ResultText.text("results_example")
-        super.init(nibName: nil,bundle: nil); modalPresentationStyle = .overFullScreen
+        super.init(nibName: nil,bundle: nil); modalPresentationStyle = .overFullScreen; modalPresentationCapturesStatusBarAppearance = true
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override func viewDidLoad() {
@@ -45,9 +45,9 @@ final class ResultDetailsViewController: UIViewController {
         let ok = AppButton(title:MainText.text("ok"),kind:.dialog) { [weak self] in self?.dismiss(animated: false) }
         ok.apply(settings:settings);ok.label.role = .body;ok.setContentInsets(UIEdgeInsets(top:8,left:16,bottom:8,right:16),minimumHeight:48)
         actions.addArrangedSubview(ok); column.addArrangedSubview(actions)
-        NSLayoutConstraint.activate([card.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),card.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),card.widthAnchor.constraint(lessThanOrEqualToConstant: 560),card.widthAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.widthAnchor,constant: -24),
-            card.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor,constant: 12),card.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -12)])
-        let width = card.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor,constant: -24); width.priority = .defaultHigh; width.isActive = true
+        NSLayoutConstraint.activate([card.centerXAnchor.constraint(equalTo: view.appContentLayoutGuide.centerXAnchor),card.centerYAnchor.constraint(equalTo: view.appContentLayoutGuide.centerYAnchor),card.widthAnchor.constraint(lessThanOrEqualToConstant: 560),card.widthAnchor.constraint(lessThanOrEqualTo: view.appContentLayoutGuide.widthAnchor,constant: -24),
+            card.topAnchor.constraint(greaterThanOrEqualTo: view.appContentLayoutGuide.topAnchor,constant: 12),card.bottomAnchor.constraint(lessThanOrEqualTo: view.appContentLayoutGuide.bottomAnchor,constant: -12)])
+        let width = card.widthAnchor.constraint(equalTo: view.appContentLayoutGuide.widthAnchor,constant: -24); width.priority = .defaultHigh; width.isActive = true
         let height = scroll.heightAnchor.constraint(equalTo: content.heightAnchor); height.priority = .defaultHigh; height.isActive = true
         let minHeight = scroll.heightAnchor.constraint(greaterThanOrEqualToConstant: 40); minHeight.priority = .init(999); minHeight.isActive = true
     }

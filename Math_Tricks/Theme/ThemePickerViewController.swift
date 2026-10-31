@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 /// Android MyColorFragment: local draft, centered carousel and an overlapping settings dock.
-final class ThemePickerViewController: UIViewController, UIScrollViewDelegate {
+final class ThemePickerViewController: AppDuoViewController, UIScrollViewDelegate {
     let isInitialSetup: Bool
     private weak var router: AppRouter?
     private let data: AppDataStore
@@ -21,6 +21,9 @@ final class ThemePickerViewController: UIViewController, UIScrollViewDelegate {
         cards.indices.max { cards[$0].frame.intersection(pages.bounds).width < cards[$1].frame.intersection(pages.bounds).width } ?? currentIndex
     }
     private let background=ThemeBackgroundView(), header=UIView(), stage=UIView()
+    private let duoLayout = AppDuoSplitView()
+    private let carouselPane = UIView(), controlsPane = UIView()
+    private var usesDuoPanes = false
     private let pages=AppScrollView(), settingsScroll=AppScrollView()
     private let panel=UIView(), dock=UIView(), fontControls=UIView(), switches=ResultUI.stack(.vertical)
     private var cards=AppTheme.pickerOrder.map { _ in ThemePreviewView() }
@@ -40,13 +43,13 @@ final class ThemePickerViewController: UIViewController, UIScrollViewDelegate {
         super.init(nibName:nil,bundle:nil);title=CatalogText.ui("theme_title")
         expanded=UserDefaults.standard.object(forKey:"themeSettingsExpanded") as? Bool ?? !initialSetup
     }
-    deinit { previewTask?.cancel(); pendingRefresh?.cancel() }
+    isolated deinit { previewTask?.cancel(); pendingRefresh?.cancel() }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         let palette=ThemePalette(settings:data.snapshot?.settings ?? AppSettings())
         return palette.theme.isClassic ? (ThemeColor.luminance(palette.systemBar)>0.5 ? .darkContent : .lightContent) : (palette.theme.isDark ? .lightContent : .darkContent)
     }
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { viewIfLoaded?.usesDuoLayout == true || UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown }
     override func loadView() { view = AppDuoContentView() }
 
     override func viewDidLoad() {
@@ -55,6 +58,13 @@ final class ThemePickerViewController: UIViewController, UIScrollViewDelegate {
         view.addSubview(background);view.addSubview(header);view.addSubview(stage)
         for child in [backButton,nameLabel,applyButton] { child.translatesAutoresizingMaskIntoConstraints = true; header.addSubview(child) }
         stage.addSubview(pages);stage.addSubview(fontControls);stage.addSubview(dock);stage.addSubview(cycle)
+        duoLayout.translatesAutoresizingMaskIntoConstraints = false;duoLayout.isHidden = true;stage.addSubview(duoLayout)
+        duoLayout.addArrangedSubview(carouselPane);duoLayout.addArrangedSubview(controlsPane)
+        duoLayout.onArrangementChange = { [weak self] in self?.geometry = .zero;self?.view.setNeedsLayout() }
+        NSLayoutConstraint.activate([
+            duoLayout.topAnchor.constraint(equalTo:stage.topAnchor),duoLayout.bottomAnchor.constraint(equalTo:stage.bottomAnchor),
+            duoLayout.leadingAnchor.constraint(equalTo:stage.leadingAnchor),duoLayout.trailingAnchor.constraint(equalTo:stage.trailingAnchor)
+        ])
         pages.delegate=self;pages.showsHorizontalScrollIndicator=false;pages.decelerationRate = .fast;pages.clipsToBounds=true
         for (index,card) in cards.enumerated() {
             pages.addSubview(card)
@@ -193,31 +203,36 @@ final class ThemePickerViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLayoutSubviews()
         background.frame=view.bounds
         let safe=view.appContentLayoutGuide.layoutFrame
-        header.frame=AppDuoLayout.unobscuredFrame(in:view,within: CGRect(x:safe.minX,y:safe.minY,width:safe.width,height:AppMetrics.headerHeight))
+        header.frame=CGRect(x:safe.minX,y:safe.minY,width:safe.width,height:AppDuoLayout.headerHeight(in:view))
+        let headerContent=AppDuoLayout.unobscuredFrame(in:header,within:header.bounds)
         let headerRTL = header.effectiveUserInterfaceLayoutDirection == .rightToLeft
-        backButton.frame=CGRect(x:headerRTL ? header.bounds.width-AppMetrics.headerBackWidth : 0,y:0,width:AppMetrics.headerBackWidth,height:AppMetrics.headerHeight)
+        backButton.frame=CGRect(x:headerRTL ? headerContent.maxX-AppMetrics.headerBackWidth : headerContent.minX,y:headerContent.minY,width:AppMetrics.headerBackWidth,height:AppMetrics.headerHeight)
         // AppLabel refreshes its role font on rotation; restore the compact header font before measuring.
         applyButton.label.font=ResultUI.font(13,settings:data.snapshot?.settings ?? AppSettings())
         let applyWidth=min(160,max(100,((applyButton.label.text ?? "") as NSString).size(withAttributes:[.font:applyButton.label.font!]).width+32))
-        applyButton.frame=CGRect(x:headerRTL ? 8 : header.bounds.width-applyWidth-8,y:(AppMetrics.headerHeight-48)/2,width:applyWidth,height:48)
-        nameLabel.frame=CGRect(x:headerRTL ? applyWidth+20 : AppMetrics.headerBackWidth+4,y:0,width:max(1,header.bounds.width-applyWidth-AppMetrics.headerBackWidth-24),height:AppMetrics.headerHeight)
+        applyButton.frame=CGRect(x:headerRTL ? headerContent.minX+8 : headerContent.maxX-applyWidth-8,y:headerContent.minY+(AppMetrics.headerHeight-48)/2,width:applyWidth,height:48)
+        nameLabel.frame=CGRect(x:headerContent.minX+(headerRTL ? applyWidth+20 : AppMetrics.headerBackWidth+4),y:headerContent.minY,width:max(1,headerContent.width-applyWidth-AppMetrics.headerBackWidth-24),height:AppMetrics.headerHeight)
         stage.frame=CGRect(x:safe.minX,y:header.frame.maxY,width:safe.width,height:max(1,safe.maxY-header.frame.maxY))
+        stage.layoutIfNeeded()
+        synchronizeDuoPanes()
         let size=stage.bounds.size,landscape=view.bounds.width>view.bounds.height
-        let nominalPanelWidth=landscape ? size.width*0.5 : size.width
-        let showSwitches=landscape || expanded
-        let toggleHeight: CGFloat=landscape ? 0 : 104
+        let sideControls = usesDuoPanes || landscape
+        let carouselSize = usesDuoPanes ? carouselPane.bounds.size : CGSize(width:landscape ? size.width*0.5 : size.width,height:size.height)
+        let nominalPanelWidth=usesDuoPanes ? controlsPane.bounds.width : (landscape ? size.width*0.5 : size.width)
+        let showSwitches=sideControls || expanded
+        let toggleHeight: CGFloat=sideControls ? 0 : 104
         let portraitPanelHeight: CGFloat=20+168+(showSwitches ? 112 : 0)+8
-        let nominalDockHeight=landscape ? size.height : min(size.height,max(1,portraitPanelHeight+toggleHeight))
-        let dockFrame=AppDuoLayout.unobscuredFrame(in:stage,within: CGRect(x:landscape ? size.width-nominalPanelWidth : 0,y:landscape ? 0 : size.height-nominalDockHeight,width:nominalPanelWidth,height:nominalDockHeight))
+        let nominalDockHeight=usesDuoPanes ? controlsPane.bounds.height : (landscape ? size.height : min(size.height,max(1,portraitPanelHeight+toggleHeight)))
+        let dockFrame=usesDuoPanes ? controlsPane.bounds : AppDuoLayout.unobscuredFrame(in:stage,within: CGRect(x:landscape ? size.width-nominalPanelWidth : 0,y:landscape ? 0 : size.height-nominalDockHeight,width:nominalPanelWidth,height:nominalDockHeight))
         let panelWidth=dockFrame.width,dockHeight=dockFrame.height
         dock.frame=dockFrame
-        let aspect=max(0.1,view.bounds.height/max(1,view.bounds.width)),carouselWidth=landscape ? size.width-nominalPanelWidth : size.width
-        let nextWidth=landscape ? max(1,min(carouselWidth*0.82,(size.height-14)/aspect)) : min(282,carouselWidth*0.76)
+        let aspect=max(0.1,view.bounds.height/max(1,view.bounds.width)),carouselWidth=usesDuoPanes ? carouselSize.width : (landscape ? size.width-nominalPanelWidth : size.width)
+        let nextWidth=sideControls ? max(1,min(carouselWidth*0.82,(carouselSize.height-14)/aspect)) : min(282,carouselWidth*0.76)
         let cardHeight=(nextWidth-6)*aspect+6,carouselHeight=cardHeight+8
-        if landscape { if fontControls.superview !== panel { fontControls.removeFromSuperview();panel.addSubview(fontControls) } }
+        if sideControls { if fontControls.superview !== panel { fontControls.removeFromSuperview();panel.addSubview(fontControls) } }
         else if fontControls.superview !== stage { fontControls.removeFromSuperview();stage.addSubview(fontControls) }
-        let nominalFontFrame=CGRect(x:landscape ? 8 : 0,y:landscape ? 8 : 0,width:landscape ? panelWidth-16 : size.width,height:100)
-        let fontFrame=landscape ? nominalFontFrame : AppDuoLayout.unobscuredFrame(in:stage,within:nominalFontFrame)
+        let nominalFontFrame=CGRect(x:sideControls ? 8 : 0,y:sideControls ? 8 : 0,width:sideControls ? panelWidth-16 : size.width,height:100)
+        let fontFrame=sideControls ? nominalFontFrame : AppDuoLayout.unobscuredFrame(in:stage,within:nominalFontFrame)
         let fontWidth=fontFrame.width
         let labelHeight=max(23,ceil(fontLabel.sizeThatFits(CGSize(width:max(1,fontWidth-20),height:.greatestFiniteMagnitude)).height))
         let fontHeight=labelHeight+64,sliderTop=labelHeight+8
@@ -231,7 +246,7 @@ final class ThemePickerViewController: UIViewController, UIScrollViewDelegate {
         let fraction=(systemPercent-80)/120,rtl=view.effectiveUserInterfaceLayoutDirection == .rightToLeft
         systemMarker.frame=CGRect(x:fontSlider.frame.minX+2+(trackWidth-4)*(rtl ? 1-fraction : fraction)-1,y:sliderTop+18,width:2,height:12)
         systemMarker.accessibilityLabel=ResultText.format("font_size_system",Int64(systemPercent.rounded()))
-        pages.frame=CGRect(x:0,y:landscape ? max(0,(size.height-carouselHeight)/2) : fontHeight,width:carouselWidth,height:carouselHeight)
+        pages.frame=CGRect(x:0,y:sideControls ? max(0,(carouselSize.height-carouselHeight)/2) : fontHeight,width:carouselWidth,height:carouselHeight)
         let layoutChanged=geometry != size || abs(cardWidth-nextWidth)>0.5
         if layoutChanged {
             geometry=size;cardWidth=nextWidth
@@ -241,10 +256,10 @@ final class ThemePickerViewController: UIViewController, UIScrollViewDelegate {
             for (index,card) in cards.enumerated() { card.setReferenceSize(view.bounds.size);card.frame=CGRect(x:CGFloat(index)*(cardWidth+16),y:4,width:cardWidth,height:cardHeight) }
             pages.setContentOffset(CGPoint(x:CGFloat(currentIndex)*(cardWidth+16)-inset,y:0),animated:false)
         }
-        switches.isHidden = !showSwitches;toggle.isHidden=landscape
+        switches.isHidden = !showSwitches;toggle.isHidden=sideControls
         toggle.setImage(UIImage(systemName:expanded ? "chevron.up":"chevron.down"),for:.normal)
         toggle.accessibilityLabel=ResultText.text(expanded ? "theme_settings_collapse":"theme_settings_expand")
-        let start: CGFloat=landscape ? fontHeight+16 : 20
+        let start: CGFloat=sideControls ? fontHeight+16 : 20
         colorLabel.frame=CGRect(x:28,y:start,width:max(1,panelWidth-150),height:20)
         codeLabel.frame=CGRect(x:panelWidth-112,y:start,width:84,height:20)
         spectrum.frame=CGRect(x:16,y:start+20,width:panelWidth-32,height:64)
@@ -254,15 +269,34 @@ final class ThemePickerViewController: UIViewController, UIScrollViewDelegate {
         let panelHeight=start+168+(showSwitches ? 112 : 0)+8
         toggle.frame=CGRect(x:panelWidth-48,y:72,width:40,height:32)
         settingsScroll.frame=CGRect(x:0,y:toggleHeight,width:panelWidth,height:max(1,dockHeight-toggleHeight))
-        panel.frame=CGRect(x:0,y:0,width:panelWidth,height:max(panelHeight,landscape ? settingsScroll.bounds.height : 0))
+        panel.frame=CGRect(x:0,y:0,width:panelWidth,height:max(panelHeight,sideControls ? settingsScroll.bounds.height : 0))
         settingsScroll.contentSize=panel.bounds.size
-        cycle.frame=CGRect(x:(carouselWidth-72)/2,y:landscape ? pages.frame.maxY-72 : dock.frame.minY+4,width:72,height:64)
+        cycle.frame=CGRect(x:(carouselWidth-72)/2,y:sideControls ? pages.frame.maxY-72 : dock.frame.minY+4,width:72,height:64)
         cycle.imageView?.contentMode = .scaleAspectFit
         if cycle.configuration == nil {var config=UIButton.Configuration.plain();config.image=UIImage(named:"ic_theme_preview_cycle")?.withRenderingMode(.alwaysTemplate);config.baseForegroundColor = .white;config.contentInsets=NSDirectionalEdgeInsets(top:16,leading:16,bottom:16,trailing:16);cycle.configuration=config}
-        stage.bringSubviewToFront(dock);stage.bringSubviewToFront(cycle)
+        if usesDuoPanes {
+            controlsPane.bringSubviewToFront(dock);carouselPane.bringSubviewToFront(cycle)
+        } else {
+            stage.bringSubviewToFront(dock);stage.bringSubviewToFront(cycle)
+        }
         if layoutChanged { queuePreviewUpdates() }
         updateMotion()
     }
+    private func synchronizeDuoPanes() {
+        let shouldUse = AppDuoGameArrangement.canUse(in: stage)
+        if usesDuoPanes != shouldUse {
+            usesDuoPanes = shouldUse
+            geometry = .zero
+            if shouldUse {
+                carouselPane.addSubview(pages);carouselPane.addSubview(cycle);controlsPane.addSubview(dock)
+            } else {
+                stage.addSubview(pages);stage.addSubview(dock);stage.addSubview(cycle)
+            }
+            duoLayout.isHidden = !shouldUse
+        }
+        if shouldUse { duoLayout.synchronizeArrangement();duoLayout.layoutIfNeeded() }
+    }
+
     private func updateMotion() {
         background.setHostVisible(visible && !carouselMoving)
     }

@@ -83,3 +83,127 @@ private final class NativeDuoGameArrangement: UIArrangementViewController, AppDu
 }
 
 #endif
+
+/// A stack on other devices; a native, animated pair of panes on the inner Duo display.
+/// The original views survive every fold/unfold and keep their current state.
+final class AppDuoSplitView: UIView {
+    private let stack = UIStackView()
+    private var panes: [UIView] = []
+    private var arrangement: (any AppDuoGameArranging)?
+    private var paneConstraints: [NSLayoutConstraint] = []
+    var onArrangementChange: (() -> Void)?
+    private weak var owner: UIViewController?
+    var usesNativeArrangement: Bool { arrangement != nil }
+    var isHorizontal: Bool? { arrangement?.isHorizontal }
+    var axis: NSLayoutConstraint.Axis {
+        get { stack.axis }
+        set { stack.axis = newValue }
+    }
+    var distribution: UIStackView.Distribution {
+        get { stack.distribution }
+        set { stack.distribution = newValue }
+    }
+    var spacing: CGFloat {
+        get { stack.spacing }
+        set { stack.spacing = newValue }
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(equalTo: topAnchor), stack.bottomAnchor.constraint(equalTo: bottomAnchor),
+            stack.leadingAnchor.constraint(equalTo: leadingAnchor), stack.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    func addArrangedSubview(_ pane: UIView) {
+        precondition(panes.count < 2)
+        panes.append(pane)
+        stack.addArrangedSubview(pane)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        synchronizeArrangement()
+    }
+
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        if window == nil { synchronizeArrangement() }
+    }
+
+    func removeAllArrangedSubviews() {
+        detachArrangement()
+        panes.forEach { stack.removeArrangedSubview($0); $0.removeFromSuperview() }
+        panes = []
+    }
+
+    private func detachArrangement() {
+        NSLayoutConstraint.deactivate(paneConstraints)
+        paneConstraints = []
+        if let old = arrangement {
+            old.controller.willMove(toParent: nil)
+            old.controller.view.removeFromSuperview()
+            old.controller.removeFromParent()
+            arrangement = nil
+        }
+        stack.isHidden = false
+    }
+
+    func synchronizeArrangement() {
+        let shouldUse = window != nil && panes.count == 2 && AppDuoGameArrangement.canUse(in: self)
+        guard shouldUse != usesNativeArrangement else { return }
+        var responder: UIResponder? = next
+        while responder != nil && !(responder is UIViewController) { responder = responder?.next }
+        guard let owner = (responder as? UIViewController) ?? owner else { return }
+        self.owner = owner
+        // Let the screen release its fallback size constraints before reparenting.
+        onArrangementChange?()
+        NSLayoutConstraint.deactivate(paneConstraints)
+        paneConstraints = []
+        for pane in panes {
+            stack.removeArrangedSubview(pane)
+            pane.removeFromSuperview()
+        }
+        if let old = arrangement {
+            old.controller.willMove(toParent: nil)
+            old.controller.view.removeFromSuperview()
+            old.controller.removeFromParent()
+            arrangement = nil
+        }
+        if shouldUse, let next = AppDuoGameArrangement.make() {
+            arrangement = next
+            next.onAxisChange = { [weak self, weak owner] in
+                self?.onArrangementChange?()
+                owner?.view.setNeedsLayout()
+            }
+            owner.addChild(next.controller)
+            let host = next.controller.view!
+            host.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(host)
+            paneConstraints = [
+                host.topAnchor.constraint(equalTo: topAnchor), host.bottomAnchor.constraint(equalTo: bottomAnchor),
+                host.leadingAnchor.constraint(equalTo: leadingAnchor), host.trailingAnchor.constraint(equalTo: trailingAnchor)
+            ]
+            for (pane, destination) in zip(panes, [next.primaryContent, next.secondaryContent]) {
+                destination.addSubview(pane)
+                pane.translatesAutoresizingMaskIntoConstraints = false
+                paneConstraints += [
+                    pane.topAnchor.constraint(equalTo: destination.topAnchor), pane.bottomAnchor.constraint(equalTo: destination.bottomAnchor),
+                    pane.leadingAnchor.constraint(equalTo: destination.leadingAnchor), pane.trailingAnchor.constraint(equalTo: destination.trailingAnchor)
+                ]
+            }
+            NSLayoutConstraint.activate(paneConstraints)
+            next.controller.didMove(toParent: owner)
+            next.update(animated: false)
+        } else {
+            panes.forEach { stack.addArrangedSubview($0) }
+        }
+        stack.isHidden = usesNativeArrangement
+        onArrangementChange?()
+        owner.view.setNeedsLayout()
+    }
+}

@@ -14,7 +14,7 @@ final class RuleViewController: ThemedViewController, UIScrollViewDelegate, UITe
     private var methods: [MathExample] = []
     private var methodIndex = 0
     private var nestedMethods: [([MathExample], Int)] = []
-    private let workspace = UIStackView()
+    private let workspace = AppDuoSplitView()
     private let listPanel = UIStackView()
     private let schemePanel = UIView()
     private let schemeColumn = UIStackView()
@@ -91,6 +91,12 @@ final class RuleViewController: ThemedViewController, UIScrollViewDelegate, UITe
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override func buildContent() {
+        workspace.onArrangementChange = { [weak self] in
+            self?.landscape = nil
+            self?.listWidth?.isActive = false
+            self?.listHeight?.isActive = false
+            self?.view.setNeedsLayout()
+        }
         view.accessibilityIdentifier = "screen.rule.\(trick.id)"
         column.axis = .vertical; column.spacing = 4; column.translatesAutoresizingMaskIntoConstraints = false
         body.addSubview(column)
@@ -387,14 +393,15 @@ final class RuleViewController: ThemedViewController, UIScrollViewDelegate, UITe
         super.viewDidLayoutSubviews()
         if lastOperandViewportWidth != operandScroll.bounds.width { needsOperandLayout = true }
         updateOperandBar()
-        let isLandscape = view.bounds.width > view.bounds.height
+        workspace.synchronizeArrangement()
+        let isLandscape = workspace.isHorizontal ?? (view.bounds.width > view.bounds.height)
         if landscape != isLandscape {
-            landscape = isLandscape; listHeight?.isActive = !isLandscape
-            listWidth?.isActive = isLandscape; workspace.axis = isLandscape ? .horizontal : .vertical
-            listControls.isHidden = isLandscape
+            landscape = isLandscape; listHeight?.isActive = !isLandscape && !workspace.usesNativeArrangement
+            listWidth?.isActive = isLandscape && !workspace.usesNativeArrangement; workspace.axis = isLandscape ? .horizontal : .vertical
+            listControls.isHidden = isLandscape || workspace.usesNativeArrangement
             column.setNeedsLayout()
         }
-        if !isLandscape, listHeight != nil, workspace.bounds.height > 0 {
+        if !isLandscape, !workspace.usesNativeArrangement, listHeight != nil, workspace.bounds.height > 0 {
             let target = stepsHeightPreference.height(in: stepsHeightLimits())
             if abs(listHeight.constant - target) > 0.5 { listHeight.constant = target; view.setNeedsLayout() }
         }
