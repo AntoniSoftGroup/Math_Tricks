@@ -13,6 +13,9 @@ class AppDuoViewController: UIViewController {
 final class AppDuoContentView: UIView {
     let contentGuide = UILayoutGuide()
     private(set) var hasHinge = false
+    var onDuoAvailabilityChange: ((Bool) -> Void)? {
+        didSet { onDuoAvailabilityChange?(hasHinge) }
+    }
     var onDivisionChange: (() -> Void)?
     private var edges: [NSLayoutConstraint] = []
     private let cameraBar = UIView()
@@ -33,6 +36,7 @@ final class AppDuoContentView: UIView {
                 let available = update.hinge != nil && traitCollection.userInterfaceIdiom == .phone
                 guard hasHinge != available else { return }
                 hasHinge = available
+                onDuoAvailabilityChange?(available)
                 owningController?.setNeedsStatusBarAppearanceUpdate()
                 window?.rootViewController?.setNeedsStatusBarAppearanceUpdate()
                 if #available(iOS 16.0, *) {

@@ -8,6 +8,11 @@ Android, `ios-legacy`, архивы ZIP и проект AppStoreScreenshots не
 `UIHingeInteraction` ограничивает новые правила устройством Duo. Другие устройства
 сохраняют системные safe area и статус-бар. На Duo время, Wi-Fi, заряд и прочие
 элементы статус-бара скрываются общим контроллером, включая собственные диалоги.
+Корневая оболочка SwiftUI получает то же состояние Duo через callback общего
+контейнера. Принудительный `.statusBarHidden(false)` удалён: раньше он оставлял
+время и Wi-Fi видимыми, несмотря на `prefersStatusBarHidden` вложенного UIKit.
+После скрытия статус-бара шапка пересчитывается по активным Reserved Regions;
+отдельная область под системные значки вручную не добавляется.
 
 На внешнем дисплее фон шапки занимает полную ширину и высоту верхней области
 камеры. Содержимое шапки обходит камеру по горизонтали; при камере сверху слева
@@ -126,3 +131,18 @@ Android, `ios-legacy`, архивы ZIP и проект AppStoreScreenshots не
 
 Изменён только `ios/Math_Tricks`. Android, `ios-legacy`, ZIP-архивы и
 AppStoreScreenshots не изменены.
+
+## Исправление значков под камерой
+
+- `Math_Tricks/Math_TricksApp.swift`, `body`: удалено принудительное отображение
+  статус-бара в корне SwiftUI.
+- `Math_Tricks/ContentView.swift`, `body`, `AppRootHost.makeUIViewController`,
+  `dismantleUIViewController`: видимость статус-бара синхронизируется с Duo для
+  текущего окна; callback снимается при удалении host. Обычные устройства сохраняют
+  статус-бар. Переключение не пересоздаёт навигацию и рекламный баннер.
+- `Math_Tricks/Design/AppDuoLayout.swift`, `onDuoAvailabilityChange`, hinge handler
+  в `init(frame:)`: состояние Duo передаётся внешнему SwiftUI-контейнеру.
+- `docs/IPHONE_DUO_LAYOUT.md`: причина, исправление и перечень методов.
+
+Компиляция проверяет общий код в Xcode 26.6/SDK 26.5. Фактическое скрытие значков
+и высоту шапки Duo необходимо проверить при сборке SDK 27.1 или новее.

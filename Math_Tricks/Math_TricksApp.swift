@@ -18,7 +18,6 @@ struct Math_TricksApp: App {
                     GIDSignIn.sharedInstance.handle($0)
                 }
                 .ignoresSafeArea()
-                .statusBarHidden(false)
         }
     }
 }
