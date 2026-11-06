@@ -120,7 +120,7 @@ final class SolutionViewController: ThemedViewController {
         diagramScroll.contentInsetAdjustmentBehavior = .never
         diagramScroll.translatesAutoresizingMaskIntoConstraints = false; diagrams.translatesAutoresizingMaskIntoConstraints = false; diagrams.axis = .vertical
         diagrams.addArrangedSubview(scheme); diagrams.layer.addSublayer(nestingArrows); diagramScroll.addSubview(diagrams); diagramPanel.addSubview(diagramScroll)
-        diagramsTop = diagrams.topAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.topAnchor,constant:AppMetrics.headerHeight)
+        diagramsTop = diagrams.topAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.topAnchor)
         NSLayoutConstraint.activate([diagramScroll.topAnchor.constraint(equalTo:diagramPanel.topAnchor),diagramScroll.bottomAnchor.constraint(equalTo:diagramPanel.bottomAnchor),diagramScroll.leadingAnchor.constraint(equalTo:diagramPanel.leadingAnchor),diagramScroll.trailingAnchor.constraint(equalTo:diagramPanel.trailingAnchor),
             diagramsTop,diagrams.bottomAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.bottomAnchor,constant:-10),diagrams.leadingAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.leadingAnchor,constant:15),diagrams.trailingAnchor.constraint(equalTo:diagramScroll.contentLayoutGuide.trailingAnchor,constant:-15),diagrams.widthAnchor.constraint(equalTo:diagramScroll.frameLayoutGuide.widthAnchor,constant:-30),diagramPanel.heightAnchor.constraint(greaterThanOrEqualToConstant:AppMetrics.headerHeight)])
         controlsHeader.extendsAcrossTopCamera = true
@@ -389,7 +389,8 @@ final class SolutionViewController: ThemedViewController {
         if abs(toolsTop.constant - top) > 0.5 { toolsTop.constant = top }
         toolsTrailing.constant = safe.maxX - diagramPanel.bounds.maxX - toolsMargin
         crumbsTrailing.constant = -60 - toolsMargin - 8
-        diagramsTop.constant = max(AppMetrics.headerHeight, headerFrame.height)
+        // Match Rule's top alignment; reserve header space only for visible breadcrumbs.
+        diagramsTop.constant = parents.isEmpty ? 0 : max(AppMetrics.headerHeight, headerFrame.height)
         let leftCamera = obstacles.filter {
             $0.intersects(headerFrame) && $0.midX < diagramPanel.bounds.midX
         }.max { $0.width * $0.height < $1.width * $1.height }
