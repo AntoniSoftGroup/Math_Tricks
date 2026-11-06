@@ -489,7 +489,7 @@
 				CODE_SIGN_ENTITLEMENTS = Math_Tricks/Math_Tricks.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CRASHLYTICS_DSYM_BINARY = "$(PRODUCT_NAME).debug.dylib";
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = J2G688FEXG;
 				ENABLE_PREVIEWS = YES;
@@ -504,7 +504,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.0;
 				MATH_TRICKS_DUO_SDK = MATH_TRICKS_DUO_SDK;
 				"MATH_TRICKS_DUO_SDK[sdk=iphone*26.*]" = "";
 				"MATH_TRICKS_DUO_SDK[sdk=iphone*27.0*]" = "";
@@ -539,7 +539,7 @@
 				CODE_SIGN_ENTITLEMENTS = Math_Tricks/Math_Tricks.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CRASHLYTICS_DSYM_BINARY = "$(PRODUCT_NAME)";
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = J2G688FEXG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -553,7 +553,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.0;
 				MATH_TRICKS_DUO_SDK = MATH_TRICKS_DUO_SDK;
 				"MATH_TRICKS_DUO_SDK[sdk=iphone*26.*]" = "";
 				"MATH_TRICKS_DUO_SDK[sdk=iphone*27.0*]" = "";
